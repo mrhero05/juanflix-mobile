@@ -7,10 +7,10 @@ export default () => {
 
   return (
     <SafeAreaView className="flex-1 w-full">
-      <ScrollView className="flex-1 bg-gray-400">
-        <View className="flex-1 justify-center items-center">
-          <Text>Welcome To JuanFlix App</Text>
-          <Link href="/signin">Sign In</Link>
+      <ScrollView className="flex-1 bg-gray-400 h-screen">
+        <View className="justify-center items-center bg-red-50 h-full">
+          <Text className="font-bold text-3xl">Welcome To JuanFlix App</Text>
+          <Link href="/signin" className='text-2xl'>Sign In</Link>
         </View>
       </ScrollView>
     </SafeAreaView>

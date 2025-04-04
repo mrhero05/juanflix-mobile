@@ -10,6 +10,21 @@
       "eas": {
         "projectId": "02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
       }
-    }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": [
+              "https://mvn.jwplayer.com/content/repositories/releases/"
+            ]
+          }
+        }
+      ]
+    ]
   }
 }

@@ -1,9 +1,12 @@
+
+
 import { StatusBar } from 'expo-status-bar';
 import React, {useRef} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Player from './src/components/Player';
 import PlayerContainer from './src/components/PlayerContainer';
+import "./app/global.css"
 
 export default () => {
   const playerRef = useRef([]);
@@ -176,9 +179,11 @@ export default () => {
   };
 
   return (
-    <PlayerContainer
-      children={renderPlayer()}
-      text="Welcome to"
-    />
+    
+      <PlayerContainer
+        children={renderPlayer()}
+        text="Welcome"
+      />
+ 
   );
 };

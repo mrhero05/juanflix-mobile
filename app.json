@@ -13,6 +13,18 @@
     },
     "web": {
       "bundler": "metro"
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": [
+              "https://mvn.jwplayer.com/content/repositories/releases/"
+            ]
+          }
+        }
+      ]
+    ]
   }
 }

@@ -1,9 +1,12 @@
+
+
 import { StatusBar } from 'expo-status-bar';
 import React, {useRef} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Player from './src/components/Player';
 import PlayerContainer from './src/components/PlayerContainer';
+import "./app/global.css"
 
 export default () => {
   const playerRef = useRef([]);
@@ -176,12 +179,11 @@ export default () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center">
+    
       <PlayerContainer
         children={renderPlayer()}
         text="Welcome"
       />
-      <Text className="text-5xl text-red-200 font-bold">Test Tailwind</Text>
-    </View>
+ 
   );
 };

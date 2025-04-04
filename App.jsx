@@ -176,9 +176,12 @@ export default () => {
   };
 
   return (
-    <PlayerContainer
-      children={renderPlayer()}
-      text="Welcome to"
-    />
+    <View className="flex-1 justify-center items-center">
+      <PlayerContainer
+        children={renderPlayer()}
+        text="Welcome"
+      />
+      <Text className="text-5xl text-red-200 font-bold">Test Tailwind</Text>
+    </View>
   );
 };

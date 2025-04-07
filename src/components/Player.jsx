@@ -2,7 +2,6 @@ import React, {forwardRef} from 'react';
 import {Platform} from 'react-native';
 
 import JWPlayer from '@jwplayer/jwplayer-react-native';
-import {JWPLAYER_LICENSE_IOS, JWPLAYER_LICENSE_ANDROID} from "@env"
 
 export default forwardRef((props, ref) => {
   const { onLayout, tag, config, style } = props;

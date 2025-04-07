@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground, Image } from 'react-native'
 import React from 'react'
-import { images } from '@constants/Images';
+import { images } from '@utils/Constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles } from '@/src/styles/global.style';
 

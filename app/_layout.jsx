@@ -1,7 +1,6 @@
 import { Stack } from "expo-router";
 import { Image, StatusBar } from "react-native";
-import { colors } from '@constants/Colors';
-import { images } from '@constants/Images';
+import { colors, images } from '@utils/Constants';
 
 export default function RootLayout() {
 	return (

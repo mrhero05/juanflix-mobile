@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { Button } from 'react-native-paper'
-import { colors } from '@constants/Colors'
+import { colors } from '@utils/Constants'
 
 const YellowButton = ({title, ...props}) => {
   return (

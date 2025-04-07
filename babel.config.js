@@ -25,7 +25,9 @@ module.exports = function (api) {
               '@images' : './src/assets/images',
               '@fonts' : './src/assets/fonts',
               '@styles' : './src/assets/styles/',
-              '@constants' : './src/constants/'
+              '@utils' : './src/utils/',
+              '@screens' : './src/screens/',
+              '@services' : './src/services/'
             },
           }
         ],

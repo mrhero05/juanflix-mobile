@@ -20,9 +20,16 @@ module.exports = function (api) {
             root: ['./'],
             alias: {
               '@': './',
+              '@tailWindGlobalCss' : './app/',
+              '@components': './src/components/',
+              '@images' : './src/assets/images',
+              '@fonts' : './src/assets/fonts',
+              '@styles' : './src/assets/styles/',
+              '@constants' : './src/constants/'
             },
           }
         ],
+        ['react-native-paper/babel']
       ],
     };
   };

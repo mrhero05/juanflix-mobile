@@ -6,6 +6,8 @@ import {JWPLAYER_LICENSE_IOS, JWPLAYER_LICENSE_ANDROID} from "@env"
 
 export default forwardRef((props, ref) => {
   const { onLayout, tag, config, style } = props;
+  const licenseIOS = process.env.EXPO_PUBLIC_JWPLAYER_LICENSE_IOS;
+  const licenseAndroid = process.env.EXPO_PUBLIC_JWPLAYER_LICENSE_ANDROID;
 
   const newProps = Object.assign({}, props);
   delete newProps.ref;
@@ -21,8 +23,8 @@ export default forwardRef((props, ref) => {
       style={[{flex: 1}, style]}
       config={{
         license: Platform.select({
-            ios: JWPLAYER_LICENSE_IOS, 
-            android: JWPLAYER_LICENSE_ANDROID
+            ios: licenseIOS, 
+            android: licenseAndroid
         }),
         backgroundAudioEnabled: true,
         fullScreenOnLandscape: false,

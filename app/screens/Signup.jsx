@@ -15,8 +15,7 @@ import TextField from '@components/CustomUI/TextField';
 import { TextInput } from 'react-native-paper';
 import YellowButton from '@components/CustomUI/YellowButton';
 import CustomButton from '@components/CustomUI/CustomButton';
-import { colors } from '@constants/Colors'
-import { images } from '@constants/Images';
+import { colors, images } from '@utils/Constants'
 import { useNavigation } from '@react-navigation/native';
 
 const Signup = () => {

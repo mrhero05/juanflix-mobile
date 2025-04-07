@@ -1,5 +1,4 @@
 
-
 import React, {useRef} from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import "@tailWindGlobalCss/global.css"

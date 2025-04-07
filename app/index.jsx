@@ -12,7 +12,7 @@ export default () => {
         <ScrollView>
           <View className="flex-1 justify-center items-center w-full">
             <Text className="font-bold text-2xl">Welcome To Juanflix</Text>
-            <Link href="signup/Index">Sign up</Link>
+            <Link href="screens/Signup">Sign up</Link>
           </View>
         </ScrollView>
       </SafeAreaView>

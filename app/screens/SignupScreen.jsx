@@ -19,7 +19,7 @@ import { CustomButton, YellowButton } from "@components/CustomUI/CustomButton";
 import { colors, images } from "@utils/Constants";
 import { useNavigation } from "@react-navigation/native";
 
-const Signup = () => {
+const SignupScreen = () => {
     const [emailValue, onChangeEmailValue] = useState("");
     const [passwordValue, onChangePasswordValue] = useState("");
     const [isPasswordSecure, setIsPasswordSecure] = useState(true);
@@ -135,7 +135,7 @@ const Signup = () => {
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.navigate(
-                                        "screens/LeavingTheApp",
+                                        "screens/LeavingTheAppScreen",
                                         {
                                             continueLink: registrationLink,
                                         }
@@ -154,4 +154,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default SignupScreen;

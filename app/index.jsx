@@ -66,7 +66,7 @@ export default () => {
                                 />
                                 <Link
                                     className="text-customWhite"
-                                    href="screens/Signup"
+                                    href="screens/SignupScreen"
                                 >
                                     SIGN IN
                                 </Link>
@@ -125,7 +125,7 @@ export default () => {
                                         <TouchableOpacity
                                             onPress={() =>
                                                 navigation.navigate(
-                                                    "screens/LeavingTheApp",
+                                                    "screens/LeavingTheAppScreens",
                                                     {
                                                         continueLink:
                                                             juanflixLink,
@@ -164,6 +164,14 @@ export default () => {
                             title="Uncover Your New Favorite"
                             description="Dive into an ever-growing collection where every story matters."
                         />
+                    </View>
+                    <View>
+                        <Link
+                            className="text-customWhite"
+                            href="screens/TestScreen"
+                        >
+                            TestScreen
+                        </Link>
                     </View>
                 </ScrollView>
             </SafeAreaView>

@@ -16,45 +16,45 @@ export default function RootLayout() {
                     name="index"
                     options={{
                         headerShown: false,
-                        headerTransparent: true,
-                        headerTitleAlign: "center",
-                        headerLeft: () => (
-                            <Appbar.Action
-                                color={colors.customWhite}
-                                icon="menu"
-                                size={30}
-                                style={{
-                                    marginLeft: -10,
-                                }}
-                                isLeading
-                            />
-                        ),
-                        headerTitle: () => (
-                            <Image
-                                source={images.brandLogo}
-                                style={{
-                                    width: 100,
-                                    height: 40,
-                                    resizeMode: "contain",
-                                }}
-                            />
-                        ),
-                        headerRight: () => (
-                            <Link
-                                className="text-customWhite"
-                                href="screens/Signup"
-                            >
-                                Sign up
-                            </Link>
-                        ),
+                        // headerTransparent: true,
+                        // headerTitleAlign: "center",
+                        // headerLeft: () => (
+                        //     <Appbar.Action
+                        //         color={colors.customWhite}
+                        //         icon="menu"
+                        //         size={30}
+                        //         style={{
+                        //             marginLeft: -10,
+                        //         }}
+                        //         isLeading
+                        //     />
+                        // ),
+                        // headerTitle: () => (
+                        //     <Image
+                        //         source={images.brandLogo}
+                        //         style={{
+                        //             width: 100,
+                        //             height: 40,
+                        //             resizeMode: "contain",
+                        //         }}
+                        //     />
+                        // ),
+                        // headerRight: () => (
+                        //     <Link
+                        //         className="text-customWhite"
+                        //         href="screens/Signup"
+                        //     >
+                        //         Sign up
+                        //     </Link>
+                        // ),
                     }}
                 />
                 <Stack.Screen
-                    name="screens/LeavingTheApp"
+                    name="screens/LeavingTheAppScreen"
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
-                    name="screens/Signup"
+                    name="screens/SignupScreen"
                     options={{
                         headerTransparent: true,
                         headerTintColor: colors.customWhite,

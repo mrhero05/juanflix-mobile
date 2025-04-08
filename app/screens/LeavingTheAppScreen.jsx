@@ -6,7 +6,7 @@ import { globalStyles } from "@/src/styles/global.style";
 import { CustomButton, YellowButton } from "@components/CustomUI/CustomButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-const LeavingTheApp = () => {
+const LeavingTheAppScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const { continueLink } = route.params;
@@ -53,4 +53,4 @@ const LeavingTheApp = () => {
     );
 };
 
-export default LeavingTheApp;
+export default LeavingTheAppScreen;

@@ -28,4 +28,11 @@ export const globalStyles = StyleSheet.create({
     yPadding: {
         paddingBlock: 20,
     },
+    zPadding: {
+        padding: 20,
+    },
+    filmAspectRatio: {
+        flex: 1,
+        aspectRatio: 340 / 458,
+    },
 });

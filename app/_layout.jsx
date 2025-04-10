@@ -1,7 +1,7 @@
 import { Link, Stack } from "expo-router";
 import { Image, StatusBar } from "react-native";
 import { colors, images } from "@utils/Constants";
-import "@tailWindGlobalCss/global.css";
+import "@styles/global.css";
 import { Appbar } from "react-native-paper";
 
 export default function RootLayout() {
@@ -70,6 +70,10 @@ export default function RootLayout() {
                             />
                         ),
                     }}
+                />
+                <Stack.Screen
+                    name="screens/TestScreen"
+                    options={{ headerShown: false }}
                 />
             </Stack>
         </>

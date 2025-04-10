@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { colors } from "@utils/Constants";
 
-export const CustomButton = ({ title, ...props }) => {
+const CustomButton = ({ title, ...props }) => {
     return (
         <Button style={[styles.customButtonStyle]} {...props}>
             {title}
@@ -11,10 +11,10 @@ export const CustomButton = ({ title, ...props }) => {
     );
 };
 
-export const YellowButton = ({ title, ...props }) => {
+const YellowButton = ({ title, style, ...props }) => {
     return (
         <Button
-            style={[styles.yellowButtonStyle]}
+            style={[styles.yellowButtonStyle, style]}
             textColor={colors.customBlack}
             buttonColor={colors.customYellow}
             {...props}
@@ -36,3 +36,5 @@ const styles = StyleSheet.create({
         fontWeight: "900",
     },
 });
+export default CustomButton;
+export { YellowButton };

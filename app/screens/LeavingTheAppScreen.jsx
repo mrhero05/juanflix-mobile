@@ -2,8 +2,8 @@ import { View, Text, ImageBackground, Image, Linking } from "react-native";
 import React, { useEffect } from "react";
 import { images, colors } from "@utils/Constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { globalStyles } from "@/src/styles/global.style";
-import { CustomButton, YellowButton } from "@components/CustomUI/CustomButton";
+import { globalStyles } from "@styles/global.style";
+import { YellowButton, CustomButton } from "@components/CustomUI";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 const LeavingTheAppScreen = () => {

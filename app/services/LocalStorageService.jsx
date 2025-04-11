@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LocalStorageService = {
-    // Save data to AsyncStorage
     saveData: async (key, value) => {
         try {
             console.log("run localStorage saveData");
@@ -12,7 +11,6 @@ const LocalStorageService = {
         }
     },
 
-    // Retrieve data from AsyncStorage
     getData: async (key) => {
         try {
             const value = await AsyncStorage.getItem(key);
@@ -28,7 +26,6 @@ const LocalStorageService = {
         }
     },
 
-    // Remove data from AsyncStorage
     removeData: async (key) => {
         try {
             await AsyncStorage.removeItem(key);
@@ -38,7 +35,6 @@ const LocalStorageService = {
         }
     },
 
-    // Clear all data from AsyncStorage
     clearAllData: async () => {
         try {
             await AsyncStorage.clear();

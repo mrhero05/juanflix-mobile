@@ -7,21 +7,35 @@ import {
     StatusBar,
     ImageBackground,
     Image,
-    TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
-import { images, colors } from "@utils/Constants";
-import "@tailWindGlobalCss/global.css";
+import {
+    images,
+    colors,
+    indexFilmData,
+    indexIconTitleData,
+    benefitsData,
+} from "@utils/Constants";
+import "@styles/global.css";
 import { Appbar } from "react-native-paper";
-import { globalStyles } from "@/src/styles/global.style";
+import { globalStyles, width } from "@styles/global.style";
 import { useNavigation } from "@react-navigation/native";
-import TitleDescription from "@components/CustomUI/TitleDescription";
-import IconTitle from "@components/CustomUI/IconTitle";
+import {
+    TitleDescription,
+    PressableLink,
+    IconTitle,
+    SmallTitleDescription,
+    SubscriptionPlan,
+    YellowButton,
+} from "@components/CustomUI";
+import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 export default () => {
     const navigation = useNavigation();
     const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_CREATE_LINK;
+
+    const film3Items = width * 0.333333 - 18.7;
     return (
         <>
             <StatusBar translucent={true} />
@@ -44,8 +58,8 @@ export default () => {
                             source={images.backgroundHomeScreen}
                         >
                             <View
-                                style={globalStyles.xPadding}
-                                className="flex py-[20px] justify-between items-center flex-row w-full"
+                                style={[globalStyles.zPadding]}
+                                className="flex justify-between items-center flex-row w-full"
                             >
                                 <Appbar.Action
                                     color={colors.customWhite}
@@ -72,38 +86,35 @@ export default () => {
                                 </Link>
                             </View>
                             <View
-                                style={[
-                                    globalStyles.xPadding,
-                                    globalStyles.yPadding,
-                                ]}
+                                style={[globalStyles.zPadding]}
                                 className=" flex-1 items-center"
                             >
                                 <View className="w-full flex-1 my-auto ">
                                     <View className="flex-row justify-center items-center gap-[8px]">
                                         <Image
                                             resizeMode="contain"
-                                            style={{
-                                                flex: 1,
-                                                aspectRatio: 340 / 458,
-                                            }}
+                                            style={[
+                                                globalStyles.filmAspectRatio,
+                                            ]}
                                             source={images.indexImg2}
                                         />
                                         <Image
                                             className="flex-1 w-[45%]"
                                             resizeMode="contain"
-                                            style={{
-                                                flexGrow: 1.75,
-                                                aspectRatio: 340 / 458,
-                                            }}
+                                            style={[
+                                                {
+                                                    flexGrow: 1.75,
+                                                },
+                                                globalStyles.filmAspectRatio,
+                                            ]}
                                             source={images.indexImg1}
                                         />
                                         <Image
                                             resizeMode="contain"
-                                            style={{
-                                                flex: 1,
-                                                aspectRatio: 340 / 458,
-                                            }}
-                                            source={images.indexImg2}
+                                            style={[
+                                                globalStyles.filmAspectRatio,
+                                            ]}
+                                            source={images.indexImg3}
                                         />
                                     </View>
                                     <View className="max-w-[350px]">
@@ -122,21 +133,18 @@ export default () => {
                                         <Text className="text-customGray">
                                             Go to{" "}
                                         </Text>
-                                        <TouchableOpacity
+                                        <PressableLink
+                                            title="JuanFlix.com/index"
                                             onPress={() =>
                                                 navigation.navigate(
-                                                    "screens/LeavingTheAppScreens",
+                                                    "screens/LeavingTheAppScreen",
                                                     {
                                                         continueLink:
                                                             juanflixLink,
                                                     }
                                                 )
                                             }
-                                        >
-                                            <Text className="text-customYellow underline">
-                                                JuanFlix.com/index
-                                            </Text>
-                                        </TouchableOpacity>
+                                        />
                                     </View>
                                 </View>
                             </View>
@@ -149,32 +157,118 @@ export default () => {
                             { paddingBlock: 60, gap: 60 },
                         ]}
                     >
-                        <IconTitle
-                            source={images.icon1}
-                            title="Endless Entertainment"
-                            description="Watch Original filipino shows and movies that speak to you."
-                        />
-                        <IconTitle
-                            source={images.icon2}
-                            title="Lots Of Entertainment"
-                            description="From killing hits to epic thrills, explore thousands of hours full of love, laughter and adventure"
-                        />
-                        <IconTitle
-                            source={images.icon3}
-                            title="Uncover Your New Favorite"
-                            description="Dive into an ever-growing collection where every story matters."
-                        />
+                        {indexIconTitleData.map((item) => (
+                            <IconTitle
+                                key={item.id}
+                                source={item.source}
+                                title={item.title}
+                                description={item.description}
+                            />
+                        ))}
                     </View>
-                    <View>
-                        <Link
-                            className="text-customWhite"
-                            href="screens/TestScreen"
-                        >
-                            TestScreen
-                        </Link>
+                    <View
+                        className="flex-1 w-full"
+                        style={[
+                            styles.curveBackgroundSection,
+                            globalStyles.xPadding,
+                        ]}
+                    >
+                        <View style={styles.curveBackgroundGray} />
+                        <View style={styles.curveBackgroundYellow} />
+                        <Text className="text-center font-bold text-2xl">
+                            ALL OF THESE AND MORE,{"\n"} NOW STREAMING
+                        </Text>
+                        <View style={styles.curveFilmSection}>
+                            {indexFilmData.map((item) => (
+                                <Image
+                                    resizeMode="contain"
+                                    key={item.id}
+                                    source={item.source}
+                                    style={[
+                                        globalStyles.filmAspectRatio,
+                                        { width: film3Items, flex: 0 },
+                                    ]}
+                                />
+                            ))}
+                        </View>
+                    </View>
+                    <View
+                        className="flex-1 w-full"
+                        style={[
+                            globalStyles.xPadding,
+                            {
+                                marginBottom: 50,
+                            },
+                        ]}
+                    >
+                        <SmallTitleDescription
+                            title="SUBSCRIPTION PROMO"
+                            description="Subscribe to JuanFlix for unlimited access to quality films, and exclusive content."
+                            styles={{
+                                paddingBlock: 40,
+                                maxWidth: 250,
+                                marginInline: "auto",
+                            }}
+                        />
+                        <SubscriptionPlan
+                            price="49"
+                            frequently="per month"
+                            plantag="PREMIUM PLAN"
+                            benefits={benefitsData.map((item) => (
+                                <Text key={item.id} className="text-customGray">
+                                    <Text>✓</Text> {item.text}
+                                </Text>
+                            ))}
+                            button={
+                                <YellowButton
+                                    title="Get Offer Now"
+                                    style={{
+                                        borderTopLeftRadius: 0,
+                                        borderTopRightRadius: 0,
+                                    }}
+                                />
+                            }
+                        />
                     </View>
                 </ScrollView>
             </SafeAreaView>
         </>
     );
 };
+
+const styles = StyleSheet.create({
+    curveBackgroundGray: {
+        height: 360,
+        backgroundColor: colors.customGray,
+        borderRadius: "100%",
+        transform: [{ scaleX: 2 }],
+        position: "absolute",
+        top: -37,
+        left: 0,
+        right: 0,
+    },
+    curveBackgroundYellow: {
+        height: 360,
+        backgroundColor: colors.customYellow,
+        borderRadius: "100%",
+        transform: [{ scaleX: 2 }],
+        position: "absolute",
+        top: -35,
+        left: 0,
+        right: 0,
+    },
+    curveBackgroundSection: {
+        marginTop: 35,
+        paddingTop: 20,
+        backgroundColor: colors.customYellow,
+        position: "relative",
+    },
+    curveFilmSection: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 8,
+        paddingTop: 30,
+        paddingBottom: 40,
+    },
+});

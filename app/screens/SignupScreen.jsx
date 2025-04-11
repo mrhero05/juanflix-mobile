@@ -4,20 +4,21 @@ import {
     ScrollView,
     ImageBackground,
     Platform,
-    Linking,
-    TouchableOpacity,
     Image,
-    StatusBar,
 } from "react-native";
 import React, { useState } from "react";
-import TitleDescription from "@components/CustomUI/TitleDescription";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { globalStyles } from "@/src/styles/global.style";
-import TextField from "@components/CustomUI/TextField";
+import { globalStyles } from "@styles/global.style";
 import { TextInput } from "react-native-paper";
-import { CustomButton, YellowButton } from "@components/CustomUI/CustomButton";
 import { colors, images } from "@utils/Constants";
 import { useNavigation } from "@react-navigation/native";
+import {
+    YellowButton,
+    CustomButton,
+    PressableLink,
+    TextField,
+    TitleDescription,
+} from "@components/CustomUI/";
 
 const SignupScreen = () => {
     const [emailValue, onChangeEmailValue] = useState("");
@@ -132,7 +133,8 @@ const SignupScreen = () => {
                             <Text className="text-customGray">
                                 Don't have an account?{" "}
                             </Text>
-                            <TouchableOpacity
+                            <PressableLink
+                                title="Sign Up"
                                 onPress={() =>
                                     navigation.navigate(
                                         "screens/LeavingTheAppScreen",
@@ -141,11 +143,7 @@ const SignupScreen = () => {
                                         }
                                     )
                                 }
-                            >
-                                <Text className="text-customYellow underline">
-                                    Sign Up
-                                </Text>
-                            </TouchableOpacity>
+                            />
                         </View>
                     </View>
                 </ScrollView>

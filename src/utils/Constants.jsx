@@ -16,4 +16,57 @@ export const images = {
     icon1: require("@images/Icon1.png"),
     icon2: require("@images/Icon2.png"),
     icon3: require("@images/Icon3.png"),
+    curveBackground: require("@images/Curve-Background.png"),
 };
+export const indexFilmData = [
+    { id: 1, source: images.indexImg1 },
+    { id: 2, source: images.indexImg2 },
+    { id: 3, source: images.indexImg3 },
+    { id: 9, source: images.indexImg2 },
+    { id: 4, source: images.indexImg3 },
+    { id: 5, source: images.indexImg1 },
+    { id: 6, source: images.indexImg1 },
+    { id: 7, source: images.indexImg2 },
+    { id: 8, source: images.indexImg3 },
+];
+export const indexIconTitleData = [
+    {
+        id: 1,
+        source: images.icon1,
+        title: "Endless Entertainment",
+        description:
+            "Watch Original filipino shows and movies that speak to you.",
+    },
+    {
+        id: 2,
+        source: images.icon2,
+        title: "Lots Of Entertainment",
+        description:
+            "From killing hits to epic thrills, explore thousands of hours full of love, laughter and adventure",
+    },
+    {
+        id: 3,
+        source: images.icon3,
+        title: "Uncover Your New Favorite",
+        description:
+            "Dive into an ever-growing collection where every story matters.",
+    },
+];
+export const benefitsData = [
+    {
+        id: 1,
+        text: "Access to all Free Content",
+    },
+    {
+        id: 2,
+        text: "Access to JuanFlix Subscription library",
+    },
+    {
+        id: 3,
+        text: "Watch on your desktop computer, laptop, smartphone, or tablet.",
+    },
+    {
+        id: 4,
+        text: "Special invites to JuanFlix in-person events.",
+    },
+];

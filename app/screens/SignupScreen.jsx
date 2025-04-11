@@ -19,6 +19,7 @@ import {
     TextField,
     TitleDescription,
 } from "@components/CustomUI/";
+import AuthService from "@services/AuthService";
 
 const SignupScreen = () => {
     const [emailValue, onChangeEmailValue] = useState("");
@@ -69,8 +70,10 @@ const SignupScreen = () => {
                             className="mb-[15px]"
                             title="SIGN IN NOW"
                             onPress={() => {
-                                console.log(`Email: ${emailValue}`);
-                                console.log(`Password: ${passwordValue}`);
+                                AuthService.loginUser({
+                                    email: emailValue,
+                                    password: passwordValue,
+                                });
                             }}
                         />
                         <View className="flex flex-row gap-[10] items-center justify-center pt-[10px] pb-[25px]">

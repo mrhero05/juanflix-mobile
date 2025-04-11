@@ -70,3 +70,5 @@ export const benefitsData = [
         text: "Special invites to JuanFlix in-person events.",
     },
 ];
+
+export default () => {};

@@ -29,7 +29,6 @@ import {
     SubscriptionPlan,
     YellowButton,
 } from "@components/CustomUI";
-import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 export default () => {
     const navigation = useNavigation();

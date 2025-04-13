@@ -45,6 +45,12 @@ export default () => {
                         backgroundColor: colors.customBlack,
                     }}
                 >
+                    <View>
+                    <Link
+                                    className="text-customWhite"
+                                    href="screens/Home/HomeScreen"
+                                >test homepage</Link>
+                    </View>
                     <View
                         className="min-h-screen w-full"
                         style={{

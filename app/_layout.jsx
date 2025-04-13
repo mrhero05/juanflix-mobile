@@ -75,6 +75,10 @@ export default function RootLayout() {
                     name="screens/TestScreen"
                     options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                    name="screens/Home/HomeScreen"
+                    options={{ headerShown: false }}
+                />
             </Stack>
         </>
     );

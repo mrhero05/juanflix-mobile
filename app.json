@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "juanflix-app",
-        "slug": "juanflix-app",
+        "name": "JuanFlixApp",
+        "slug": "JuanFlixApp",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./src/assets/images/juanflix-icon.png",
@@ -51,12 +51,12 @@
                 "origin": false
             },
             "eas": {
-                "projectId": "7302ed30-95e1-4aa3-bffe-c3f76880e0f6"
+                "projectId": "02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
             }
         },
         "runtimeVersion": "1.0.0",
         "updates": {
-            "url": "https://u.expo.dev/7302ed30-95e1-4aa3-bffe-c3f76880e0f6"
+            "url": "https://u.expo.dev/02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
         }
     }
 }

@@ -43,6 +43,14 @@ const LocalStorageService = {
             console.error("Failed to clear data", e);
         }
     },
+    getAllKeys: async () => {
+        let keys = [];
+        try {
+            keys = await AsyncStorage.getAllKeys();
+            return keys;
+        } catch (e) {}
+        console.log(keys);
+    },
 };
 
 export default LocalStorageService;

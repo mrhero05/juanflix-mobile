@@ -6,7 +6,7 @@ import {
     Platform,
     Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
 import { TextInput } from "react-native-paper";
@@ -19,14 +19,15 @@ import {
     TextField,
     TitleDescription,
 } from "@components/CustomUI/";
-import AuthService from "@services/AuthService";
+import { useAuth } from "@context/AuthContext";
 
 const SignupScreen = () => {
-    const [emailValue, onChangeEmailValue] = useState("");
-    const [passwordValue, onChangePasswordValue] = useState("");
+    const [emailValue, onChangeEmailValue] = useState("new@gmail.com");
+    const [passwordValue, onChangePasswordValue] = useState("test1234");
     const [isPasswordSecure, setIsPasswordSecure] = useState(true);
     const registrationLink = process.env.EXPO_PUBLIC_REGISTRATION_LINK;
     const navigation = useNavigation();
+    const { userLogin, userLogout } = useAuth();
 
     return (
         <SafeAreaView
@@ -70,7 +71,7 @@ const SignupScreen = () => {
                             className="mb-[15px]"
                             title="SIGN IN NOW"
                             onPress={() => {
-                                AuthService.loginUser({
+                                userLogin({
                                     email: emailValue,
                                     password: passwordValue,
                                 });
@@ -97,7 +98,9 @@ const SignupScreen = () => {
                             textColor={colors.customGray}
                             buttonColor={colors.customBlack}
                             title="Login with Facebook"
-                            onPress={() => {}}
+                            onPress={() => {
+                                userLogout();
+                            }}
                         />
                         <CustomButton
                             className="mb-[15px]"

@@ -27,7 +27,7 @@ const SignupScreen = () => {
     const [isPasswordSecure, setIsPasswordSecure] = useState(true);
     const registrationLink = process.env.EXPO_PUBLIC_REGISTRATION_LINK;
     const navigation = useNavigation();
-    const { userLogin, userLogout } = useAuth();
+    const { userLogin, userLogout, isLoading } = useAuth();
 
     return (
         <SafeAreaView
@@ -76,6 +76,7 @@ const SignupScreen = () => {
                                     password: passwordValue,
                                 });
                             }}
+                            loading={isLoading}
                         />
                         <View className="flex flex-row gap-[10] items-center justify-center pt-[10px] pb-[25px]">
                             <View className="flex-1 h-[1px] bg-customGray"></View>
@@ -98,9 +99,7 @@ const SignupScreen = () => {
                             textColor={colors.customGray}
                             buttonColor={colors.customBlack}
                             title="Login with Facebook"
-                            onPress={() => {
-                                userLogout();
-                            }}
+                            onPress={() => {}}
                         />
                         <CustomButton
                             className="mb-[15px]"

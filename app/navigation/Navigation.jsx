@@ -1,5 +1,3 @@
-import "@styles/global.css";
-import { AuthProvider } from "@context/AuthContext";
 import React from "react";
 import { useAuth } from "@context/AuthContext";
 import { Stack } from "expo-router";
@@ -7,9 +5,10 @@ import { Image, StatusBar } from "react-native";
 import { colors, images } from "@utils/Constants";
 import "@styles/global.css";
 
-export default function RootLayout() {
+const navigation = () => {
+    const { authState } = useAuth();
     return (
-        <AuthProvider>
+        <>
             <StatusBar
                 backgroundColor={colors.customBlack}
                 barStyle="light-content"
@@ -49,6 +48,8 @@ export default function RootLayout() {
                     options={{ headerShown: false }}
                 />
             </Stack>
-        </AuthProvider>
+        </>
     );
-}
+};
+
+export default navigation;

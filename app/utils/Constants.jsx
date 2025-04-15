@@ -1,6 +1,7 @@
 export const colors = {
     customYellow: "#FFC300",
     customGray: "#C1C1C1",
+    customDarkGray: "#505050",
     customBlack: "#000000",
     customMidBlack: "#262626",
     customWhite: "#ffffff",
@@ -17,6 +18,15 @@ export const images = {
     icon2: require("@images/Icon2.png"),
     icon3: require("@images/Icon3.png"),
     curveBackground: require("@images/Curve-Background.png"),
+    homeIcon: require("@images/HomeIcon.png"),
+    homeIconActive: require("@images/HomeIconActive.png"),
+    watchListIcon: require("@images/WatchListIcon.png"),
+    watchListIconActive: require("@images/WatchListIconActive.png"),
+    browseIcon: require("@images/BrowseIcon.png"),
+    browseIconActive: require("@images/BrowseIconActive.png"),
+    bellIcon: require("@images/BellIcon.png"),
+    searchIcon: require("@images/SearchIcon.png"),
+    hamburgerIcon: require("@images/HamburgerIcon.png"),
 };
 export const indexFilmData = [
     { id: 1, source: images.indexImg1 },

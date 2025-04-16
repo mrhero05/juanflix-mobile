@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Dimensions, Platform } from "react-native";
 
 export const { width } = Dimensions.get("window");
+export const w33Percent = width * 0.33333;
+export const w50Percent = width * 0.5;
 
 export const globalStyles = StyleSheet.create({
     container: {

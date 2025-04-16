@@ -41,6 +41,27 @@
                         ]
                     }
                 }
+            ],
+            [
+                "expo-font",
+                {
+                    "fonts": [
+                        "./src/assets/fonts/CreatoDisplay-Black.otf",
+                        "./src/assets/fonts/CreatoDisplay-BlackItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Bold.otf",
+                        "./src/assets/fonts/CreatoDisplay-BoldItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-ExtraBold.otf",
+                        "./src/assets/fonts/CreatoDisplay-ExtraBoldItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Light.otf",
+                        "./src/assets/fonts/CreatoDisplay-LightItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Medium.otf",
+                        "./src/assets/fonts/CreatoDisplay-MediumItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Regular.otf",
+                        "./src/assets/fonts/CreatoDisplay-RegularItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Thin.otf",
+                        "./src/assets/fonts/CreatoDisplay-ThinItalic.otf"
+                    ]
+                }
             ]
         ],
         "experiments": {

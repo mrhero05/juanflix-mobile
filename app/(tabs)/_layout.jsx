@@ -33,6 +33,7 @@ export default () => {
                                 style={styles.customIconSize}
                             />
                         ),
+                        sceneStyle: styles.defaultBackground,
                         headerStyle: styles.defaultBackground,
                         tabBarStyle: styles.defaultBackground,
                         tabBarActiveTintColor: colors.customYellow,
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
     },
     defaultBackground: {
         backgroundColor: colors.customBlack,
+        borderColor: colors.customBlack,
     },
     badgeStyle: {
         position: "absolute",

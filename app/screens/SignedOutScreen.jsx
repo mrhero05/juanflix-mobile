@@ -19,7 +19,7 @@ import {
 } from "@utils/Constants";
 import "@styles/global.css";
 import { Appbar } from "react-native-paper";
-import { globalStyles, width } from "@styles/global.style";
+import { globalStyles, width, w33Percent } from "@styles/global.style";
 import { useNavigation } from "@react-navigation/native";
 import {
     TitleDescription,
@@ -33,8 +33,7 @@ import {
 const SignedOutScreen = () => {
     const navigation = useNavigation();
     const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_CREATE_LINK;
-
-    const film3Items = width * 0.333333 - 18.7;
+    const film3Items = w33Percent - 18.7;
     return (
         <>
             <StatusBar translucent={true} />

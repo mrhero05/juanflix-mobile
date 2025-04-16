@@ -28,6 +28,19 @@ export const images = {
     searchIcon: require("@images/SearchIcon.png"),
     hamburgerIcon: require("@images/HamburgerIcon.png"),
 };
+export const topFilmImage = {
+    number1: require("@images/number1.png"),
+    number2: require("@images/number2.png"),
+    number3: require("@images/number3.png"),
+    number4: require("@images/number1.png"),
+    number5: require("@images/number1.png"),
+    number6: require("@images/number1.png"),
+    number7: require("@images/number1.png"),
+    number7: require("@images/number1.png"),
+    number8: require("@images/number1.png"),
+    number9: require("@images/number1.png"),
+    number1: require("@images/number1.png"),
+};
 export const indexFilmData = [
     { id: 1, source: images.indexImg1 },
     { id: 2, source: images.indexImg2 },

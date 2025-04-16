@@ -7,16 +7,12 @@ import {
     Image,
     TouchableOpacity,
 } from "react-native";
-import { colors } from "@utils/Constants";
+import { colors, topFilmImage } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { width, w33Percent } from "@styles/global.style";
-import { useFonts } from "expo-font";
 
-const film3Items = w33Percent - 10;
-const FilmRow = ({ title, subtitle, films, linkTo }) => {
-    const [fontsLoaded] = useFonts({
-        creatoBoldItalic: require("@fonts/CreatoDisplay-BlackItalic.otf"),
-    });
+const film3Items = w33Percent;
+const TopFilmRow = ({ title, subtitle, films, linkTo }) => {
     return (
         <View style={styles.container}>
             {linkTo ? (
@@ -31,7 +27,7 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                 </TouchableOpacity>
             ) : (
                 <View className="pl-[20]" style={styles.headerTitle}>
-                    <Text style={[styles.title]}>{title}</Text>
+                    <Text style={styles.title}>{title}</Text>
                 </View>
             )}
             {subtitle ? (
@@ -44,21 +40,27 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                 data={films}
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                    <View className="p-0" style={styles.filmItem}>
-                        <Image
-                            className="w-full h-full rounded"
-                            resizeMode="cover"
-                            source={{ uri: item.image }}
-                        ></Image>
-                    </View>
-                )}
+                renderItem={({ item, index }) => {
+                    // console.log(topFilmImage[`number${index + 1}`]);
+                    return (
+                        <View className="p-0" style={[styles.filmItem]}>
+                            <Image
+                                style={styles.topTitle}
+                                source={topFilmImage[`number${index + 1}`]}
+                            />
+                            <Image
+                                className="w-full h-full rounded"
+                                resizeMode="cover"
+                                source={{ uri: item.image }}
+                            ></Image>
+                        </View>
+                    );
+                }}
                 showsHorizontalScrollIndicator={false}
             />
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     headerTitle: {
         display: "flex",
@@ -76,13 +78,21 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: colors.customWhite,
     },
+    topTitle: {
+        position: "absolute",
+        bottom: 3,
+        left: -15,
+        zIndex: 1,
+        transform: [{ scale: 1.2 }],
+    },
     filmItem: {
         width: film3Items,
         aspectRatio: 320 / 480,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: 20,
+        marginLeft: 35,
+        position: "relative",
     },
 });
 
-export default FilmRow;
+export default TopFilmRow;

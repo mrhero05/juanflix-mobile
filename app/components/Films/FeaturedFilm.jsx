@@ -9,14 +9,10 @@ import {
 } from "react-native";
 import { colors } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
-import { width, w33Percent } from "@styles/global.style";
-import { useFonts } from "expo-font";
+import { width } from "@styles/global.style";
 
-const film3Items = w33Percent - 10;
-const FilmRow = ({ title, subtitle, films, linkTo }) => {
-    const [fontsLoaded] = useFonts({
-        creatoBoldItalic: require("@fonts/CreatoDisplay-BlackItalic.otf"),
-    });
+const filmFullWidth = width - 60;
+const FeaturedFilm = ({ title, subtitle, films, linkTo }) => {
     return (
         <View style={styles.container}>
             {linkTo ? (
@@ -31,7 +27,7 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                 </TouchableOpacity>
             ) : (
                 <View className="pl-[20]" style={styles.headerTitle}>
-                    <Text style={[styles.title]}>{title}</Text>
+                    <Text style={styles.title}>{title}</Text>
                 </View>
             )}
             {subtitle ? (
@@ -58,7 +54,6 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     headerTitle: {
         display: "flex",
@@ -77,7 +72,7 @@ const styles = StyleSheet.create({
         color: colors.customWhite,
     },
     filmItem: {
-        width: film3Items,
+        width: filmFullWidth,
         aspectRatio: 320 / 480,
         justifyContent: "center",
         alignItems: "center",
@@ -85,4 +80,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FilmRow;
+export default FeaturedFilm;

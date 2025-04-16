@@ -2,6 +2,7 @@ import {
     View,
     Text,
     Button,
+    Image,
     ScrollView,
     ImageBackground,
     StyleSheet,
@@ -14,9 +15,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { YellowButton, CustomButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
 import { LinearGradient } from "expo-linear-gradient";
-import FilmRow from "@components/Films/FilmRow";
 import FilmService from "@services/FilmService";
 import { useNavigation } from "expo-router";
+import FilmRow from "@components/Films/FilmRow";
+import TopFilmRow from "@components/Films/TopFilmRow";
+import FeaturedFilm from "@components/Films/FeaturedFilm";
 
 const Home = () => {
     const { userLogout, authState } = useAuth();
@@ -48,7 +51,12 @@ const Home = () => {
                     style={styles.linearBackground}
                 >
                     <View style={styles.detailsStyles}>
-                        <Text style={styles.filmTitleStyle}>Ekstra</Text>
+                        <Image
+                            style={styles.imageTitle}
+                            resizeMode="contain"
+                            source={require("@images/Ekstra.png")}
+                        />
+                        {/* <Text style={styles.filmTitleStyle}>Ekstra</Text> */}
                         <View style={styles.genreStyle}>
                             <Text style={styles.textStyle}>
                                 Comedy • Drama •{" "}
@@ -82,11 +90,10 @@ const Home = () => {
         <SafeAreaView>
             <ScrollView>
                 <BannerItem />
-                <View className="pl-[20] mt-[30]">
+                <View className=" mt-[30]">
                     <FilmRow
                         title="Movies Spotlight"
                         linkTo={() => {
-                            // navigation.navigate("Browse");
                             console.log("Navigation to its inner page");
                         }}
                         subtitle="NowPlaying on your channels and apps"
@@ -97,7 +104,6 @@ const Home = () => {
                         subtitle="Watch our trending films"
                         films={filmRegionData}
                         linkTo={() => {
-                            // navigation.navigate("Browse");
                             console.log("Navigation to its inner page");
                         }}
                     />
@@ -106,7 +112,18 @@ const Home = () => {
                         subtitle="Explore our new release movies"
                         films={filmRegionData}
                         linkTo={() => {
-                            // navigation.navigate("Browse");
+                            console.log("Navigation to its inner page");
+                        }}
+                    />
+                    <TopFilmRow
+                        title="Juan's Top Pick"
+                        films={filmRegionData}
+                    />
+                    <FeaturedFilm
+                        title="Featured Films"
+                        subtitle="Explore our top featured films"
+                        films={filmRegionData}
+                        linkTo={() => {
                             console.log("Navigation to its inner page");
                         }}
                     />
@@ -119,6 +136,10 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+    imageTitle: {
+        maxHeight: 60,
+        marginInline: "auto",
+    },
     watchListButton: {
         minWidth: 0,
         width: 40,

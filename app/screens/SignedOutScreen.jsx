@@ -82,12 +82,6 @@ const SignedOutScreen = () => {
                                 >
                                     SIGN IN
                                 </Link>
-                                {/* <Link
-                                    className="text-customWhite"
-                                    href="screens/Home/HomeScreen"
-                                >
-                                    Homepage
-                                </Link> */}
                             </View>
                             <View
                                 style={[globalStyles.zPadding]}
@@ -130,11 +124,11 @@ const SignedOutScreen = () => {
                                     </View>
                                 </View>
                                 <View className="border-customYellow border w-full rounded-[3px] p-[17px] mt-auto mb-[30px] items-center bg-customLowOpacityGray">
-                                    <Text className="text-customGray">
+                                    <Text style={globalStyles.bodyText}>
                                         Create a JuanFlix account and more.
                                     </Text>
                                     <View className="flex flex-row justify-center">
-                                        <Text className="text-customGray">
+                                        <Text style={globalStyles.bodyText}>
                                             Go to{" "}
                                         </Text>
                                         <PressableLink
@@ -179,7 +173,13 @@ const SignedOutScreen = () => {
                     >
                         <View style={styles.curveBackgroundGray} />
                         <View style={styles.curveBackgroundYellow} />
-                        <Text className="text-center font-bold text-2xl">
+                        <Text
+                            className="text-center"
+                            style={[
+                                globalStyles.sectionTitleText,
+                                { color: colors.customBlack },
+                            ]}
+                        >
                             ALL OF THESE AND MORE,{"\n"} NOW STREAMING
                         </Text>
                         <View style={styles.curveFilmSection}>

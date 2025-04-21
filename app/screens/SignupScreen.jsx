@@ -81,7 +81,7 @@ const SignupScreen = () => {
                         <View className="flex flex-row gap-[10] items-center justify-center pt-[10px] pb-[25px]">
                             <View className="flex-1 h-[1px] bg-customGray"></View>
                             <View>
-                                <Text className="text-customGray">Or</Text>
+                                <Text style={globalStyles.bodyText}>Or</Text>
                             </View>
                             <View className="flex-1 h-[1px] bg-customGray"></View>
                         </View>

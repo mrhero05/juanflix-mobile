@@ -9,6 +9,7 @@ import { Redirect } from "expo-router";
 export default () => {
     const { authState } = useAuth();
     if (authState.authenticated) {
+        console.log("redirect to home");
         return <Redirect href="/Home" />;
     }
     return <SignedOutScreen />;

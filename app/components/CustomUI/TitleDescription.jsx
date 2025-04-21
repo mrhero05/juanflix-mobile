@@ -1,10 +1,15 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { globalStyles } from "@styles/global.style";
+globalStyles;
 
 const TitleDescription = ({ title, description, styles }) => {
     return (
         <View className="w-full pt-[50px]" style={styles}>
-            <Text className="text-[2.2rem] font-bold text-customYellow leading-[1.4] text-center">
+            <Text
+                className=" text-customYellow text-center"
+                style={globalStyles.headerText}
+            >
                 {title}
             </Text>
             <Text className="text-center text-white pt-1">{description}</Text>

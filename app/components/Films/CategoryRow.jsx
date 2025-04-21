@@ -6,13 +6,14 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
+    ImageBackground,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import { width, w33Percent } from "@styles/global.style";
+import { w50Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 
-const film3Items = w33Percent - 10;
-const FilmRow = ({ title, subtitle, films, linkTo }) => {
+const film2Items = w50Percent;
+const CategoryRow = ({ title, subtitle, data, linkTo }) => {
     return (
         <View style={filmGlobalStyles.filmContainer}>
             {linkTo ? (
@@ -37,23 +38,30 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
             ) : null}
             <FlatList
                 style={filmGlobalStyles.flatList}
-                data={films}
+                data={data}
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
-                    <View
-                        className="p-0"
+                    <ImageBackground
+                        className="w-full h-full rounded"
+                        resizeMode="cover"
                         style={[
-                            filmGlobalStyles.filmItem,
-                            { width: film3Items },
+                            filmGlobalStyles.filmCategoryItem,
+                            { width: film2Items },
                         ]}
+                        imageStyle={{ borderRadius: 4 }}
+                        source={{ uri: item.image }}
                     >
-                        <Image
-                            className="w-full h-full rounded"
-                            resizeMode="cover"
-                            source={{ uri: item.image }}
-                        ></Image>
-                    </View>
+                        <Text
+                            className="mt-auto px-[10] mb-[10]"
+                            style={[
+                                globalStyles.sectionTitleText,
+                                { fontWeight: "500" },
+                            ]}
+                        >
+                            {item.title}
+                        </Text>
+                    </ImageBackground>
                 )}
                 showsHorizontalScrollIndicator={false}
             />
@@ -61,4 +69,4 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
     );
 };
 
-export default FilmRow;
+export default CategoryRow;

@@ -75,5 +75,12 @@ export const filmGlobalStyles = StyleSheet.create({
         alignItems: "center",
         marginLeft: 20,
     },
-    filmContainer: { marginBottom: 30 },
+    filmCategoryItem: {
+        aspectRatio: 194 / 126,
+        marginLeft: 20,
+    },
+    filmContinueWatching: {
+        aspectRatio: 194 / 126,
+    },
+    filmContainer: { marginBottom: 40 },
 });

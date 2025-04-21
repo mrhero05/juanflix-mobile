@@ -17,26 +17,45 @@ import { colors } from "@utils/Constants";
 import { LinearGradient } from "expo-linear-gradient";
 import FilmService from "@services/FilmService";
 import { useNavigation } from "expo-router";
-import { FilmRow, TopFilmRow, FeaturedFilm } from "@components/Films";
+import {
+    FilmRow,
+    TopFilmRow,
+    FeaturedFilm,
+    CategoryRow,
+    ContinueWatchingRow,
+} from "@components/Films";
+import { useQueries, useQuery } from "@tanstack/react-query";
 
 const Home = () => {
     const { userLogout, authState } = useAuth();
-    const [filmRegionData, setFilmRegionData] = useState([]);
     const navigation = useNavigation();
 
-    useEffect(() => {
-        const getFilmRegionData = async () => {
-            try {
-                const response = await FilmService.getFilmRegionData();
-                if (response) {
-                    setFilmRegionData(response.record);
-                }
-            } catch (error) {
-                setError("Something went wrong!");
-            }
-        };
-        getFilmRegionData();
-    }, []);
+    const [
+        { data: filmRegionData, isPending: filmDataIsPending },
+        { data: filmCategory, isPending: filmCategoryIsPending },
+        { data: filmContinue, isPending: filmContinueIsPending },
+    ] = useQueries({
+        queries: [
+            {
+                queryKey: ["filmData"],
+                queryFn: async () => {
+                    return await FilmService.getFilmRegionData();
+                },
+            },
+            {
+                queryKey: ["filmCategoryData"],
+                queryFn: async () => {
+                    return await FilmService.getCategoryData();
+                },
+            },
+            {
+                queryKey: ["filmContinueData"],
+                queryFn: async () => {
+                    return await FilmService.getContinueWatchingData();
+                },
+            },
+        ],
+    });
 
     const BannerItem = () => {
         return (
@@ -92,7 +111,7 @@ const Home = () => {
                     <FilmRow
                         title="Movies Spotlight"
                         linkTo={() => {
-                            console.log("Navigation to its inner page");
+                            console.log("Navigate to its inner page");
                         }}
                         subtitle="NowPlaying on your channels and apps"
                         films={filmRegionData}
@@ -102,7 +121,7 @@ const Home = () => {
                         subtitle="Watch our trending films"
                         films={filmRegionData}
                         linkTo={() => {
-                            console.log("Navigation to its inner page");
+                            console.log("Navigate to its inner page");
                         }}
                     />
                     <FilmRow
@@ -110,9 +129,10 @@ const Home = () => {
                         subtitle="Explore our new release movies"
                         films={filmRegionData}
                         linkTo={() => {
-                            console.log("Navigation to its inner page");
+                            console.log("Navigate to its inner page");
                         }}
                     />
+                    <ContinueWatchingRow data={filmContinue} />
                     <TopFilmRow
                         title="Juan's Top Pick"
                         films={filmRegionData}
@@ -122,7 +142,15 @@ const Home = () => {
                         subtitle="Explore our top featured films"
                         films={filmRegionData}
                         linkTo={() => {
-                            console.log("Navigation to its inner page");
+                            console.log("Navigate to its inner page");
+                        }}
+                    />
+                    <CategoryRow
+                        title="Browse by Genre"
+                        subtitle="Explore our films by genre"
+                        data={filmCategory}
+                        linkTo={() => {
+                            console.log("Navigate to Genre page");
                         }}
                     />
                 </View>

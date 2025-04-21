@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: "https://api.jsonbin.io/v3/qs/6800839e8a456b79668b1bc8",
+    // baseURL: process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM,
     timeout: 10000,
     headers: {
         "Content-Type": "application/json",
@@ -10,6 +10,30 @@ const apiClient = axios.create({
 
 const FilmService = {
     getFilmRegionData() {
+        apiClient.defaults.baseURL =
+            process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM;
+        return apiClient
+            .get()
+            .then((response) => response.data)
+            .catch((error) => {
+                console.error("Error fetching film region data:", error);
+                throw error;
+            });
+    },
+    getCategoryData() {
+        apiClient.defaults.baseURL =
+            process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM_CATEGORY;
+        return apiClient
+            .get()
+            .then((response) => response.data)
+            .catch((error) => {
+                console.error("Error fetching film region data:", error);
+                throw error;
+            });
+    },
+    getContinueWatchingData() {
+        apiClient.defaults.baseURL =
+            process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM_CONTINUE;
         return apiClient
             .get()
             .then((response) => response.data)

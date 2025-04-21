@@ -1,5 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
+import { globalStyles } from "@styles/global.style";
 
 const IconTitle = ({ source, title, description }) => {
     return (
@@ -9,19 +10,14 @@ const IconTitle = ({ source, title, description }) => {
                 maxWidth: 230,
             }}
         >
-            <Image
-                className="aspect-[1/1]"
-                resizeMode="contain"
-                source={source}
-                style={styles.imageStyle}
-            />
+            <Image source={source} style={styles.imageStyle} />
             <Text
-                className="text-customWhite"
-                style={[styles.textStyle, styles.textTitle]}
+                className="text-center"
+                style={[globalStyles.sectionTitleText]}
             >
                 {title}
             </Text>
-            <Text className="text-customGray" style={styles.textStyle}>
+            <Text className="text-center" style={globalStyles.bodyText}>
                 {description}
             </Text>
         </View>
@@ -32,14 +28,8 @@ const styles = StyleSheet.create({
     imageStyle: {
         height: 90,
         marginBottom: 10,
-    },
-    textTitle: {
-        fontSize: 18,
-        fontWeight: "bold",
-    },
-    textStyle: {
-        textAlign: "center",
-        lineHeight: 24,
+        resizeMode: "contain",
+        aspectRatio: 1 / 1,
     },
 });
 

@@ -46,7 +46,6 @@ const Watchlist = () => {
                 width={width}
                 data={data}
                 onProgressChange={progress}
-                mode="parallax"
                 modeConfig={{
                     parallaxScrollingScale: 0.9,
                     parallaxScrollingOffset: 50,

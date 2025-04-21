@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Dimensions, Platform } from "react-native";
+import { colors } from "@utils/Constants";
 
 export const { width } = Dimensions.get("window");
 export const w33Percent = width * 0.33333;
@@ -37,4 +38,42 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         aspectRatio: 340 / 458,
     },
+    headerText: {
+        fontWeight: "bold",
+        fontSize: 30,
+        lineHeight: 35 * 1.2,
+    },
+    sectionTitleText: {
+        color: colors.customWhite,
+        fontSize: 18,
+        fontWeight: "bold",
+        lineHeight: 24,
+    },
+    subTitleText: {
+        color: colors.customGray,
+    },
+    bodyText: {
+        color: colors.customGray,
+        lineHeight: 22,
+    },
+});
+
+export const filmGlobalStyles = StyleSheet.create({
+    subtitle: {
+        fontSize: 13,
+        color: colors.customGray,
+    },
+    headerTitle: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    flatList: { marginTop: 15 },
+    filmItem: {
+        aspectRatio: 320 / 480,
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: 20,
+    },
+    filmContainer: { marginBottom: 30 },
 });

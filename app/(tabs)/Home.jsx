@@ -17,9 +17,7 @@ import { colors } from "@utils/Constants";
 import { LinearGradient } from "expo-linear-gradient";
 import FilmService from "@services/FilmService";
 import { useNavigation } from "expo-router";
-import FilmRow from "@components/Films/FilmRow";
-import TopFilmRow from "@components/Films/TopFilmRow";
-import FeaturedFilm from "@components/Films/FeaturedFilm";
+import { FilmRow, TopFilmRow, FeaturedFilm } from "@components/Films";
 
 const Home = () => {
     const { userLogout, authState } = useAuth();

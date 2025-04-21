@@ -9,7 +9,15 @@ export default () => {
     const { authState } = useAuth();
     return (
         <>
-            <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+            <Tabs
+                screenOptions={{
+                    tabBarActiveTintColor: colors.customYellow,
+                    headerTintColor: colors.customWhite,
+                    sceneStyle: styles.defaultBackground,
+                    headerStyle: styles.defaultBackground,
+                    tabBarStyle: styles.defaultBackground,
+                }}
+            >
                 <Tabs.Screen
                     name="Home"
                     options={{
@@ -33,10 +41,6 @@ export default () => {
                                 style={styles.customIconSize}
                             />
                         ),
-                        sceneStyle: styles.defaultBackground,
-                        headerStyle: styles.defaultBackground,
-                        tabBarStyle: styles.defaultBackground,
-                        tabBarActiveTintColor: colors.customYellow,
                         headerRight: () => (
                             <View style={styles.customHeaderStyle}>
                                 <AppBarBadge
@@ -77,10 +81,6 @@ export default () => {
                                 style={styles.customIconSize}
                             />
                         ),
-                        headerTintColor: colors.customWhite,
-                        headerStyle: styles.defaultBackground,
-                        tabBarStyle: styles.defaultBackground,
-                        tabBarActiveTintColor: colors.customYellow,
                         headerRight: () => (
                             <View style={styles.customHeaderStyle}>
                                 <Image
@@ -109,10 +109,6 @@ export default () => {
                                 style={styles.customIconSize}
                             />
                         ),
-                        headerTintColor: colors.customWhite,
-                        headerStyle: styles.defaultBackground,
-                        tabBarStyle: styles.defaultBackground,
-                        tabBarActiveTintColor: colors.customYellow,
                     }}
                 />
                 <Tabs.Screen
@@ -138,10 +134,6 @@ export default () => {
                                     color={color}
                                 />
                             ),
-                        headerTintColor: colors.customWhite,
-                        headerStyle: styles.defaultBackground,
-                        tabBarStyle: styles.defaultBackground,
-                        tabBarActiveTintColor: colors.customYellow,
                     }}
                 />
             </Tabs>

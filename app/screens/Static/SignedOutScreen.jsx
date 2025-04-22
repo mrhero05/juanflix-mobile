@@ -78,7 +78,7 @@ const SignedOutScreen = () => {
                                 />
                                 <Link
                                     className="text-customWhite"
-                                    href="screens/SignupScreen"
+                                    href="screens/Static/SignupScreen"
                                 >
                                     SIGN IN
                                 </Link>
@@ -135,7 +135,7 @@ const SignedOutScreen = () => {
                                             title="JuanFlix.com/index"
                                             onPress={() =>
                                                 navigation.navigate(
-                                                    "screens/LeavingTheAppScreen",
+                                                    "screens/Static/LeavingTheAppScreen",
                                                     {
                                                         continueLink:
                                                             juanflixLink,

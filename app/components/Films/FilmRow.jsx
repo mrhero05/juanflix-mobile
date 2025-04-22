@@ -10,9 +10,12 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { width, w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
+import { useNavigation } from "expo-router";
+// import { useNavigation } from "@react-navigation/native";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, films, linkTo }) => {
+    const navigation = useNavigation("/");
     return (
         <View style={filmGlobalStyles.filmContainer}>
             {linkTo ? (
@@ -40,7 +43,7 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                 data={films}
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
+                renderItem={({ item, index }) => (
                     <View
                         className="p-0"
                         style={[
@@ -48,11 +51,21 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                             { width: film3Items },
                         ]}
                     >
-                        <Image
+                        <TouchableOpacity
+                            activeOpacity={0.8}
                             className="w-full h-full rounded"
-                            resizeMode="cover"
-                            source={{ uri: item.image }}
-                        ></Image>
+                            onPress={() => {
+                                navigation.navigate("screens/Film/[filmid]", {
+                                    id: index,
+                                });
+                            }}
+                        >
+                            <Image
+                                className="w-full h-full rounded"
+                                resizeMode="cover"
+                                source={{ uri: item.image }}
+                            />
+                        </TouchableOpacity>
                     </View>
                 )}
                 showsHorizontalScrollIndicator={false}

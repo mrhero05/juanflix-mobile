@@ -11,19 +11,19 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
     },
     subContainer: {
-        backgroundColor: "black",
+        backgroundColor: colors.customBlack,
         alignItems: "center",
     },
     playerContainer: {
-        height: 300,
-        width: width - 40,
+        // height: 300,
+        width: width,
+        aspectRatio: 1.8,
     },
     player: {
         flex: 1,
     },
     text: {
         fontSize: 18,
-        margin: 40,
     },
     xPadding: {
         paddingInline: 20,
@@ -83,4 +83,38 @@ export const filmGlobalStyles = StyleSheet.create({
         aspectRatio: 194 / 126,
     },
     filmContainer: { marginBottom: 40 },
+});
+export const headerGlobalStyles = StyleSheet.create({
+    appBarStyles: {
+        marginLeft: -12,
+    },
+    headerDefaultStyle: {
+        height: 56,
+        backgroundColor: colors.customBlack,
+        borderColor: colors.customBlack,
+    },
+    defaultBackground: {
+        backgroundColor: colors.customBlack,
+        borderColor: colors.customBlack,
+    },
+    badgeStyle: {
+        position: "absolute",
+        top: -5,
+        right: -2,
+        zIndex: 1,
+    },
+    customHeaderIconSize: {
+        width: 25,
+        height: 20,
+        objectFit: "contain",
+    },
+    customHeaderStyle: {
+        gap: 15,
+        flexDirection: "row",
+        paddingRight: 20,
+    },
+    customIconSize: {
+        width: 25,
+        height: 25,
+    },
 });

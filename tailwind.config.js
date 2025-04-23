@@ -8,7 +8,7 @@ module.exports = {
             colors: {
                 customYellow: "#FFC300",
                 customGray: "#C1C1C1",
-                customDarkGray: "#505050",
+                customDarkGray: "#0C0C0C",
                 customBlack: "#000000",
                 customMidBlack: "#262626",
                 customWhite: "#ffffff",

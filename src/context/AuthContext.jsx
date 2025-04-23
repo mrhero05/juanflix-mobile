@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
 
                 if (!token) {
                     console.log("No Response data");
+                    setIsLoading(false);
                     return false;
                 }
                 const authProfile = user.profile_photo_url;
@@ -34,12 +35,7 @@ export const AuthProvider = ({ children }) => {
                     authenticated: true,
                     profile: userProfile,
                 });
-                navigate.dispatch(
-                    CommonActions.reset({
-                        index: 0,
-                        routes: [{ name: "index" }],
-                    })
-                );
+                router.replace("/Home");
                 setIsLoading(false);
                 return Promise.all([
                     LocalStorageService.saveData(
@@ -70,12 +66,7 @@ export const AuthProvider = ({ children }) => {
                 authenticated: false,
                 profile: null,
             });
-            navigate.dispatch(
-                CommonActions.reset({
-                    index: 0,
-                    routes: [{ name: "index" }],
-                })
-            );
+            router.replace("/");
         });
     };
     const loadUserAuth = async () => {

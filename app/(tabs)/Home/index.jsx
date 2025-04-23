@@ -7,6 +7,7 @@ import {
     ImageBackground,
     StyleSheet,
     TouchableOpacity,
+    Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import LocalStorageService from "@services/LocalStorageService";
@@ -25,6 +26,16 @@ import {
     ContinueWatchingRow,
 } from "@components/Films";
 import { useQueries, useQuery } from "@tanstack/react-query";
+
+import { useSharedValue } from "react-native-reanimated";
+import Carousel, {
+    ICarouselInstance,
+    Pagination,
+} from "react-native-reanimated-carousel";
+import MainBanner from "@components/Banner/MainBanner";
+
+const data = [...new Array(6).keys()];
+const width = Dimensions.get("window").width;
 
 const Home = () => {
     const { userLogout, authState } = useAuth();
@@ -57,55 +68,52 @@ const Home = () => {
         ],
     });
 
+    const ref = React.useRef(null);
+    const progress = useSharedValue(0);
+
+    const onPressPagination = (index) => {
+        ref.current?.scrollTo({
+            /**
+             * Calculate the difference between the current index and the target index
+             * to ensure that the carousel scrolls to the nearest index
+             */
+            count: index - progress.value,
+            animated: true,
+        });
+    };
+
     const BannerItem = () => {
         return (
-            <ImageBackground
-                source={require("@images/BannerImage.png")}
-                style={styles.bannerImgStyle}
-            >
-                <LinearGradient
-                    colors={["transparent", "rgba(0,0,0,1)"]}
-                    style={styles.linearBackground}
-                >
-                    <View style={styles.detailsStyles}>
-                        <Image
-                            style={styles.imageTitle}
-                            resizeMode="contain"
-                            source={require("@images/Ekstra.png")}
-                        />
-                        {/* <Text style={styles.filmTitleStyle}>Ekstra</Text> */}
-                        <View style={styles.genreStyle}>
-                            <Text style={styles.textStyle}>
-                                Comedy • Drama •{" "}
-                            </Text>
-                            <Text
-                                style={[styles.ratingStyle, styles.textStyle]}
-                            >
-                                R13
-                            </Text>
-                        </View>
-                        <View style={styles.actionbuttonStyle}>
-                            <YellowButton
-                                className="flex-1"
-                                icon="play"
-                                title="Watch Now"
-                            />
-                            <CustomButton
-                                title="+"
-                                labelStyle={{ fontSize: 20 }}
-                                buttonColor={colors.customDarkGray}
-                                textColor={colors.customWhite}
-                                style={styles.watchListButton}
-                            />
-                        </View>
-                    </View>
-                </LinearGradient>
-            </ImageBackground>
+            <>
+                <Carousel
+                    ref={ref}
+                    width={width}
+                    height={450}
+                    data={data}
+                    onProgressChange={progress}
+                    modeConfig={{
+                        parallaxScrollingScale: 0.9,
+                        parallaxScrollingOffset: 50,
+                    }}
+                    renderItem={({ index }) => <MainBanner />}
+                />
+
+                <Pagination.Basic
+                    progress={progress}
+                    data={data}
+                    dotStyle={{
+                        backgroundColor: "rgba(0,0,0,0.2)",
+                        borderRadius: 50,
+                    }}
+                    containerStyle={{ gap: 5, marginTop: 10 }}
+                    onPress={onPressPagination}
+                />
+            </>
         );
     };
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView overScrollMode="never">
                 <BannerItem />
                 <View className=" mt-[30]">
                     <FilmRow

@@ -3,7 +3,7 @@ import React from "react";
 import "@styles/global.css";
 
 import { useAuth } from "@context/AuthContext";
-import SignedOutScreen from "@screens/SignedOutScreen";
+import SignedOutScreen from "@screens/Static/SignedOutScreen";
 import { Redirect } from "expo-router";
 
 export default () => {

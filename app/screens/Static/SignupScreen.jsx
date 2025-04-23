@@ -142,7 +142,7 @@ const SignupScreen = () => {
                                 title="Sign Up"
                                 onPress={() =>
                                     navigation.navigate(
-                                        "screens/LeavingTheAppScreen",
+                                        "screens/Static/LeavingTheAppScreen",
                                         {
                                             continueLink: registrationLink,
                                         }

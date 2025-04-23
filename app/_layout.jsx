@@ -3,10 +3,12 @@ import { AuthProvider } from "@context/AuthContext";
 import React from "react";
 import { useAuth } from "@context/AuthContext";
 import { Stack } from "expo-router";
-import { Image, StatusBar } from "react-native";
+import { Image, StatusBar, StyleSheet, View } from "react-native";
 import { colors, images } from "@utils/Constants";
 import "@styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { headerGlobalStyles } from "@styles/global.style";
+import AppBarBadge from "@components/CustomUI/AppBarBadge";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +20,13 @@ export default function RootLayout() {
                     backgroundColor={colors.customBlack}
                     barStyle="light-content"
                 />
-                <Stack>
+                <Stack
+                    screenOptions={{
+                        headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        headerTintColor: colors.customWhite,
+                        contentStyle: headerGlobalStyles.defaultBackground,
+                    }}
+                >
                     <Stack.Screen
                         name="(tabs)"
                         options={{ headerShown: false }}
@@ -30,11 +38,11 @@ export default function RootLayout() {
                         }}
                     />
                     <Stack.Screen
-                        name="screens/LeavingTheAppScreen"
+                        name="screens/Static/LeavingTheAppScreen"
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen
-                        name="screens/SignupScreen"
+                        name="screens/Static/SignupScreen"
                         options={{
                             headerTransparent: true,
                             headerTintColor: colors.customWhite,
@@ -50,10 +58,6 @@ export default function RootLayout() {
                                 />
                             ),
                         }}
-                    />
-                    <Stack.Screen
-                        name="screens/Home/HomeScreen"
-                        options={{ headerShown: false }}
                     />
                 </Stack>
             </AuthProvider>

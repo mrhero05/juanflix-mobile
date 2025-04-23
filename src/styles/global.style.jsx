@@ -111,7 +111,6 @@ export const headerGlobalStyles = StyleSheet.create({
     customHeaderStyle: {
         gap: 15,
         flexDirection: "row",
-        paddingRight: 20,
     },
     customIconSize: {
         width: 25,

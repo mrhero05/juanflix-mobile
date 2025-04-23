@@ -10,12 +10,12 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { width, w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
-import { useNavigation } from "expo-router";
-// import { useNavigation } from "@react-navigation/native";
+import { router, useRouter } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, films, linkTo }) => {
-    const navigation = useNavigation("/");
+    const routers = useRouter();
     return (
         <View style={filmGlobalStyles.filmContainer}>
             {linkTo ? (
@@ -55,8 +55,9 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                             activeOpacity={0.8}
                             className="w-full h-full rounded"
                             onPress={() => {
-                                navigation.navigate("screens/Film/[filmid]", {
-                                    id: index,
+                                router.push({
+                                    pathname: "Browse/Filminfo/[id]",
+                                    params: { id: index },
                                 });
                             }}
                         >

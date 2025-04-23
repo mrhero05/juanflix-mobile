@@ -1,9 +1,13 @@
-import { View, Text, StatusBar, ScrollView } from "react-native";
+import { View, Text, StatusBar, ScrollView, StyleSheet } from "react-native";
 import React, { useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
 import Player from "@components/Player";
 import PlayerContainer from "@components/PlayerContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { YellowButton } from "@components/CustomUI";
+import { globalStyles } from "@styles/global.style";
+import { colors } from "@utils/Constants";
+import { Entypo } from "@expo/vector-icons";
 
 const FilmInfo = () => {
     const { id } = useLocalSearchParams();
@@ -162,11 +166,104 @@ const FilmInfo = () => {
 
     return (
         <SafeAreaView>
-            <ScrollView overScrollMode="never">
+            <ScrollView overScrollMode="never" style={globalStyles.xPadding}>
                 <PlayerContainer children={renderPlayer()} />
+                <Text style={[globalStyles.headerText, style.filmTitle]}>
+                    Jodilerks Dela Cruz, Employee of the Month
+                </Text>
+                <View style={style.filmInfo}>
+                    <Text style={[style.filmYear, globalStyles.bodyText]}>
+                        2013
+                    </Text>
+                    <Entypo name="dot-single" size={30} color="#C1C1C1" />
+                    <Text style={[style.filmRating, globalStyles.bodyText]}>
+                        R13
+                    </Text>
+                    <Entypo name="dot-single" size={30} color="#C1C1C1" />
+                    <Text style={[style.filmDuration, globalStyles.bodyText]}>
+                        13 mins
+                    </Text>
+                    <Entypo name="dot-single" size={30} color="#C1C1C1" />
+                    <Text style={[style.filmCountry, globalStyles.bodyText]}>
+                        Philippines
+                    </Text>
+                </View>
+                <YellowButton icon="play" title="Watch Now" />
+                <View style={style.filmGenre}>
+                    <Text style={[globalStyles.bodyText, style.filmGenreText]}>
+                        Short Film
+                    </Text>
+                    <Text style={[globalStyles.bodyText, style.filmGenreText]}>
+                        Drama
+                    </Text>
+                </View>
+                <View>
+                    <Text
+                        style={[
+                            globalStyles.sectionTitleText,
+                            { marginBottom: 8, fontSize: 16 },
+                        ]}
+                    >
+                        SYNOPSIS
+                    </Text>
+                    <Text style={globalStyles.bodyText}>
+                        Previously dedicated to her job at a soon-to-close gas
+                        station, the subject devotes her last night of
+                        employment to some questionable acts, thereby reflecting
+                        the increasingly anarchic nature of the society around
+                        her.
+                    </Text>
+                </View>
+                <View style={style.filmActions}>
+                    <Text style={globalStyles.bodyText}>Watchlist</Text>
+                    <Text style={globalStyles.bodyText}>Rate</Text>
+                    <Text style={globalStyles.bodyText}>Download</Text>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
 };
 
 export default FilmInfo;
+
+const style = StyleSheet.create({
+    filmTitle: {
+        textAlign: "center",
+        color: colors.customWhite,
+        lineHeight: 30 * 1.2,
+    },
+    filmInfo: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingBlock: 30,
+    },
+    filmGenre: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 15,
+        paddingBlock: 20,
+    },
+    filmGenreText: {
+        borderRightWidth: 1,
+        borderColor: colors.customGray,
+        paddingRight: 15,
+        paddingBlock: 3,
+    },
+    filmYear: {},
+    filmRating: {
+        backgroundColor: "#2e2e2e",
+        paddingInline: 10,
+        paddingBlock: 1,
+        borderRadius: 3,
+        borderWidth: 1,
+        borderColor: colors.customGray,
+    },
+    filmDuration: {},
+    filmCountry: {},
+    filmActions: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+});

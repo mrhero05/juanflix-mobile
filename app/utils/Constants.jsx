@@ -1,7 +1,7 @@
 export const colors = {
     customYellow: "#FFC300",
     customGray: "#C1C1C1",
-    customDarkGray: "#505050",
+    customDarkGray: "#2e2e2e",
     customBlack: "#000000",
     customMidBlack: "#262626",
     customWhite: "#ffffff",

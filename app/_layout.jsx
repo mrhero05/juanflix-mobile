@@ -38,47 +38,6 @@ export default function RootLayout() {
                         }}
                     />
                     <Stack.Screen
-                        name="screens/Film/[filmid]"
-                        options={{
-                            headerTitle: "",
-                            headerRight: () => (
-                                <View
-                                    style={[
-                                        headerGlobalStyles.customHeaderStyle,
-                                        { paddingRight: 5 },
-                                    ]}
-                                >
-                                    <AppBarBadge
-                                        appBarBadge={{
-                                            visible: true,
-                                            number: 4,
-                                        }}
-                                        children={
-                                            <Image
-                                                source={images.bellIcon}
-                                                style={
-                                                    headerGlobalStyles.customHeaderIconSize
-                                                }
-                                            />
-                                        }
-                                    />
-                                    <Image
-                                        source={images.searchIcon}
-                                        style={
-                                            headerGlobalStyles.customHeaderIconSize
-                                        }
-                                    />
-                                    <Image
-                                        source={images.hamburgerIcon}
-                                        style={
-                                            headerGlobalStyles.customHeaderIconSize
-                                        }
-                                    />
-                                </View>
-                            ),
-                        }}
-                    />
-                    <Stack.Screen
                         name="screens/Static/LeavingTheAppScreen"
                         options={{ headerShown: false }}
                     />

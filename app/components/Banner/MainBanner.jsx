@@ -3,6 +3,7 @@ import { View, Text, Image, ImageBackground, StyleSheet } from "react-native";
 import { YellowButton, CustomButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
 import { LinearGradient } from "expo-linear-gradient";
+import { Entypo } from "@expo/vector-icons";
 
 const MainBanner = () => {
     return (
@@ -22,7 +23,10 @@ const MainBanner = () => {
                     />
                     {/* <Text style={styles.filmTitleStyle}>Ekstra</Text> */}
                     <View style={styles.genreStyle}>
-                        <Text style={styles.textStyle}>Comedy • Drama • </Text>
+                        <Text style={[styles.textStyle]}>Comedy</Text>
+                        <Entypo name="dot-single" size={30} color="#C1C1C1" />
+                        <Text style={[styles.textStyle]}>Drama</Text>
+                        <Entypo name="dot-single" size={30} color="#C1C1C1" />
                         <Text style={[styles.ratingStyle, styles.textStyle]}>
                             R13
                         </Text>
@@ -92,12 +96,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 15,
         justifyContent: "center",
+        alignItems: "center",
     },
     ratingStyle: {
-        backgroundColor: colors.customDarkGray,
+        backgroundColor: "#2e2e2e",
         paddingInline: 10,
         paddingBlock: 1,
         borderRadius: 3,
+        borderWidth: 1,
+        borderColor: colors.customGray,
     },
     actionbuttonStyle: { display: "flex", flexDirection: "row", gap: 8 },
 });

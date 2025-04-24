@@ -22,7 +22,6 @@ export default function RootLayout() {
                 />
                 <Stack
                     screenOptions={{
-                        headerStyle: headerGlobalStyles.headerDefaultStyle,
                         headerTintColor: colors.customWhite,
                         contentStyle: headerGlobalStyles.defaultBackground,
                     }}

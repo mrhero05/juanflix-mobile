@@ -12,6 +12,7 @@ import { width, w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { router, useRouter } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
+import { websiteStorageUrl } from "@utils/Constants";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, films, linkTo }) => {
@@ -43,32 +44,47 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                 data={films}
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item, index }) => (
-                    <View
-                        className="p-0"
-                        style={[
-                            filmGlobalStyles.filmItem,
-                            { width: film3Items },
-                        ]}
-                    >
-                        <TouchableOpacity
-                            activeOpacity={0.8}
-                            className="w-full h-full rounded"
-                            onPress={() => {
-                                router.push({
-                                    pathname: "Browse/Filminfo/[id]",
-                                    params: { id: index },
-                                });
-                            }}
+                renderItem={({ item, index }) => {
+                    const itemThumbnail = `${websiteStorageUrl}${item.poster}`;
+                    return (
+                        <View
+                            className="p-0"
+                            style={[
+                                filmGlobalStyles.filmItem,
+                                { width: film3Items },
+                            ]}
                         >
-                            <Image
+                            <TouchableOpacity
+                                activeOpacity={0.8}
                                 className="w-full h-full rounded"
-                                resizeMode="cover"
-                                source={{ uri: item.image }}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                )}
+                                onPress={() => {
+                                    router.push({
+                                        pathname: "Browse/Filminfo/[id]",
+                                        params: {
+                                            id: item.id,
+                                            src: item.src,
+                                            title: item.title,
+                                            rating: item.rating,
+                                            duration: item.duration,
+                                            description: item.description,
+                                            genres: JSON.stringify(item.genres),
+                                            categories: JSON.stringify(
+                                                item.categories
+                                            ),
+                                            trailer_src: item.trailer_src,
+                                        },
+                                    });
+                                }}
+                            >
+                                <Image
+                                    className="w-full h-full rounded"
+                                    resizeMode="cover"
+                                    source={{ uri: itemThumbnail }}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    );
+                }}
                 showsHorizontalScrollIndicator={false}
             />
         </View>

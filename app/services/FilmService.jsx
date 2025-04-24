@@ -10,10 +10,14 @@ const apiClient = axios.create({
 
 const FilmService = {
     getFilmRegionData() {
-        apiClient.defaults.baseURL =
-            process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM;
+        // apiClient.defaults.baseURL =
+        //     process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM;
+        apiClient.defaults.baseURL = process.env.EXPO_PUBLIC_API_URL;
+        apiClient.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${process.env.EXPO_PUBLIC_API_TOKEN}`;
         return apiClient
-            .get()
+            .get("film")
             .then((response) => response.data)
             .catch((error) => {
                 console.error("Error fetching film region data:", error);

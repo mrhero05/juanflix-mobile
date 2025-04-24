@@ -7,6 +7,7 @@ export const colors = {
     customWhite: "#ffffff",
     customLowOpacityGray: "#00000099",
 };
+export const websiteStorageUrl = `${process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL}storage/`;
 export const images = {
     brandLogo: require("@images/Juanflix Logo.png"),
     backgroundImg: require("@images/Juanflix-Background.png"),

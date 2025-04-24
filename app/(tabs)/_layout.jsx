@@ -34,6 +34,7 @@ export default () => {
                             style={headerGlobalStyles.customIconSize}
                         />
                     ),
+                    lazy: false,
                 }}
             />
             <Tabs.Screen
@@ -50,6 +51,7 @@ export default () => {
                             style={headerGlobalStyles.customIconSize}
                         />
                     ),
+                    lazy: false,
                 }}
             />
             <Tabs.Screen
@@ -66,6 +68,7 @@ export default () => {
                             style={headerGlobalStyles.customIconSize}
                         />
                     ),
+                    lazy: false,
                 }}
             />
             <Tabs.Screen
@@ -91,6 +94,7 @@ export default () => {
                                 color={color}
                             />
                         ),
+                    lazy: false,
                 }}
             />
         </Tabs>

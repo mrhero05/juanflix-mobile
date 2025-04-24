@@ -10,7 +10,6 @@ const LeavingTheAppScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const { continueLink } = route.params;
-
     return (
         <>
             <SafeAreaView

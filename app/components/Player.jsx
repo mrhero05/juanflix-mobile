@@ -26,7 +26,7 @@ export default forwardRef((props, ref) => {
                     android: licenseAndroid,
                 }),
                 backgroundAudioEnabled: true,
-                fullScreenOnLandscape: false,
+                fullScreenOnLandscape: true,
                 styling: {
                     colors: {},
                 },

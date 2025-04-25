@@ -34,7 +34,7 @@ import Carousel, {
 } from "react-native-reanimated-carousel";
 import MainBanner from "@components/Banner/MainBanner";
 
-const data = [...new Array(6).keys()];
+const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
 
 const Home = () => {
@@ -91,11 +91,9 @@ const Home = () => {
                     height={450}
                     data={data}
                     onProgressChange={progress}
-                    modeConfig={{
-                        parallaxScrollingScale: 0.9,
-                        parallaxScrollingOffset: 50,
+                    renderItem={({ index }) => {
+                        return <MainBanner />;
                     }}
-                    renderItem={({ index }) => <MainBanner />}
                 />
 
                 <Pagination.Basic
@@ -121,6 +119,7 @@ const Home = () => {
                         linkTo={() => {
                             console.log("Navigate to its inner page");
                         }}
+                        isPending={filmDataIsPending}
                         subtitle="NowPlaying on your channels and apps"
                         films={filmRegionData}
                     />
@@ -131,6 +130,7 @@ const Home = () => {
                         linkTo={() => {
                             console.log("Navigate to its inner page");
                         }}
+                        isPending={filmDataIsPending}
                     />
                     <FilmRow
                         title="New Release"
@@ -139,6 +139,7 @@ const Home = () => {
                         linkTo={() => {
                             console.log("Navigate to its inner page");
                         }}
+                        isPending={filmDataIsPending}
                     />
                     <ContinueWatchingRow data={filmContinue} />
                     <TopFilmRow

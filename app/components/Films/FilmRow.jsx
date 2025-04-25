@@ -59,7 +59,7 @@ const FilmRow = ({ title, subtitle, films, linkTo }) => {
                                 className="w-full h-full rounded"
                                 onPress={() => {
                                     router.push({
-                                        pathname: "Browse/Filminfo/[id]",
+                                        pathname: "Home/Filminfo/[id]",
                                         params: {
                                             id: item.id,
                                             src: item.src,

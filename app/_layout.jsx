@@ -9,7 +9,6 @@ import "@styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { headerGlobalStyles } from "@styles/global.style";
 import AppBarBadge from "@components/CustomUI/AppBarBadge";
-
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
@@ -39,6 +38,14 @@ export default function RootLayout() {
                     <Stack.Screen
                         name="screens/Static/LeavingTheAppScreen"
                         options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="screens/Static/InAppBrowser"
+                        options={{
+                            title: "Web Browser",
+                            headerShown: true,
+                            headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        }}
                     />
                     <Stack.Screen
                         name="screens/Static/SignupScreen"

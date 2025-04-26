@@ -42,9 +42,9 @@ const FilmInfo = () => {
     });
 
     const onTime = (e) => {
-        // var {position, duration} = e.nativeEvent;
+        // var { position, duration } = e.nativeEvent;
         // eslint-disable-line
-        // console.log('onTime was called with: ', position, duration);
+        // console.log("onTime was called with: ", position, duration);
     };
     const onFullScreen = () => {
         <StatusBar hidden={true} />;
@@ -66,18 +66,15 @@ const FilmInfo = () => {
         }
         return (
             <Player
-                // key={
-                //     playerRef?.current?.ref_key
-                //         ? playerRef?.current?.ref_key
-                //         : null
-                // }
                 ref={playerRef}
                 style={{ flex: 1 }}
                 config={{
-                    autostart: false,
+                    autostart: true,
                     styling: {
                         colors: {},
                     },
+                    controls: false,
+                    repeat: true,
                     ...jwConfig,
                 }}
                 onTime={onTime}

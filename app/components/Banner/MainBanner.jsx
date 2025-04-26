@@ -4,8 +4,18 @@ import { YellowButton, CustomButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
 import { LinearGradient } from "expo-linear-gradient";
 import { Entypo } from "@expo/vector-icons";
+import * as WebBrowser from "expo-web-browser";
+import { useRouter } from "expo-router";
 
 const MainBanner = () => {
+    const router = useRouter();
+    const _handlePressButtonAsync = async () => {
+        let result = await WebBrowser.openBrowserAsync(
+            process.env.EXPO_PUBLIC_REGISTRATION_LINK
+        );
+        // router.navigate("screens/Static/InAppBrowser");
+        console.log(result);
+    };
     return (
         <ImageBackground
             source={require("@images/BannerImage.png")}
@@ -43,6 +53,7 @@ const MainBanner = () => {
                             buttonColor={colors.customDarkGray}
                             textColor={colors.customWhite}
                             style={styles.watchListButton}
+                            onPress={_handlePressButtonAsync}
                         />
                     </View>
                 </View>

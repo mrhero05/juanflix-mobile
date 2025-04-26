@@ -11,6 +11,8 @@ import { colors, topFilmImage } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { width, w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
+import { websiteStorageUrl } from "@utils/Constants";
+import { router } from "expo-router";
 
 const film3Items = w33Percent;
 const TopFilmRow = ({ title, subtitle, films, linkTo }) => {
@@ -42,21 +44,44 @@ const TopFilmRow = ({ title, subtitle, films, linkTo }) => {
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => {
-                    // console.log(topFilmImage[`number${index + 1}`]);
+                    const itemThumbnail = `${websiteStorageUrl}${item.poster}`;
                     return (
                         <View
                             className="p-0"
                             style={[filmGlobalStyles.filmItem, styles.filmItem]}
                         >
-                            <Image
-                                style={styles.topTitle}
-                                source={topFilmImage[`number${index + 1}`]}
-                            />
-                            <Image
+                            <TouchableOpacity
+                                activeOpacity={0.8}
                                 className="w-full h-full rounded"
-                                resizeMode="cover"
-                                source={{ uri: item.image }}
-                            ></Image>
+                                onPress={() => {
+                                    router.push({
+                                        pathname: "Home/Filminfo/[id]",
+                                        params: {
+                                            id: item.id,
+                                            src: item.src,
+                                            title: item.title,
+                                            rating: item.rating,
+                                            duration: item.duration,
+                                            description: item.description,
+                                            genres: JSON.stringify(item.genres),
+                                            categories: JSON.stringify(
+                                                item.categories
+                                            ),
+                                            trailer_src: item.trailer_src,
+                                        },
+                                    });
+                                }}
+                            >
+                                <Image
+                                    style={styles.topTitle}
+                                    source={topFilmImage[`number${index + 1}`]}
+                                />
+                                <Image
+                                    className="w-full h-full rounded"
+                                    resizeMode="cover"
+                                    source={{ uri: itemThumbnail }}
+                                />
+                            </TouchableOpacity>
                         </View>
                     );
                 }}

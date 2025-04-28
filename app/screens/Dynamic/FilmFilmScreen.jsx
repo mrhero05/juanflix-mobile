@@ -57,8 +57,10 @@ const FilmFilmScreen = ({ data }) => {
     const onFullScreenExit = () => {
         <StatusBar hidden={false} />;
     };
-
-    // let jwConfig = data;
+    const { playlist } = jwConfig;
+    const { sources } = playlist[0];
+    const playerWidth = sources[1].width;
+    const playerHeight = sources[1].height;
 
     const renderPlayer = () => {
         if (isFetching) {
@@ -90,7 +92,10 @@ const FilmFilmScreen = ({ data }) => {
     return (
         <SafeAreaView>
             <ScrollView overScrollMode="never" style={globalStyles.xPadding}>
-                <PlayerContainer children={renderPlayer()} />
+                <PlayerContainer
+                    playerRatio={playerWidth / playerHeight}
+                    children={renderPlayer()}
+                />
                 <Text style={[globalStyles.headerText, style.filmTitle]}>
                     {data.title}
                 </Text>

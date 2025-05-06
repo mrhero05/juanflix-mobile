@@ -44,7 +44,8 @@ const FeaturedFilm = ({ title, subtitle, films, linkTo }) => {
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => {
-                    const itemThumbnail = `${websiteStorageUrl}${item.poster}`;
+                    // const itemThumbnail = `${websiteStorageUrl}${item.poster}`;
+                    const itemThumbnail = item.poster;
                     return (
                         <View
                             className="p-0"
@@ -58,20 +59,7 @@ const FeaturedFilm = ({ title, subtitle, films, linkTo }) => {
                                 className="w-full h-full rounded"
                                 onPress={() => {
                                     router.push({
-                                        pathname: "Home/Filminfo/[id]",
-                                        params: {
-                                            id: item.id,
-                                            src: item.src,
-                                            title: item.title,
-                                            rating: item.rating,
-                                            duration: item.duration,
-                                            description: item.description,
-                                            genres: JSON.stringify(item.genres),
-                                            categories: JSON.stringify(
-                                                item.categories
-                                            ),
-                                            trailer_src: item.trailer_src,
-                                        },
+                                        pathname: `Home/Filminfo/${item.id}`,
                                     });
                                 }}
                             >

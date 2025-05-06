@@ -11,7 +11,7 @@ export default ({ children, text, playerRatio }) => {
                 <View
                     style={[
                         globalStyles.playerContainer,
-                        { aspectRatio: playerRatio },
+                        // { aspectRatio: playerRatio },
                     ]}
                 >
                     {children}

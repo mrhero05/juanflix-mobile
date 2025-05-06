@@ -12,7 +12,11 @@ import Player from "@components/Player";
 import PlayerContainer from "@components/PlayerContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { YellowButton } from "@components/CustomUI";
-import { globalStyles } from "@styles/global.style";
+import {
+    globalStyles,
+    w33Percent,
+    filmGlobalStyles,
+} from "@styles/global.style";
 import { colors } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import JWPlayerService from "@services/JWPlayerService";
@@ -78,7 +82,6 @@ const FilmFilmScreen = ({ data }) => {
         enabled: !!trailer_id,
         refetchOnMount: "always",
     });
-
     if (filmDataIsFetching) {
         return (
             <View className="flex-1 justify-center items-center">
@@ -227,6 +230,25 @@ const FilmFilmScreen = ({ data }) => {
                     <Text style={globalStyles.sectionTitleText}>
                         CAST & CREW
                     </Text>
+                    {crews?.map((item) => (
+                        <View
+                            key={item.id}
+                            style={[{ width: w33Percent - 10 }]}
+                        >
+                            <Image
+                                className="w-full"
+                                resizeMode="cover"
+                                style={{ height: 140 }}
+                                source={require("@images/default_avatar.png")}
+                            />
+                            <Text style={[globalStyles.sectionTitleText]}>
+                                {item.name}
+                            </Text>
+                            <Text style={[globalStyles.bodyText]}>
+                                {item.position}
+                            </Text>
+                        </View>
+                    ))}
                 </View>
                 <View style={globalStyles.xPadding}>
                     <Text style={globalStyles.sectionTitleText}>

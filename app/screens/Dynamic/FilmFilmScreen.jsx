@@ -11,13 +11,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Player from "@components/Player";
 import PlayerContainer from "@components/PlayerContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { YellowButton } from "@components/CustomUI";
+import { YellowButton, AwardsFestival } from "@components/CustomUI";
 import {
     globalStyles,
     w33Percent,
     filmGlobalStyles,
 } from "@styles/global.style";
-import { colors } from "@utils/Constants";
+import { colors, awardsData } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import JWPlayerService from "@services/JWPlayerService";
 import FilmService from "@services/FilmService";
@@ -89,6 +89,7 @@ const FilmFilmScreen = ({ data }) => {
             </View>
         );
     }
+
     const onTime = (e) => {
         // var { position, duration } = e.nativeEvent;
         // eslint-disable-line
@@ -226,8 +227,11 @@ const FilmFilmScreen = ({ data }) => {
                         <Text style={globalStyles.bodyText}>Download</Text>
                     </View>
                 </View>
-                <View style={globalStyles.xPadding}>
-                    <Text style={globalStyles.sectionTitleText}>
+                <View style={[globalStyles.xPadding, style.castCrewSection]}>
+                    <Text
+                        className="mb-4"
+                        style={globalStyles.sectionTitleText}
+                    >
                         CAST & CREW
                     </Text>
                     {crews?.map((item) => (
@@ -236,7 +240,7 @@ const FilmFilmScreen = ({ data }) => {
                             style={[{ width: w33Percent - 10 }]}
                         >
                             <Image
-                                className="w-full"
+                                className="w-full rounded mb-2"
                                 resizeMode="cover"
                                 style={{ height: 140 }}
                                 source={require("@images/default_avatar.png")}
@@ -250,10 +254,23 @@ const FilmFilmScreen = ({ data }) => {
                         </View>
                     ))}
                 </View>
-                <View style={globalStyles.xPadding}>
-                    <Text style={globalStyles.sectionTitleText}>
+                <View className="mb-[40]" style={globalStyles.xPadding}>
+                    <Text
+                        className="mb-3"
+                        style={globalStyles.sectionTitleText}
+                    >
                         AWARDS & FESTIVALS
                     </Text>
+                    {awardsData.map((item, index) => {
+                        return (
+                            <AwardsFestival
+                                key={index}
+                                title={item.title}
+                                subtitle={item.subtitle}
+                                source={item.source}
+                            />
+                        );
+                    })}
                 </View>
                 <FilmRow
                     title="MORE FILMS"
@@ -318,5 +335,10 @@ const style = StyleSheet.create({
         width: 20,
         height: 20,
         resizeMode: "contain",
+    },
+    castCrewSection: {
+        backgroundColor: colors.customDarkGray,
+        paddingBlock: 30,
+        marginBottom: 30,
     },
 });

@@ -32,7 +32,7 @@ import {
 
 const SignedOutScreen = () => {
     const navigation = useNavigation();
-    const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_CREATE_LINK;
+    const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL;
     const film3Items = w33Percent - 18.7;
     return (
         <>

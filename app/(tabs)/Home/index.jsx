@@ -1,8 +1,5 @@
 import {
     View,
-    Text,
-    Button,
-    Image,
     ScrollView,
     ImageBackground,
     StyleSheet,
@@ -10,14 +7,8 @@ import {
     Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import LocalStorageService from "@services/LocalStorageService";
-import { useAuth, authState } from "@context/AuthContext";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { YellowButton, CustomButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
-import { LinearGradient } from "expo-linear-gradient";
-import FilmService from "@services/FilmService";
-import { useNavigation } from "expo-router";
 import {
     FilmRow,
     TopFilmRow,
@@ -25,48 +16,24 @@ import {
     CategoryRow,
     ContinueWatchingRow,
 } from "@components/Films";
-import { useQueries, useQuery } from "@tanstack/react-query";
-
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, {
     ICarouselInstance,
     Pagination,
 } from "react-native-reanimated-carousel";
 import MainBanner from "@components/Banner/MainBanner";
+import useFilmGenresQuery from "@queries/useFilmGenresQuery";
+import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
+import useFilmQuery from "@queries/useFilmQuery";
 
 const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
 
 const Home = () => {
-    const { userLogout, authState } = useAuth();
-    const navigation = useNavigation();
-
-    const [
-        { data: filmRegionData, isPending: filmDataIsPending },
-        { data: filmCategory, isPending: filmCategoryIsPending },
-        { data: filmContinue, isPending: filmContinueIsPending },
-    ] = useQueries({
-        queries: [
-            {
-                queryKey: ["filmData"],
-                queryFn: async () => {
-                    return await FilmService.getFilmRegionData();
-                },
-            },
-            {
-                queryKey: ["filmCategoryData"],
-                queryFn: async () => {
-                    return await FilmService.getCategoryData();
-                },
-            },
-            {
-                queryKey: ["filmContinueData"],
-                queryFn: async () => {
-                    return await FilmService.getContinueWatchingData();
-                },
-            },
-        ],
-    });
+    const { data: filmRegionData, isPending: filmDataIsPending } =
+        useFilmQuery();
+    const { data: filmContinue } = useFilmContinueWatchQuery();
+    const { data: filmCategory } = useFilmGenresQuery();
 
     const ref = React.useRef(null);
     const progress = useSharedValue(0);

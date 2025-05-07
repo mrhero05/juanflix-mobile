@@ -19,11 +19,11 @@ import {
 } from "@styles/global.style";
 import { colors, awardsData } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
-import JWPlayerService from "@services/JWPlayerService";
-import FilmService from "@services/FilmService";
-import { useQuery } from "@tanstack/react-query";
 import { FilmRow } from "@components/Films";
 import stripHtmlTag from "@utils/StripHtmlTag";
+import useFilmInfoQuery from "@queries/useFilmInfoQuery";
+import useMoreFilmQuery from "@queries/useMoreFilmQuery";
+import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
 
 const FilmFilmScreen = ({ data }) => {
     const playerRef = useRef(null);
@@ -33,12 +33,7 @@ const FilmFilmScreen = ({ data }) => {
         data: filmData,
         isPending: filmDataIsPending,
         isFetching: filmDataIsFetching,
-    } = useQuery({
-        queryKey: ["filmDataByID"],
-        queryFn: async () => {
-            return await FilmService.getFilmByID(data.id);
-        },
-    });
+    } = useFilmInfoQuery(data.id);
 
     const film = filmData?.[0];
 
@@ -54,34 +49,21 @@ const FilmFilmScreen = ({ data }) => {
     } = film || {};
 
     const genresIds = genres?.map((item) => item.id).join(",") ?? "";
-    const defaultPropertyID = "NLLhGCSw";
 
     const {
         data: moreFilm,
         isPending: moreFilmIsPending,
         isFetching: moreFilmIsFetching,
-    } = useQuery({
-        queryKey: ["moreFilmData", genresIds],
-        queryFn: async () => {
-            return await FilmService.getMoreFilm(genresIds);
-        },
-        enabled: !!filmData,
-    });
+    } = useMoreFilmQuery({ filmData, genresIds });
+
     const {
         data: jwConfig,
         isPending: jwConfigIsPending,
         isFetching: jwConfigIsFetching,
-    } = useQuery({
-        queryKey: ["jwplayerConfig", trailer_id],
-        queryFn: async () => {
-            return await JWPlayerService.getJwplayerTrailer(
-                defaultPropertyID,
-                trailer_id
-            );
-        },
-        enabled: !!trailer_id,
-        refetchOnMount: "always",
-    });
+    } = useJwpTrailerQuery(trailer_id);
+
+    const genresAndCategories = [...(genres || []), ...(categories || [])];
+
     if (filmDataIsFetching) {
         return (
             <View className="flex-1 justify-center items-center">
@@ -149,7 +131,7 @@ const FilmFilmScreen = ({ data }) => {
     };
     return (
         <SafeAreaView>
-            <ScrollView overScrollMode="never" style={[, { opacity: 1 }]}>
+            <ScrollView>
                 <PlayerContainer children={renderPlayer()} />
                 <Text
                     style={[
@@ -181,15 +163,7 @@ const FilmFilmScreen = ({ data }) => {
                     <YellowButton icon="play" title="Watch Now" />
                 </View>
                 <View style={[style.filmGenre, globalStyles.xPadding]}>
-                    {genres?.map((item) => (
-                        <Text
-                            key={item.id}
-                            style={[globalStyles.bodyText, style.filmGenreText]}
-                        >
-                            {item.name}
-                        </Text>
-                    ))}
-                    {categories?.map((item) => (
+                    {genresAndCategories?.map((item) => (
                         <Text
                             key={item.id}
                             style={[globalStyles.bodyText, style.filmGenreText]}

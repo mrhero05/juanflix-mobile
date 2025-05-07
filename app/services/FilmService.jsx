@@ -46,6 +46,35 @@ const FilmService = {
                 throw error;
             });
     },
+    getMoreFilm(genreIds) {
+        apiClient.defaults.baseURL = process.env.EXPO_PUBLIC_API_URL;
+        apiClient.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${process.env.EXPO_PUBLIC_API_TOKEN}`;
+        return apiClient
+            .get("films/genre-id", { params: { ids: genreIds } })
+            .then((response) => response.data)
+            .catch((error) => {
+                console.error("Error fetching film region data:", error);
+                throw error;
+            });
+    },
+    getFilmByID(filmId) {
+        apiClient.defaults.baseURL = process.env.EXPO_PUBLIC_API_URL;
+        apiClient.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${process.env.EXPO_PUBLIC_API_TOKEN}`;
+
+        return apiClient
+            .get(`/film/${filmId}`)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                console.error("Error fetching film region data:", error);
+                throw error;
+            });
+    },
 };
 
 export default FilmService;

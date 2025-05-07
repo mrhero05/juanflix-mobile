@@ -28,6 +28,9 @@ export const images = {
     bellIcon: require("@images/BellIcon.png"),
     searchIcon: require("@images/SearchIcon.png"),
     hamburgerIcon: require("@images/HamburgerIcon.png"),
+    auston: require("@images/game-icons--tiger-head.png"),
+    waves: require("@images/cbi--duco-logo.png"),
+    filled: require("@images/tdesign--logo-qq-filled.png"),
 };
 export const topFilmImage = {
     number1: require("@images/number1.png"),
@@ -92,6 +95,24 @@ export const benefitsData = [
     {
         id: 4,
         text: "Special invites to JuanFlix in-person events.",
+    },
+];
+
+export const awardsData = [
+    {
+        title: "Auston Film Festival",
+        subtitle: "2021 | Official Selection",
+        source: "auston",
+    },
+    {
+        title: "Waves Film Festival",
+        subtitle: "2021 | Official Selection",
+        source: "waves",
+    },
+    {
+        title: "Filled Film Festival",
+        subtitle: "2021 | Official Selection",
+        source: "filled",
     },
 ];
 

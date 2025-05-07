@@ -45,7 +45,7 @@ export const globalStyles = StyleSheet.create({
     },
     sectionTitleText: {
         color: colors.customWhite,
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold",
         lineHeight: 24,
     },

@@ -4,19 +4,14 @@ import {
     StatusBar,
     ScrollView,
     StyleSheet,
-    ActivityIndicator,
     Image,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import Player from "@components/Player";
 import PlayerContainer from "@components/PlayerContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { YellowButton, AwardsFestival } from "@components/CustomUI";
-import {
-    globalStyles,
-    w33Percent,
-    filmGlobalStyles,
-} from "@styles/global.style";
+import { YellowButton, AwardsFestival, Loader } from "@components/CustomUI";
+import { globalStyles, w33Percent } from "@styles/global.style";
 import { colors, awardsData } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
@@ -65,11 +60,7 @@ const FilmFilmScreen = ({ data }) => {
     const genresAndCategories = [...(genres || []), ...(categories || [])];
 
     if (filmDataIsFetching) {
-        return (
-            <View className="flex-1 justify-center items-center">
-                <ActivityIndicator size="large" color="#FFC300" />
-            </View>
-        );
+        return <Loader />;
     }
 
     const onTime = (e) => {
@@ -108,23 +99,7 @@ const FilmFilmScreen = ({ data }) => {
                         onFullScreen={onFullScreen}
                         onFullScreenExit={onFullScreenExit}
                     />
-                    {!playerLoaded && (
-                        <View
-                            style={{
-                                position: "absolute",
-                                top: 0,
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                backgroundColor: "black",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                zIndex: 1,
-                            }}
-                        >
-                            <ActivityIndicator size="large" color="#FFC300" />
-                        </View>
-                    )}
+                    {!playerLoaded && <Loader />}
                 </>
             );
         }
@@ -251,6 +226,14 @@ const FilmFilmScreen = ({ data }) => {
                     isPending={moreFilmIsPending}
                     films={moreFilm}
                 />
+                <View style={globalStyles.xPadding}>
+                    <Text
+                        className="mb-3"
+                        style={globalStyles.sectionTitleText}
+                    >
+                        RATE THIS FILM
+                    </Text>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );

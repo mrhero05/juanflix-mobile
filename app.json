@@ -1,87 +1,90 @@
 {
-  "expo": {
-    "name": "JuanFlixApp",
-    "slug": "JuanFlixApp",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/images/juanflix-icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.juanflix.app",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/juanflix-icon.png"
-      },
-      "package": "com.juanflix.app"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./src/assets/images/juanflix-icon.png"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./src/assets/images/Splash-Screen.png",
-          "resizeMode": "cover",
-          "backgroundColor": "#000000"
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "extraMavenRepos": [
-              "https://mvn.jwplayer.com/content/repositories/releases/"
+    "expo": {
+        "name": "JuanFlixApp",
+        "slug": "JuanFlixApp",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./src/assets/images/juanflix-icon.png",
+        "scheme": "myapp",
+        "userInterfaceStyle": "automatic",
+        "newArchEnabled": true,
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.juanflix.app",
+            "infoPlist": {
+                "ITSAppUsesNonExemptEncryption": false
+            },
+            "entitlements": {
+                "com.apple.developer.networking.wifi-info": true
+            }
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./src/assets/images/juanflix-icon.png"
+            },
+            "package": "com.juanflix.app"
+        },
+        "web": {
+            "bundler": "metro",
+            "output": "static",
+            "favicon": "./src/assets/images/juanflix-icon.png"
+        },
+        "plugins": [
+            "expo-router",
+            [
+                "expo-splash-screen",
+                {
+                    "image": "./src/assets/images/Splash-Screen.png",
+                    "resizeMode": "cover",
+                    "backgroundColor": "#000000"
+                }
+            ],
+            [
+                "expo-build-properties",
+                {
+                    "android": {
+                        "extraMavenRepos": [
+                            "https://mvn.jwplayer.com/content/repositories/releases/"
+                        ]
+                    }
+                }
+            ],
+            [
+                "expo-font",
+                {
+                    "fonts": [
+                        "./src/assets/fonts/CreatoDisplay-Black.otf",
+                        "./src/assets/fonts/CreatoDisplay-BlackItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Bold.otf",
+                        "./src/assets/fonts/CreatoDisplay-BoldItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-ExtraBold.otf",
+                        "./src/assets/fonts/CreatoDisplay-ExtraBoldItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Light.otf",
+                        "./src/assets/fonts/CreatoDisplay-LightItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Medium.otf",
+                        "./src/assets/fonts/CreatoDisplay-MediumItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Regular.otf",
+                        "./src/assets/fonts/CreatoDisplay-RegularItalic.otf",
+                        "./src/assets/fonts/CreatoDisplay-Thin.otf",
+                        "./src/assets/fonts/CreatoDisplay-ThinItalic.otf"
+                    ]
+                }
             ]
-          }
+        ],
+        "experiments": {
+            "typedRoutes": true
+        },
+        "extra": {
+            "router": {
+                "origin": false
+            },
+            "eas": {
+                "projectId": "02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
+            }
+        },
+        "runtimeVersion": "1.0.0",
+        "updates": {
+            "url": "https://u.expo.dev/02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
         }
-      ],
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./src/assets/fonts/CreatoDisplay-Black.otf",
-            "./src/assets/fonts/CreatoDisplay-BlackItalic.otf",
-            "./src/assets/fonts/CreatoDisplay-Bold.otf",
-            "./src/assets/fonts/CreatoDisplay-BoldItalic.otf",
-            "./src/assets/fonts/CreatoDisplay-ExtraBold.otf",
-            "./src/assets/fonts/CreatoDisplay-ExtraBoldItalic.otf",
-            "./src/assets/fonts/CreatoDisplay-Light.otf",
-            "./src/assets/fonts/CreatoDisplay-LightItalic.otf",
-            "./src/assets/fonts/CreatoDisplay-Medium.otf",
-            "./src/assets/fonts/CreatoDisplay-MediumItalic.otf",
-            "./src/assets/fonts/CreatoDisplay-Regular.otf",
-            "./src/assets/fonts/CreatoDisplay-RegularItalic.otf",
-            "./src/assets/fonts/CreatoDisplay-Thin.otf",
-            "./src/assets/fonts/CreatoDisplay-ThinItalic.otf"
-          ]
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
-      }
-    },
-    "runtimeVersion": "1.0.0",
-    "updates": {
-      "url": "https://u.expo.dev/02123a9d-f7a2-49c5-8fc5-de8f3e22c78f"
     }
-  }
 }

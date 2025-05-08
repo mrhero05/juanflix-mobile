@@ -115,5 +115,3 @@ export const awardsData = [
         source: "filled",
     },
 ];
-
-export default () => {};

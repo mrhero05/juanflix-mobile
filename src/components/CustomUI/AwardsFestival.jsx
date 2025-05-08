@@ -4,7 +4,6 @@ import { colors, images } from "@utils/Constants";
 import { globalStyles } from "@styles/global.style";
 
 const AwardsFestival = ({ title, subtitle, source }) => {
-    console.log();
     return (
         <View className="flex-row items-center gap-5 mb-[-10]">
             <Image

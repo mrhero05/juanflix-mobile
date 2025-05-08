@@ -1,16 +1,9 @@
-import axios from "axios";
-
-const apiClient = axios.create({
-    timeout: 10000,
-    headers: {
-        "Content-Type": "application/json",
-    },
-});
+import { rawApiClient } from "@utils/Api";
 
 const JWPlayerService = {
     getJwplayerTrailer: (propertyId, mediaId) => {
-        apiClient.defaults.baseURL = `https://cdn.jwplayer.com/v2/sites/${propertyId}/media/${mediaId}/playback.json`;
-        return apiClient
+        rawApiClient.defaults.baseURL = `https://cdn.jwplayer.com/v2/sites/${propertyId}/media/${mediaId}/playback.json`;
+        return rawApiClient
             .get()
             .then((response) => response.data)
             .catch((error) => {

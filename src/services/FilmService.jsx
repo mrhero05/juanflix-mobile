@@ -1,22 +1,8 @@
-import axios from "axios";
-
-const apiClient = axios.create({
-    // baseURL: process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM,
-    timeout: 10000,
-    headers: {
-        "Content-Type": "application/json",
-    },
-});
+import { mainApiClient, rawApiClient } from "@utils/Api";
 
 const FilmService = {
-    getFilmRegionData() {
-        // apiClient.defaults.baseURL =
-        //     process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM;
-        apiClient.defaults.baseURL = process.env.EXPO_PUBLIC_API_URL;
-        apiClient.defaults.headers.common[
-            "Authorization"
-        ] = `Bearer ${process.env.EXPO_PUBLIC_API_TOKEN}`;
-        return apiClient
+    getFilmData: () => {
+        return mainApiClient
             .get("film")
             .then((response) => response.data)
             .catch((error) => {
@@ -24,10 +10,10 @@ const FilmService = {
                 throw error;
             });
     },
-    getCategoryData() {
-        apiClient.defaults.baseURL =
+    getGenreData: () => {
+        rawApiClient.defaults.baseURL =
             process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM_CATEGORY;
-        return apiClient
+        return rawApiClient
             .get()
             .then((response) => response.data)
             .catch((error) => {
@@ -35,10 +21,10 @@ const FilmService = {
                 throw error;
             });
     },
-    getContinueWatchingData() {
-        apiClient.defaults.baseURL =
+    getContinueWatchingData: () => {
+        rawApiClient.defaults.baseURL =
             process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM_CONTINUE;
-        return apiClient
+        return rawApiClient
             .get()
             .then((response) => response.data)
             .catch((error) => {
@@ -46,12 +32,8 @@ const FilmService = {
                 throw error;
             });
     },
-    getMoreFilm(genreIds) {
-        apiClient.defaults.baseURL = process.env.EXPO_PUBLIC_API_URL;
-        apiClient.defaults.headers.common[
-            "Authorization"
-        ] = `Bearer ${process.env.EXPO_PUBLIC_API_TOKEN}`;
-        return apiClient
+    getMoreFilmData: (genreIds) => {
+        return mainApiClient
             .get("films/genre-id", { params: { ids: genreIds } })
             .then((response) => response.data)
             .catch((error) => {
@@ -59,13 +41,8 @@ const FilmService = {
                 throw error;
             });
     },
-    getFilmByID(filmId) {
-        apiClient.defaults.baseURL = process.env.EXPO_PUBLIC_API_URL;
-        apiClient.defaults.headers.common[
-            "Authorization"
-        ] = `Bearer ${process.env.EXPO_PUBLIC_API_TOKEN}`;
-
-        return apiClient
+    getFilmByIdData: (filmId) => {
+        return mainApiClient
             .get(`/film/${filmId}`)
             .then((response) => {
                 return response.data;

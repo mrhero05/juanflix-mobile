@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import apiClient from "@utils/Api";
+import { mainApiClient } from "@utils/Api";
 import LocalStorageService from "@services/LocalStorageService";
 import { router, useNavigation } from "expo-router";
 import { CommonActions } from "@react-navigation/native";
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     });
     const userLogin = (params) => {
         setIsLoading(true);
-        return apiClient
+        return mainApiClient
             .post("userlogin", params)
             .then((response) => {
                 const { token, user } = response.data;

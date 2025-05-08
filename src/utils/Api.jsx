@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiClient = axios.create({
+export const mainApiClient = axios.create({
     baseURL: process.env.EXPO_PUBLIC_API_URL,
     timeout: 10000,
     headers: {
@@ -9,4 +9,9 @@ const apiClient = axios.create({
     },
 });
 
-export default apiClient;
+export const rawApiClient = axios.create({
+    timeout: 10000,
+    headers: {
+        "Content-Type": "application/json",
+    },
+});

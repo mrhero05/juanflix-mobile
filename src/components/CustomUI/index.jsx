@@ -7,3 +7,4 @@ export { default as SmallTitleDescription } from "./SmallTitleDescription";
 export { default as SubscriptionPlan } from "./SubscriptionPlan";
 export { default as AwardsFestival } from "./AwardsFestival";
 export { default as Loader } from "./Loader";
+export { default as UserReview } from "./UserReview";

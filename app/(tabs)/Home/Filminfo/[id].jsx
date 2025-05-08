@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 
-import FilmFilmScreen from "@screens/Dynamic/FilmFilmScreen";
+import FilmInfoScreen from "@screens/Dynamic/FilmInfoScreen";
 
 const FilmInfo = () => {
     const filmInformations = useLocalSearchParams();
-    return <FilmFilmScreen data={filmInformations} />;
+    return <FilmInfoScreen data={filmInformations} />;
 };
 
 export default FilmInfo;

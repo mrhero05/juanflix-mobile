@@ -1,9 +1,8 @@
 import "@styles/global.css";
 import { AuthProvider } from "@context/AuthContext";
 import React from "react";
-import { useAuth } from "@context/AuthContext";
 import { Stack } from "expo-router";
-import { Image, StatusBar, StyleSheet, View } from "react-native";
+import { Button, Image, StatusBar, StyleSheet, View } from "react-native";
 import { colors, images } from "@utils/Constants";
 import "@styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -34,6 +33,10 @@ export default function RootLayout() {
                         options={{
                             headerShown: false,
                         }}
+                    />
+                    <Stack.Screen
+                        name="screens/Dynamic"
+                        options={{ headerShown: false }}
                     />
                     <Stack.Screen
                         name="screens/Static/LeavingTheAppScreen"

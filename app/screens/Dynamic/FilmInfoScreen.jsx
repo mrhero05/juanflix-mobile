@@ -10,17 +10,24 @@ import React, { useEffect, useRef, useState } from "react";
 import Player from "@components/Player";
 import PlayerContainer from "@components/PlayerContainer";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { YellowButton, AwardsFestival, Loader } from "@components/CustomUI";
+import {
+    YellowButton,
+    AwardsFestival,
+    Loader,
+    UserReview,
+} from "@components/CustomUI";
 import { globalStyles, w33Percent } from "@styles/global.style";
-import { colors, awardsData } from "@utils/Constants";
+import { colors, awardsData, reviewData } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
 import stripHtmlTag from "@utils/StripHtmlTag";
 import useFilmInfoQuery from "@queries/useFilmInfoQuery";
 import useMoreFilmQuery from "@queries/useMoreFilmQuery";
 import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
+import { Rating } from "react-native-ratings";
+import { Divider } from "react-native-paper";
 
-const FilmFilmScreen = ({ data }) => {
+const FilmInfoScreen = ({ data }) => {
     const playerRef = useRef(null);
     const [playerLoaded, setPlayerLoaded] = useState(false);
 
@@ -226,20 +233,47 @@ const FilmFilmScreen = ({ data }) => {
                     isPending={moreFilmIsPending}
                     films={moreFilm}
                 />
+                <View style={[globalStyles.xPadding, { paddingBottom: 30 }]}>
+                    <Divider />
+                </View>
                 <View style={globalStyles.xPadding}>
-                    <Text
-                        className="mb-3"
-                        style={globalStyles.sectionTitleText}
-                    >
-                        RATE THIS FILM
-                    </Text>
+                    <View className="mb-3 flex-row items-center">
+                        <Text style={globalStyles.sectionTitleText}>
+                            RATE THIS FILM
+                        </Text>
+                        <Entypo name="chevron-right" size={20} color="white" />
+                    </View>
+                    <Rating
+                        type="custom"
+                        showRating={false}
+                        startingValue={0}
+                        tintColor={colors.customBlack}
+                        ratingColor={colors.customYellow}
+                        ratingBackgroundColor={colors.customMildGray}
+                        readonly={true}
+                        style={{
+                            alignItems: "flex-start",
+                        }}
+                    />
+                </View>
+                <View style={[globalStyles.xPadding, { paddingTop: 30 }]}>
+                    {reviewData.map((item, index) => {
+                        return (
+                            <UserReview
+                                key={index}
+                                rating={item.rating}
+                                username={item.username}
+                                comment={item.comment}
+                            />
+                        );
+                    })}
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
 };
 
-export default FilmFilmScreen;
+export default FilmInfoScreen;
 
 const style = StyleSheet.create({
     filmTitle: {

@@ -9,7 +9,7 @@ import { Redirect } from "expo-router";
 export default () => {
     const { authState } = useAuth();
     if (authState.authenticated) {
-        return <Redirect href="/Home" />;
+        return <Redirect href="/screens/Dynamic/UserProfileScreen" />;
     }
     return <SignedOutScreen />;
 };

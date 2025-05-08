@@ -1,6 +1,7 @@
 export const colors = {
     customYellow: "#FFC300",
     customGray: "#C1C1C1",
+    customMildGray: "#505050",
     customDarkGray: "#2e2e2e",
     customBlack: "#000000",
     customMidBlack: "#262626",
@@ -113,5 +114,25 @@ export const awardsData = [
         title: "Filled Film Festival",
         subtitle: "2021 | Official Selection",
         source: "filled",
+    },
+];
+export const reviewData = [
+    {
+        rating: 4,
+        username: "John Doe",
+        comment:
+            "Just watched this and I’m seriously impressed! The storytelling, visuals, and performances all came together beautifully. Congrats to the entire team behind this film. Can't wait to see what you create next!",
+    },
+    {
+        rating: 1,
+        username: "Michelle Connors",
+        comment:
+            "What a powerful film! The message really hit home and the cinematography was stunning. Amazing work by the cast and crew—truly a job well done!",
+    },
+    {
+        rating: 5,
+        username: "Genedeve Santos",
+        comment:
+            "This film was a masterpiece from start to finish. The direction, acting, and soundtrack were all on point! Huge respect to everyone who brought this story to life.",
     },
 ];

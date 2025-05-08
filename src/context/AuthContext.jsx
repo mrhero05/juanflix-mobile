@@ -35,7 +35,10 @@ export const AuthProvider = ({ children }) => {
                     authenticated: true,
                     profile: userProfile,
                 });
-                router.replace("/Home");
+                if (router.canGoBack) {
+                    router.dismissAll();
+                }
+                router.dismissTo("/screens/Dynamic/UserProfileScreen");
                 setIsLoading(false);
                 return Promise.all([
                     LocalStorageService.saveData(

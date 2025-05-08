@@ -14,6 +14,7 @@ const TabStackLayout = ({ children }) => {
                 headerStyle: headerGlobalStyles.headerDefaultStyle,
                 headerTintColor: colors.customWhite,
                 contentStyle: headerGlobalStyles.defaultBackground,
+                animation: "fade",
             }}
         >
             {children}

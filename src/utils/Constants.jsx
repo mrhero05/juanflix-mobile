@@ -3,6 +3,7 @@ export const colors = {
     customGray: "#C1C1C1",
     customMildGray: "#505050",
     customDarkGray: "#2e2e2e",
+    customDarkerGray: "#131313",
     customBlack: "#000000",
     customMidBlack: "#262626",
     customWhite: "#ffffff",
@@ -143,4 +144,22 @@ export const profileData = [
     { id: 3, name: "Ogie", source: require("@images/ProfileSample3.png") },
     { id: 4, name: "Jandy", source: require("@images/ProfileSample4.png") },
     // { id: 5, name: "Byron", source: require("@images/ProfileSample4.png") },
+];
+
+export const accountData = [
+    {
+        section: "Manage Profiles",
+        subtitle: "Switch, manage or add profiles.",
+        menus: ["Primary User", "Secondary Profile(s)"],
+    },
+    {
+        section: "Continue Watching",
+        subtitle: "Check all your previous watched films.",
+        menus: ["Recent History"],
+    },
+    {
+        section: "Settings",
+        subtitle: "Edit info, change password, or cancel anytime.",
+        menus: ["Account Information", "Security and Privacy", "App Settings"],
+    },
 ];

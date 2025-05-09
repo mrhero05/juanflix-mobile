@@ -17,18 +17,6 @@ export default () => {
                 name="UserProfileScreen"
                 options={{
                     headerShown: false,
-                    // headerTransparent: true,
-                    // headerTitleAlign: "center",
-                    // headerTitle: () => (
-                    //     <Image
-                    //         source={images.brandLogo}
-                    //         style={{
-                    //             width: 100,
-                    //             height: 40,
-                    //             resizeMode: "contain",
-                    //         }}
-                    //     />
-                    // )
                 }}
             />
         </Stack>

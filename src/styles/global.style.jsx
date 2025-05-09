@@ -26,7 +26,7 @@ export const globalStyles = StyleSheet.create({
         fontSize: 18,
     },
     xPadding: {
-        paddingInline: 20,
+        paddingInline: 16,
     },
     yPadding: {
         paddingBlock: 20,
@@ -45,7 +45,7 @@ export const globalStyles = StyleSheet.create({
     },
     sectionTitleText: {
         color: colors.customWhite,
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: "bold",
         lineHeight: 24,
     },
@@ -89,7 +89,6 @@ export const headerGlobalStyles = StyleSheet.create({
         marginLeft: -12,
     },
     headerDefaultStyle: {
-        height: 56,
         backgroundColor: colors.customBlack,
         borderColor: colors.customBlack,
     },

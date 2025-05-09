@@ -40,7 +40,10 @@ export default function RootLayout() {
                     />
                     <Stack.Screen
                         name="screens/Static/LeavingTheAppScreen"
-                        options={{ headerShown: false }}
+                        options={{
+                            headerShown: false,
+                            animation: "fade_from_bottom",
+                        }}
                     />
                     <Stack.Screen
                         name="screens/Static/InAppBrowser"

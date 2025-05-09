@@ -10,6 +10,7 @@ module.exports = {
                 customGray: "#C1C1C1",
                 customMildGray: "#505050",
                 customDarkGray: "#0C0C0C",
+                customDarkerGray: "#131313",
                 customBlack: "#000000",
                 customMidBlack: "#262626",
                 customWhite: "#ffffff",

@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
 import { YellowButton, CustomButton } from "@components/CustomUI";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import * as WebBrowser from "expo-web-browser";
 
 const LeavingTheAppScreen = () => {
     const navigation = useNavigation();
@@ -37,7 +38,10 @@ const LeavingTheAppScreen = () => {
                     <View className="w-full flex mt-auto gap-[10px]">
                         <YellowButton
                             title="CONTINUE"
-                            onPress={() => Linking.openURL(continueLink)}
+                            onPress={async () => {
+                                navigation.goBack();
+                                await WebBrowser.openBrowserAsync(continueLink);
+                            }}
                         />
                         <CustomButton
                             title="CANCEL"

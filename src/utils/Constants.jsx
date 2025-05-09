@@ -136,3 +136,11 @@ export const reviewData = [
             "This film was a masterpiece from start to finish. The direction, acting, and soundtrack were all on point! Huge respect to everyone who brought this story to life.",
     },
 ];
+
+export const profileData = [
+    { id: 1, name: "Mark Glenn", source: require("@images/ProfileSample.png") },
+    { id: 2, name: "Jasper", source: require("@images/ProfileSample2.png") },
+    { id: 3, name: "Ogie", source: require("@images/ProfileSample3.png") },
+    { id: 4, name: "Jandy", source: require("@images/ProfileSample4.png") },
+    // { id: 5, name: "Byron", source: require("@images/ProfileSample4.png") },
+];

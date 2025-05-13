@@ -25,7 +25,6 @@ import MainBanner from "@components/Banner/MainBanner";
 import useFilmGenresQuery from "@queries/useFilmGenresQuery";
 import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
 import useFilmQuery from "@queries/useFilmQuery";
-import { SafeAreaLayout } from "@components/CustomUI";
 
 const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
@@ -78,7 +77,7 @@ const Home = () => {
         );
     };
     return (
-        <SafeAreaLayout>
+        <SafeAreaView>
             <ScrollView overScrollMode="never">
                 <BannerItem />
                 <View className=" mt-[30]">
@@ -132,7 +131,7 @@ const Home = () => {
                     />
                 </View>
             </ScrollView>
-        </SafeAreaLayout>
+        </SafeAreaView>
     );
 };
 

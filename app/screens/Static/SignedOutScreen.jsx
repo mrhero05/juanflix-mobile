@@ -8,8 +8,8 @@ import {
     ImageBackground,
     Image,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Link, router } from "expo-router";
 import {
     images,
     colors,
@@ -20,7 +20,6 @@ import {
 import "@styles/global.css";
 import { Appbar } from "react-native-paper";
 import { globalStyles, width, w33Percent } from "@styles/global.style";
-import { useNavigation } from "@react-navigation/native";
 import {
     TitleDescription,
     PressableLink,
@@ -31,11 +30,10 @@ import {
 } from "@components/CustomUI";
 
 const SignedOutScreen = () => {
-    const navigation = useNavigation();
     const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL;
     const film3Items = w33Percent - 18.7;
     return (
-        <>
+        <SafeAreaProvider>
             <StatusBar translucent={true} />
             <SafeAreaView className="flex-1 ">
                 <ScrollView
@@ -134,13 +132,14 @@ const SignedOutScreen = () => {
                                         <PressableLink
                                             title="JuanFlix.com/index"
                                             onPress={() =>
-                                                navigation.navigate(
-                                                    "screens/Static/LeavingTheAppScreen",
-                                                    {
+                                                router.push({
+                                                    pathname:
+                                                        "screens/Static/LeavingTheAppScreen",
+                                                    params: {
                                                         continueLink:
                                                             juanflixLink,
-                                                    }
-                                                )
+                                                    },
+                                                })
                                             }
                                         />
                                     </View>
@@ -236,7 +235,7 @@ const SignedOutScreen = () => {
                     </View>
                 </ScrollView>
             </SafeAreaView>
-        </>
+        </SafeAreaProvider>
     );
 };
 export default SignedOutScreen;

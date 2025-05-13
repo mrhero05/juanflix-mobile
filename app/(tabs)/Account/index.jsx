@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useAuth, authState } from "@context/AuthContext";
-import { YellowButton } from "@components/CustomUI";
+import { YellowButton, SafeAreaLayout } from "@components/CustomUI";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
 import { Searchbar } from "react-native-paper";
@@ -20,7 +20,7 @@ const Account = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     return (
-        <SafeAreaView>
+        <SafeAreaLayout>
             <ScrollView style={globalStyles.xPadding}>
                 <View className="mb-[40] mt-[10]">
                     <Searchbar
@@ -94,7 +94,7 @@ const Account = () => {
                     />
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </SafeAreaLayout>
     );
 };
 

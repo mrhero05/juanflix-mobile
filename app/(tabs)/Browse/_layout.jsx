@@ -1,10 +1,12 @@
 import { Stack } from "expo-router";
-import { colors, images } from "@utils/Constants";
 import { headerGlobalStyles } from "@styles/global.style";
-import { Image, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import TabStackLayout from "@navigation/TabStack";
-import { Ionicons } from "@expo/vector-icons";
-import AppBarBadge from "@components/CustomUI/AppBarBadge";
+import {
+    NotificationIcon,
+    HamburgerIcon,
+    SearchIcon,
+} from "@navigation/HeaderIcons";
 
 const StackLayout = () => {
     return (
@@ -15,14 +17,8 @@ const StackLayout = () => {
                     title: "Browse",
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
-                            <Image
-                                source={images.searchIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
-                            <Image
-                                source={images.hamburgerIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
+                            {/* <SearchIcon /> */}
+                            <HamburgerIcon />
                         </View>
                     ),
                 }}
@@ -33,28 +29,9 @@ const StackLayout = () => {
                     title: "",
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
-                            <AppBarBadge
-                                appBarBadge={{
-                                    visible: true,
-                                    number: 4,
-                                }}
-                                children={
-                                    <Image
-                                        source={images.bellIcon}
-                                        style={
-                                            headerGlobalStyles.customHeaderIconSize
-                                        }
-                                    />
-                                }
-                            />
-                            <Image
-                                source={images.searchIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
-                            <Image
-                                source={images.hamburgerIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
+                            <NotificationIcon />
+                            <SearchIcon />
+                            <HamburgerIcon />
                         </View>
                     ),
                 }}

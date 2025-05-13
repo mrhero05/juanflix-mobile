@@ -1,19 +1,19 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
-import { SafeAreaLayout } from "@components/CustomUI";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
+import { SafeAreaLayout } from "@components/CustomUI";
 
-const Browse = () => {
+const Search = () => {
     return (
         <SafeAreaLayout>
-            <View style={globalStyles.zPadding}>
+            <View style={[globalStyles.zPadding, { backgroundColor: "red" }]}>
                 <Text className="text-customYellow text-center text-2xl">
-                    Browse
+                    Search Screen
                 </Text>
             </View>
         </SafeAreaLayout>
     );
 };
 
-export default Browse;
+export default Search;

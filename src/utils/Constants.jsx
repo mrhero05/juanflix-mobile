@@ -45,7 +45,7 @@ export const topFilmImage = {
     number7: require("@images/number1.png"),
     number8: require("@images/number1.png"),
     number9: require("@images/number1.png"),
-    number1: require("@images/number1.png"),
+    number10: require("@images/number1.png"),
 };
 export const indexFilmData = [
     { id: 1, source: images.indexImg1 },
@@ -143,7 +143,7 @@ export const profileData = [
     { id: 2, name: "Jasper", source: require("@images/ProfileSample2.png") },
     { id: 3, name: "Ogie", source: require("@images/ProfileSample3.png") },
     { id: 4, name: "Jandy", source: require("@images/ProfileSample4.png") },
-    // { id: 5, name: "Byron", source: require("@images/ProfileSample4.png") },
+    { id: 5, name: "Byron", source: require("@images/ProfileSample4.png") },
 ];
 
 export const accountData = [

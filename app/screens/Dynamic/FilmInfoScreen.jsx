@@ -9,12 +9,13 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import Player from "@components/Player";
 import PlayerContainer from "@components/PlayerContainer";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import {
     YellowButton,
     AwardsFestival,
     Loader,
     UserReview,
+    SafeAreaLayout,
 } from "@components/CustomUI";
 import { globalStyles, w33Percent } from "@styles/global.style";
 import { colors, awardsData, reviewData } from "@utils/Constants";
@@ -112,7 +113,7 @@ const FilmInfoScreen = ({ data }) => {
         }
     };
     return (
-        <SafeAreaView>
+        <SafeAreaLayout>
             <ScrollView>
                 <PlayerContainer children={renderPlayer()} />
                 <Text
@@ -269,7 +270,7 @@ const FilmInfoScreen = ({ data }) => {
                     })}
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </SafeAreaLayout>
     );
 };
 

@@ -16,27 +16,7 @@ export default () => {
             <Stack.Screen
                 name="UserProfileScreen"
                 options={{
-                    headerTransparent: true,
-                    headerTitleAlign: "center",
-                    headerTitle: () => (
-                        <Image
-                            source={images.brandLogo}
-                            style={{
-                                width: 100,
-                                height: 40,
-                                resizeMode: "contain",
-                            }}
-                        />
-                    ),
-                    headerRight: () => (
-                        // this section is for testing only it will be removed once the screen is finished
-                        <Button
-                            title="Logout"
-                            onPress={() => {
-                                userLogout();
-                            }}
-                        />
-                    ),
+                    headerShown: false,
                 }}
             />
         </Stack>

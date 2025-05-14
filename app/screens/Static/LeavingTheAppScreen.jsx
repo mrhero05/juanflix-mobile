@@ -1,7 +1,7 @@
 import { View, Text, ImageBackground, Image, Linking } from "react-native";
 import React, { useEffect } from "react";
 import { images, colors } from "@utils/Constants";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
 import { YellowButton, CustomButton } from "@components/CustomUI";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -12,7 +12,7 @@ const LeavingTheAppScreen = () => {
     const route = useRoute();
     const { continueLink } = route.params;
     return (
-        <>
+        <SafeAreaProvider>
             <SafeAreaView
                 style={globalStyles.container}
                 className="flex-1 min-h-screen-safe"
@@ -52,7 +52,7 @@ const LeavingTheAppScreen = () => {
                     </View>
                 </ImageBackground>
             </SafeAreaView>
-        </>
+        </SafeAreaProvider>
     );
 };
 

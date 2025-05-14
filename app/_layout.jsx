@@ -46,14 +46,6 @@ export default function RootLayout() {
                         }}
                     />
                     <Stack.Screen
-                        name="screens/Static/InAppBrowser"
-                        options={{
-                            title: "Web Browser",
-                            headerShown: true,
-                            headerStyle: headerGlobalStyles.headerDefaultStyle,
-                        }}
-                    />
-                    <Stack.Screen
                         name="screens/Static/SignupScreen"
                         options={{
                             headerTransparent: true,

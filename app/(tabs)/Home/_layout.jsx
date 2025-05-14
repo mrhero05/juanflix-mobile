@@ -3,7 +3,12 @@ import TabStackLayout from "@navigation/TabStack";
 import { images } from "@utils/Constants";
 import { headerGlobalStyles } from "@styles/global.style";
 import { Image, View } from "react-native";
-import AppBarBadge from "@components/CustomUI/AppBarBadge";
+import {
+    NotificationIcon,
+    HamburgerIcon,
+    SearchIcon,
+    BrandLogo,
+} from "@navigation/HeaderIcons";
 
 const StackLayout = () => {
     return (
@@ -12,40 +17,12 @@ const StackLayout = () => {
                 name="index"
                 options={{
                     title: "Home",
-                    headerTitle: () => (
-                        <Image
-                            source={images.brandLogo}
-                            style={{
-                                width: 100,
-                                height: 40,
-                                resizeMode: "contain",
-                            }}
-                        />
-                    ),
+                    headerTitle: () => <BrandLogo />,
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
-                            <AppBarBadge
-                                appBarBadge={{
-                                    visible: true,
-                                    number: 4,
-                                }}
-                                children={
-                                    <Image
-                                        source={images.bellIcon}
-                                        style={
-                                            headerGlobalStyles.customHeaderIconSize
-                                        }
-                                    />
-                                }
-                            />
-                            <Image
-                                source={images.searchIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
-                            <Image
-                                source={images.hamburgerIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
+                            <NotificationIcon />
+                            <SearchIcon />
+                            <HamburgerIcon />
                         </View>
                     ),
                 }}
@@ -56,28 +33,31 @@ const StackLayout = () => {
                     title: "",
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
-                            <AppBarBadge
-                                appBarBadge={{
-                                    visible: true,
-                                    number: 4,
-                                }}
-                                children={
-                                    <Image
-                                        source={images.bellIcon}
-                                        style={
-                                            headerGlobalStyles.customHeaderIconSize
-                                        }
-                                    />
-                                }
-                            />
-                            <Image
-                                source={images.searchIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
-                            <Image
-                                source={images.hamburgerIcon}
-                                style={headerGlobalStyles.customHeaderIconSize}
-                            />
+                            <NotificationIcon />
+                            <SearchIcon />
+                            <HamburgerIcon />
+                        </View>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="Notifications"
+                options={{
+                    headerRight: () => (
+                        <View style={headerGlobalStyles.customHeaderStyle}>
+                            <SearchIcon />
+                            <HamburgerIcon />
+                        </View>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="Search"
+                options={{
+                    headerTitle: "",
+                    headerRight: () => (
+                        <View style={headerGlobalStyles.customHeaderStyle}>
+                            <HamburgerIcon />
                         </View>
                     ),
                 }}

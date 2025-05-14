@@ -1,12 +1,18 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import { WebView } from "react-native-webview";
+import { globalStyles } from "@styles/global.style";
+import { SafeAreaLayout } from "@components/CustomUI";
 
 const Watchlist = () => {
     return (
-        <View style={{ flex: 1 }}>
-            <Text className="text-customYellow">Wishlist Screen</Text>
-        </View>
+        <SafeAreaLayout>
+            <View style={globalStyles.zPadding}>
+                <Text className="text-customYellow text-center text-2xl">
+                    Wishlist Screen
+                </Text>
+            </View>
+        </SafeAreaLayout>
     );
 };
 

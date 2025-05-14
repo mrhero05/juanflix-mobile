@@ -13,7 +13,6 @@ const MainBanner = () => {
         let result = await WebBrowser.openBrowserAsync(
             process.env.EXPO_PUBLIC_REGISTRATION_LINK
         );
-        // router.navigate("screens/Static/InAppBrowser");
         console.log(result);
     };
     return (

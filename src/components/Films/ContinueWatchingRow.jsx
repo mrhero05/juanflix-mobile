@@ -128,7 +128,7 @@ const ContinueWatchingRow = ({ data }) => {
                                     style={{ marginRight: -7 }}
                                     onPress={() => {
                                         console.log(
-                                            `Index #${
+                                            `Index # ${
                                                 index + 1
                                             } dots-Vertical Clicked`
                                         );

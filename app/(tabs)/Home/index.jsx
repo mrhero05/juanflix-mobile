@@ -25,6 +25,7 @@ import MainBanner from "@components/Banner/MainBanner";
 import useFilmGenresQuery from "@queries/useFilmGenresQuery";
 import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
 import useFilmQuery from "@queries/useFilmQuery";
+import { router } from "expo-router";
 
 const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
@@ -32,8 +33,10 @@ const width = Dimensions.get("window").width;
 const Home = () => {
     const { data: filmRegionData, isPending: filmDataIsPending } =
         useFilmQuery();
-    const { data: filmContinue } = useFilmContinueWatchQuery();
-    const { data: filmCategory } = useFilmGenresQuery();
+    const { data: filmContinue, isPending: filmContinueIsPending } =
+        useFilmContinueWatchQuery();
+    const { data: filmCategory, isPending: filmCategoryIsPending } =
+        useFilmGenresQuery();
 
     const ref = React.useRef(null);
     const progress = useSharedValue(0);
@@ -84,7 +87,15 @@ const Home = () => {
                     <FilmRow
                         title="Movies Spotlight"
                         linkTo={() => {
-                            console.log("Navigate to its inner page");
+                            router.push({
+                                pathname: `Home/FeatureSection/${1}`,
+                                params: {
+                                    name: "Movies Spotlight",
+                                    description:
+                                        "Our Thoughtfully curated films that have just arrived on the platform",
+                                    banner: require("@images/MoviesSpotlight.png"),
+                                },
+                            });
                         }}
                         isPending={filmDataIsPending}
                         subtitle="NowPlaying on your channels and apps"
@@ -95,7 +106,15 @@ const Home = () => {
                         subtitle="Watch our trending films"
                         films={filmRegionData}
                         linkTo={() => {
-                            console.log("Navigate to its inner page");
+                            router.push({
+                                pathname: `Home/FeatureSection/${1}`,
+                                params: {
+                                    name: "Trending Now",
+                                    description:
+                                        "Catch the hottest films everyone’s talking about. From box office hits to indie favorites—start watching what’s trending today!",
+                                    banner: require("@images/Trending.png"),
+                                },
+                            });
                         }}
                         isPending={filmDataIsPending}
                     />
@@ -104,22 +123,42 @@ const Home = () => {
                         subtitle="Explore our new release movies"
                         films={filmRegionData}
                         linkTo={() => {
-                            console.log("Navigate to its inner page");
+                            router.push({
+                                pathname: `Home/FeatureSection/${1}`,
+                                params: {
+                                    name: "New Release",
+                                    description:
+                                        "Fresh from the cutting room—explore the latest films added to our collection. Don’t miss out on what’s new and noteworthy!",
+                                    banner: require("@images/NewRelease.png"),
+                                },
+                            });
                         }}
                         isPending={filmDataIsPending}
                     />
-                    <ContinueWatchingRow data={filmContinue} />
+                    <ContinueWatchingRow
+                        data={filmContinue}
+                        isPending={filmContinueIsPending}
+                    />
                     <TopFilmRow
                         title="Juan's Top Pick"
                         films={filmRegionData}
+                        isPending={filmDataIsPending}
                     />
                     <FeaturedFilm
                         title="Featured Films"
                         subtitle="Explore our top featured films"
                         films={filmRegionData}
                         linkTo={() => {
-                            console.log("Navigate to its inner page");
+                            router.push({
+                                pathname: `Home/FeatureSection/${2}`,
+                                params: {
+                                    name: "Featured Films",
+                                    description:
+                                        "The Spotlight Belongs Here — shining a light on the films, creators, and voices that define the future of cinema.",
+                                },
+                            });
                         }}
+                        isPending={filmDataIsPending}
                     />
                     <CategoryRow
                         title="Browse by Genre"
@@ -128,6 +167,7 @@ const Home = () => {
                         linkTo={() => {
                             console.log("Navigate to Genre page");
                         }}
+                        isPending={filmCategoryIsPending}
                     />
                 </View>
             </ScrollView>

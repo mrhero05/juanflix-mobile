@@ -11,6 +11,7 @@ import { w50Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { ProgressBar } from "react-native-paper";
 import { colors } from "@utils/Constants";
+import { FilmLoader } from "@components/CustomUI/";
 
 const film2Items = w50Percent;
 
@@ -26,22 +27,12 @@ const remainingTimeCalculation = (duration, current) => {
     }
     return remainingTimeText;
 };
-const ContinueWatchingRow = ({ data }) => {
-    return (
-        <View style={filmGlobalStyles.filmContainer}>
-            <TouchableOpacity
-                activeOpacity={0.8}
-                className="pl-[20]"
-                style={filmGlobalStyles.headerTitle}
-                onPress={() => {
-                    console.log("Navigate to Continue watching");
-                }}
-            >
-                <Text style={globalStyles.sectionTitleText}>
-                    Continue Watching for John
-                </Text>
-                <Entypo name="chevron-right" size={20} color="white" />
-            </TouchableOpacity>
+const ContinueWatchingRow = ({ data, isPending }) => {
+    const FilmFlatList = () => {
+        if (isPending) {
+            return <FilmLoader width={film2Items} />;
+        }
+        return (
             <FlatList
                 style={filmGlobalStyles.flatList}
                 data={data}
@@ -140,6 +131,24 @@ const ContinueWatchingRow = ({ data }) => {
                 }}
                 showsHorizontalScrollIndicator={false}
             />
+        );
+    };
+    return (
+        <View style={filmGlobalStyles.filmContainer}>
+            <TouchableOpacity
+                activeOpacity={0.8}
+                className="pl-[20]"
+                style={filmGlobalStyles.headerTitle}
+                onPress={() => {
+                    console.log("Navigate to Continue watching");
+                }}
+            >
+                <Text style={globalStyles.sectionTitleText}>
+                    Continue Watching for John
+                </Text>
+                <Entypo name="chevron-right" size={20} color="white" />
+            </TouchableOpacity>
+            <FilmFlatList />
         </View>
     );
 };

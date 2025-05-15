@@ -6,25 +6,19 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    ActivityIndicator,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import { width, w33Percent } from "@styles/global.style";
+import { w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { router } from "expo-router";
-import { websiteStorageUrl } from "@utils/Constants";
+import { FilmLoader } from "@components/CustomUI/";
+import { formatImageSource } from "@utils/FormatImageSource";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return (
-                <View
-                    style={[filmGlobalStyles.filmItem, { width: film3Items }]}
-                >
-                    <ActivityIndicator size="large" color="#FFC300" />
-                </View>
-            );
+            return <FilmLoader width={film3Items} />;
         }
         return (
             <FlatList
@@ -33,7 +27,6 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => {
-                    // const itemThumbnail = `${websiteStorageUrl}${item.poster}`;
                     const itemThumbnail = item.poster;
                     return (
                         <View
@@ -47,15 +40,13 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
                                 activeOpacity={0.8}
                                 className="w-full h-full rounded"
                                 onPress={() => {
-                                    router.push({
-                                        pathname: `Home/Filminfo/${item.id}`,
-                                    });
+                                    router.push(`Home/Filminfo/${item.id}`);
                                 }}
                             >
                                 <Image
                                     className="w-full h-full rounded"
                                     resizeMode="cover"
-                                    source={{ uri: itemThumbnail }}
+                                    source={formatImageSource(itemThumbnail)}
                                 />
                             </TouchableOpacity>
                         </View>

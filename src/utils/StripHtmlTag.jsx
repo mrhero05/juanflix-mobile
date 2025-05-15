@@ -1,5 +1,7 @@
 const stripHtmlTag = (text) => {
-    return text.replace(/<[^>]*>/g, "");
+    if (typeof text === "string") {
+        return text.replace(/<[^>]*>/g, "");
+    }
 };
 
 export default stripHtmlTag;

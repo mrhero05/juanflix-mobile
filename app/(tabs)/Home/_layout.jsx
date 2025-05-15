@@ -41,22 +41,37 @@ const StackLayout = () => {
                 }}
             />
             <Stack.Screen
-                name="Notifications"
+                name="Genre/[id]"
                 options={{
+                    title: "",
+                    // headerTransparent: true,
+                    headerStyle: headerGlobalStyles.headerLowOpacity,
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
-                            <SearchIcon />
                             <HamburgerIcon />
                         </View>
                     ),
                 }}
             />
             <Stack.Screen
-                name="Search"
+                name="FeatureSection/[id]"
                 options={{
-                    headerTitle: "",
+                    title: "",
+                    // headerTransparent: true,
+                    headerStyle: headerGlobalStyles.headerLowOpacity,
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
+                            <HamburgerIcon />
+                        </View>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="Notifications"
+                options={{
+                    headerRight: () => (
+                        <View style={headerGlobalStyles.customHeaderStyle}>
+                            <SearchIcon />
                             <HamburgerIcon />
                         </View>
                     ),

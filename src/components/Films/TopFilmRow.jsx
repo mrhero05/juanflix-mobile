@@ -6,45 +6,34 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
+    ActivityIndicator,
 } from "react-native";
 import { colors, topFilmImage } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { width, w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
-import { websiteStorageUrl } from "@utils/Constants";
 import { router } from "expo-router";
+import { formatImageSource } from "@utils/FormatImageSource";
 
 const film3Items = w33Percent;
-const TopFilmRow = ({ title, subtitle, films, linkTo }) => {
-    return (
-        <View style={filmGlobalStyles.filmContainer}>
-            {linkTo ? (
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    className="pl-[20]"
-                    style={filmGlobalStyles.headerTitle}
-                    onPress={linkTo}
+const TopFilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
+    const FilmFlatList = () => {
+        if (isPending) {
+            return (
+                <View
+                    style={[filmGlobalStyles.filmItem, { width: film3Items }]}
                 >
-                    <Text style={globalStyles.sectionTitleText}>{title}</Text>
-                    <Entypo name="chevron-right" size={20} color="white" />
-                </TouchableOpacity>
-            ) : (
-                <View className="pl-[20]" style={filmGlobalStyles.headerTitle}>
-                    <Text style={globalStyles.sectionTitleText}>{title}</Text>
+                    <ActivityIndicator size="large" color="#FFC300" />
                 </View>
-            )}
-            {subtitle ? (
-                <Text className="pl-[20]" style={filmGlobalStyles.subtitle}>
-                    {subtitle}
-                </Text>
-            ) : null}
+            );
+        }
+        return (
             <FlatList
                 style={filmGlobalStyles.flatList}
                 data={films}
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => {
-                    // const itemThumbnail = `${websiteStorageUrl}${item.poster}`;
                     const itemThumbnail = item.poster;
                     return (
                         <View
@@ -67,7 +56,7 @@ const TopFilmRow = ({ title, subtitle, films, linkTo }) => {
                                 <Image
                                     className="w-full h-full rounded"
                                     resizeMode="cover"
-                                    source={{ uri: itemThumbnail }}
+                                    source={formatImageSource(itemThumbnail)}
                                 />
                             </TouchableOpacity>
                         </View>
@@ -75,6 +64,31 @@ const TopFilmRow = ({ title, subtitle, films, linkTo }) => {
                 }}
                 showsHorizontalScrollIndicator={false}
             />
+        );
+    };
+    return (
+        <View style={filmGlobalStyles.filmContainer}>
+            {linkTo ? (
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    className="pl-[20]"
+                    style={filmGlobalStyles.headerTitle}
+                    onPress={linkTo}
+                >
+                    <Text style={globalStyles.sectionTitleText}>{title}</Text>
+                    <Entypo name="chevron-right" size={20} color="white" />
+                </TouchableOpacity>
+            ) : (
+                <View className="pl-[20]" style={filmGlobalStyles.headerTitle}>
+                    <Text style={globalStyles.sectionTitleText}>{title}</Text>
+                </View>
+            )}
+            {subtitle ? (
+                <Text className="pl-[20]" style={filmGlobalStyles.subtitle}>
+                    {subtitle}
+                </Text>
+            ) : null}
+            <FilmFlatList />
         </View>
     );
 };

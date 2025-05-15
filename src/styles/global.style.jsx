@@ -51,10 +51,17 @@ export const globalStyles = StyleSheet.create({
     },
     subTitleText: {
         color: colors.customGray,
+        fontSize: 15,
     },
     bodyText: {
         color: colors.customGray,
         lineHeight: 22,
+        fontSize: 15,
+    },
+    description: {
+        color: colors.customWhite,
+        lineHeight: 22,
+        fontSize: 15,
     },
 });
 
@@ -77,7 +84,6 @@ export const filmGlobalStyles = StyleSheet.create({
     },
     filmCategoryItem: {
         aspectRatio: 194 / 126,
-        marginLeft: 20,
     },
     filmContinueWatching: {
         aspectRatio: 194 / 126,
@@ -87,6 +93,9 @@ export const filmGlobalStyles = StyleSheet.create({
 export const headerGlobalStyles = StyleSheet.create({
     appBarStyles: {
         marginLeft: -12,
+    },
+    headerLowOpacity: {
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
     },
     headerDefaultStyle: {
         backgroundColor: colors.customBlack,

@@ -46,7 +46,7 @@ export const SearchIcon = () => {
         <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-                router.navigate("/Home/Search");
+                router.navigate("/screens/Dynamic/SearchScreen");
             }}
         >
             <Image

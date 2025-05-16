@@ -17,7 +17,7 @@ const StackLayout = () => {
                     title: "Browse",
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
-                            {/* <SearchIcon /> */}
+                            <SearchIcon />
                             <HamburgerIcon />
                         </View>
                     ),

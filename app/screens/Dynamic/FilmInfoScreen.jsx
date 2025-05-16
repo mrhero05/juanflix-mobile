@@ -164,7 +164,7 @@ const FilmInfoScreen = ({ data }) => {
                     >
                         SYNOPSIS
                     </Text>
-                    <Text style={globalStyles.bodyText}>
+                    <Text style={[globalStyles.bodyText]}>
                         {stripHtmlTag(description)}
                     </Text>
                 </View>

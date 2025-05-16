@@ -11,3 +11,4 @@ export { default as UserReview } from "./UserReview";
 export { default as UserProfile } from "./UserProfile";
 export { default as AppBarBadge } from "./AppBarBadge";
 export { default as SafeAreaLayout } from "./SafeAreaLayout";
+export { default as FilmLoader } from "./FilmLoader";

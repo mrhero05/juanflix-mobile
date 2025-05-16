@@ -9,7 +9,7 @@ const Browse = () => {
         <SafeAreaLayout>
             <View style={globalStyles.zPadding}>
                 <Text className="text-customYellow text-center text-2xl">
-                    Browse
+                    Coming soon!
                 </Text>
             </View>
         </SafeAreaLayout>

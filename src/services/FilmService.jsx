@@ -11,10 +11,8 @@ const FilmService = {
             });
     },
     getGenreData: () => {
-        rawApiClient.defaults.baseURL =
-            process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM_CATEGORY;
-        return rawApiClient
-            .get()
+        return mainApiClient
+            .get("genre")
             .then((response) => response.data)
             .catch((error) => {
                 console.error("Error fetching film region data:", error);

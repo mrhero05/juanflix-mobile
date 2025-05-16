@@ -8,6 +8,8 @@ export const colors = {
     customMidBlack: "#262626",
     customWhite: "#ffffff",
     customLowOpacityGray: "#00000099",
+    skeletonBoneColor: "#131313",
+    skeletonHighlightColor: "#484a4b",
 };
 export const websiteStorageUrl = `${process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL}storage/`;
 export const images = {

@@ -12,6 +12,7 @@ import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { ProgressBar } from "react-native-paper";
 import { colors } from "@utils/Constants";
 import { FilmLoader } from "@components/CustomUI/";
+import { SkeletonThumbnailLoader } from "@components/CustomUI/SkeletonLoader";
 
 const film2Items = w50Percent;
 
@@ -30,7 +31,7 @@ const remainingTimeCalculation = (duration, current) => {
 const ContinueWatchingRow = ({ data, isPending }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <FilmLoader width={film2Items} />;
+            return <SkeletonThumbnailLoader itemWidth={film2Items} />;
         }
         return (
             <FlatList

@@ -14,12 +14,13 @@ import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { router } from "expo-router";
 import { FilmLoader } from "@components/CustomUI/";
 import { formatImageSource } from "@utils/FormatImageSource";
+import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
 
 const filmFullWidth = width - 60;
 const FeaturedFilm = ({ title, subtitle, isPending, films, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <FilmLoader width={filmFullWidth} />;
+            return <SkeletonPosterLoader itemWidth={filmFullWidth} />;
         }
         return (
             <FlatList

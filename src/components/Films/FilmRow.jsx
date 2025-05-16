@@ -8,17 +8,20 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import { w33Percent } from "@styles/global.style";
-import { globalStyles, filmGlobalStyles } from "@styles/global.style";
+import {
+    globalStyles,
+    filmGlobalStyles,
+    w33Percent,
+} from "@styles/global.style";
 import { router } from "expo-router";
-import { FilmLoader } from "@components/CustomUI/";
 import { formatImageSource } from "@utils/FormatImageSource";
+import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <FilmLoader width={film3Items} />;
+            return <SkeletonPosterLoader itemWidth={film3Items} />;
         }
         return (
             <FlatList

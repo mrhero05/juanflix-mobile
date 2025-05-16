@@ -15,12 +15,13 @@ import { websiteStorageUrl } from "@utils/Constants";
 import { FilmLoader } from "@components/CustomUI/";
 import { router } from "expo-router";
 import { formatImageSource } from "@utils/FormatImageSource";
+import { SkeletonThumbnailLoader } from "@components/CustomUI/SkeletonLoader";
 
 const film2Items = w50Percent;
 const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <FilmLoader width={film2Items} />;
+            return <SkeletonThumbnailLoader itemWidth={film2Items} />;
         }
         return (
             <FlatList

@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Dimensions,
+    Text,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";

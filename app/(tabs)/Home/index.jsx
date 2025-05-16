@@ -27,6 +27,7 @@ import useFilmGenresQuery from "@queries/useFilmGenresQuery";
 import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
 import useFilmQuery from "@queries/useFilmQuery";
 import { router } from "expo-router";
+import { Loader } from "@components/CustomUI/";
 
 const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
@@ -155,7 +156,7 @@ const Home = () => {
                                 params: {
                                     name: "Featured Films",
                                     description:
-                                        "The Spotlight Belongs Here — shining a light on the films, creators, and voices that define the future of cinema.",
+                                        "Step into the world of unforgettable Filipino stories — bold, moving, and full of heart. These featured films are must-sees, only on JuanFlix.",
                                 },
                             });
                         }}

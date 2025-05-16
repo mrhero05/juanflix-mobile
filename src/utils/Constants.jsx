@@ -11,6 +11,14 @@ export const colors = {
     skeletonBoneColor: "#131313",
     skeletonHighlightColor: "#484a4b",
 };
+export const gradientColors = [
+    ["rgba(250,0,0,0.2)", "rgba(255, 111, 0, 0.2)"],
+    ["rgba(0, 255, 203,0.2)", "rgba(247, 255, 0, 0.2)"],
+    ["rgba(0, 8, 255, 0.2)", "rgba(0, 255, 186, 0.2)"],
+    ["rgba(180, 180, 180, 0.2)", "rgba(204, 102, 0, 0.2)"],
+    ["rgba(0, 255, 177, 0.2)", "rgba(0, 255, 255, 0.2)"],
+    ["rgba(255, 0, 170, 0.2)", "rgba(223, 255, 0, 0.2)"],
+];
 export const websiteStorageUrl = `${process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL}storage/`;
 export const images = {
     brandLogo: require("@images/Juanflix Logo.png"),

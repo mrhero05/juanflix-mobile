@@ -11,11 +11,12 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { w50Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
-import { websiteStorageUrl } from "@utils/Constants";
+import { websiteStorageUrl, gradientColors } from "@utils/Constants";
 import { FilmLoader } from "@components/CustomUI/";
 import { router } from "expo-router";
 import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonThumbnailLoader } from "@components/CustomUI/SkeletonLoader";
+import { LinearGradient } from "expo-linear-gradient";
 
 const film2Items = w50Percent;
 const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
@@ -29,8 +30,9 @@ const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
                 data={data}
                 horizontal
                 keyExtractor={(item, index) => item.id.toString()}
-                renderItem={({ item }) => {
+                renderItem={({ item, index }) => {
                     const imgThumbnail = item?.banner ? item.banner : "";
+                    const colorIndex = index % gradientColors.length;
                     return (
                         <TouchableOpacity
                             className="w-full h-full rounded"
@@ -43,6 +45,7 @@ const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
                                         description: item.description,
                                         name: item.name,
                                         banner: item.banner,
+                                        colorIndex: colorIndex,
                                     },
                                 });
                             }}
@@ -59,15 +62,22 @@ const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
                                     "thumbnail"
                                 )}
                             >
-                                <Text
-                                    className="mt-auto px-[10] mb-[10]"
-                                    style={[
-                                        globalStyles.sectionTitleText,
-                                        { fontWeight: "500" },
-                                    ]}
+                                <LinearGradient
+                                    colors={gradientColors[colorIndex]}
+                                    className="h-full"
+                                    start={{ x: 0.3, y: 0.3 }}
+                                    end={{ x: 0.7, y: 0.7 }}
                                 >
-                                    {item.name}
-                                </Text>
+                                    <Text
+                                        className="mt-auto px-[10] mb-[10]"
+                                        style={[
+                                            globalStyles.sectionTitleText,
+                                            { fontWeight: "500" },
+                                        ]}
+                                    >
+                                        {item.name}
+                                    </Text>
+                                </LinearGradient>
                             </ImageBackground>
                         </TouchableOpacity>
                     );

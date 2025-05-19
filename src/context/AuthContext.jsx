@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
         token: null,
         authenticated: null,
         profile: null,
+        profileNum: 0,
     });
     const userLogin = (params) => {
         setIsLoading(true);
@@ -34,6 +35,7 @@ export const AuthProvider = ({ children }) => {
                     token: token,
                     authenticated: true,
                     profile: userProfile,
+                    profileNum: 0,
                 });
                 if (router.canGoBack) {
                     router.dismissAll();
@@ -80,6 +82,7 @@ export const AuthProvider = ({ children }) => {
                 token: null,
                 authenticated: false,
                 profile: null,
+                profileNum: 0,
             });
             router.replace("/");
         });
@@ -99,6 +102,7 @@ export const AuthProvider = ({ children }) => {
                     token: userToken,
                     authenticated: isAuthenticated === "true",
                     profile: userProfile,
+                    profileNum: 0,
                 });
             }
         } catch (error) {
@@ -110,7 +114,14 @@ export const AuthProvider = ({ children }) => {
         loadUserAuth();
     }, []);
 
-    const value = { authState, userLogin, userLogout, loadUserAuth, isLoading };
+    const value = {
+        authState,
+        setAuthState,
+        userLogin,
+        userLogout,
+        loadUserAuth,
+        isLoading,
+    };
     return (
         <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
     );

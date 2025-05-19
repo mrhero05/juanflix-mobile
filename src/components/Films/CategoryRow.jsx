@@ -22,7 +22,7 @@ const film2Items = w50Percent;
 const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <SkeletonThumbnailLoader itemWidth={film2Items} />;
+            return <FilmLoader width={film2Items} />;
         }
         return (
             <FlatList

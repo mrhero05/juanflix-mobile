@@ -34,10 +34,10 @@
             [
                 "expo-splash-screen",
                 {
-                    "image": "./src/assets/images/juanflix-icon.png",
+                    "image": "./src/assets/images/Juanflix Logo.png",
                     "resizeMode": "cover",
                     "backgroundColor": "#000000",
-                    "imageWidth": 200
+                    "imageWidth": 100
                 }
             ],
             [

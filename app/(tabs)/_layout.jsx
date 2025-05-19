@@ -81,7 +81,7 @@ export default () => {
                                 // source={{
                                 //     uri: authState.profile,
                                 // }}
-                                source={require("@images/ProfileSample.png")}
+                                source={authState.profile}
                                 style={{
                                     width: size,
                                     height: size,

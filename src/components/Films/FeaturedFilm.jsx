@@ -20,7 +20,7 @@ const filmFullWidth = width - 60;
 const FeaturedFilm = ({ title, subtitle, isPending, films, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <SkeletonPosterLoader itemWidth={filmFullWidth} />;
+            return <FilmLoader width={filmFullWidth} />;
         }
         return (
             <FlatList

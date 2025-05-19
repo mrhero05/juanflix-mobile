@@ -17,12 +17,13 @@ import { router } from "expo-router";
 import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
 import { colors } from "@utils/Constants";
+import { FilmLoader } from "@components/CustomUI/";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, isPending, films, linkTo, showTitle }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <SkeletonPosterLoader itemWidth={film3Items} />;
+            return <FilmLoader width={film3Items} />;
         }
         return (
             <FlatList

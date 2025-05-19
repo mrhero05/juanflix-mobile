@@ -10,6 +10,15 @@ const FilmService = {
                 throw error;
             });
     },
+    getFilmByCategoryData: (film_id) => {
+        return mainApiClient
+            .get("films/category-id", { params: { ids: film_id } })
+            .then((response) => response.data)
+            .catch((error) => {
+                console.error("Error fetching film region data:", error);
+                throw error;
+            });
+    },
     getGenreData: () => {
         return mainApiClient
             .get("genre")
@@ -21,7 +30,7 @@ const FilmService = {
     },
     getContinueWatchingData: () => {
         rawApiClient.defaults.baseURL =
-            process.env.EXPO_PUBLIC_API_URL_SAMPLE_FILM_CONTINUE;
+            "https://dev002.glimsol.com/juanflixapp/filmcontinuesample.json";
         return rawApiClient
             .get()
             .then((response) => response.data)

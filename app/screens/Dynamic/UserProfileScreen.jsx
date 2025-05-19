@@ -27,13 +27,17 @@ const UserProfileScreen = () => {
                         description="Pick your profile to get started."
                     />
                     <View className="mt-10 flex-1 flex-row flex-wrap gap-4 justify-center">
-                        {profileData.map((item) => (
-                            <UserProfile
-                                key={item.id}
-                                name={item.name}
-                                source={item.source}
-                            />
-                        ))}
+                        {profileData.map((item) => {
+                            console.log(item.id);
+                            return (
+                                <UserProfile
+                                    key={item.id}
+                                    name={item.name}
+                                    source={item.source}
+                                    profileId={item.id}
+                                />
+                            );
+                        })}
                         {profileData.length < 5 ? (
                             <UserProfile isAddProfile={true} />
                         ) : null}

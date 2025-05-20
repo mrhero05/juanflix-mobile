@@ -5,8 +5,8 @@ import JWPlayer from "@jwplayer/jwplayer-react-native";
 
 export default forwardRef((props, ref) => {
     const { onLayout, tag, config, style } = props;
-    const licenseIOS = process.env.EXPO_PUBLIC_JWPLAYER_LICENSE_IOS;
-    const licenseAndroid = process.env.EXPO_PUBLIC_JWPLAYER_LICENSE_ANDROID;
+    const licenseIOS = "BE3t1ji4mIggw5r0boU8owv1u+6bAoGsPW76GmHnc8US1yV2";
+    const licenseAndroid = "MHyF0LDg5qDscWrxVuHkYik+T1uIo6XVpP4PU9yVcrZ6pD4x";
 
     const newProps = Object.assign({}, props);
     delete newProps.ref;

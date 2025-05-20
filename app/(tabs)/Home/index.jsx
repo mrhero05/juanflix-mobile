@@ -26,7 +26,9 @@ import MainBanner from "@components/Banner/MainBanner";
 import useFilmGenresQuery from "@queries/useFilmGenresQuery";
 import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
 import useFilmQuery from "@queries/useFilmQuery";
+import useFilmByCategoryQuery from "@queries/useFilmByCategoryQuery";
 import { router } from "expo-router";
+import { Loader } from "@components/CustomUI/";
 
 const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
@@ -34,6 +36,10 @@ const width = Dimensions.get("window").width;
 const Home = () => {
     const { data: filmRegionData, isPending: filmDataIsPending } =
         useFilmQuery();
+    const { data: filmSpotlightData, isPending: filmSpotlightDataIsPending } =
+        useFilmByCategoryQuery(1);
+    const { data: filmTrendingData, isPending: filmTrendingDataIsPending } =
+        useFilmByCategoryQuery(2);
     const { data: filmContinue, isPending: filmContinueIsPending } =
         useFilmContinueWatchQuery();
     const { data: filmCategory, isPending: filmCategoryIsPending } =
@@ -98,17 +104,18 @@ const Home = () => {
                                 },
                             });
                         }}
-                        isPending={filmDataIsPending}
+                        isPending={filmSpotlightDataIsPending}
                         subtitle="NowPlaying on your channels and apps"
-                        films={filmRegionData}
+                        films={filmSpotlightData}
                     />
                     <FilmRow
                         title="Trending Now"
                         subtitle="Watch our trending films"
-                        films={filmRegionData}
+                        films={filmTrendingData}
+                        isPending={filmTrendingDataIsPending}
                         linkTo={() => {
                             router.push({
-                                pathname: `Home/FeatureSection/${1}`,
+                                pathname: `Home/FeatureSection/${2}`,
                                 params: {
                                     name: "Trending Now",
                                     description:
@@ -117,7 +124,6 @@ const Home = () => {
                                 },
                             });
                         }}
-                        isPending={filmDataIsPending}
                     />
                     <FilmRow
                         title="New Release"
@@ -155,7 +161,7 @@ const Home = () => {
                                 params: {
                                     name: "Featured Films",
                                     description:
-                                        "The Spotlight Belongs Here — shining a light on the films, creators, and voices that define the future of cinema.",
+                                        "Step into the world of unforgettable Filipino stories — bold, moving, and full of heart. These featured films are must-sees, only on JuanFlix.",
                                 },
                             });
                         }}

@@ -25,7 +25,8 @@ const SignupScreen = () => {
     const [emailValue, onChangeEmailValue] = useState("new@gmail.com");
     const [passwordValue, onChangePasswordValue] = useState("test1234");
     const [isPasswordSecure, setIsPasswordSecure] = useState(true);
-    const registrationLink = process.env.EXPO_PUBLIC_REGISTRATION_LINK;
+    // const registrationLink = process.env.EXPO_PUBLIC_REGISTRATION_LINK;
+    const registrationLink = "https://staging.juanflix.com.ph/register";
 
     const { userLogin, userLogout, isLoading } = useAuth();
 

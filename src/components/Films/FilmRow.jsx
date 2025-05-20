@@ -16,12 +16,14 @@ import {
 import { router } from "expo-router";
 import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
+import { colors } from "@utils/Constants";
+import { FilmLoader } from "@components/CustomUI/";
 
 const film3Items = w33Percent - 10;
-const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
+const FilmRow = ({ title, subtitle, isPending, films, linkTo, showTitle }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <SkeletonPosterLoader itemWidth={film3Items} />;
+            return <FilmLoader width={film3Items} />;
         }
         return (
             <FlatList
@@ -37,6 +39,7 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
                             style={[
                                 filmGlobalStyles.filmItem,
                                 { width: film3Items },
+                                showTitle && styles.showTitlePadding,
                             ]}
                         >
                             <TouchableOpacity
@@ -51,6 +54,15 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
                                     resizeMode="cover"
                                     source={formatImageSource(itemThumbnail)}
                                 />
+                                {showTitle && (
+                                    <Text
+                                        className="text-customWhite pt-[5]"
+                                        ellipsizeMode="tail"
+                                        numberOfLines={1}
+                                    >
+                                        {item.title}
+                                    </Text>
+                                )}
                             </TouchableOpacity>
                         </View>
                     );
@@ -87,3 +99,10 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
 };
 
 export default FilmRow;
+
+const styles = StyleSheet.create({
+    showTitlePadding: {
+        paddingBottom: 30,
+        aspectRatio: 320 / 530,
+    },
+});

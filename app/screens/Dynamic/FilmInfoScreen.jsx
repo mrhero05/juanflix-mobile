@@ -27,6 +27,7 @@ import useMoreFilmQuery from "@queries/useMoreFilmQuery";
 import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
 import { Rating } from "react-native-ratings";
 import { Divider } from "react-native-paper";
+import { router } from "expo-router";
 
 const FilmInfoScreen = ({ data }) => {
     const playerRef = useRef(null);
@@ -49,6 +50,7 @@ const FilmInfoScreen = ({ data }) => {
         duration,
         categories,
         crews,
+        media_id,
     } = film || {};
 
     const genresIds = genres?.map((item) => item.id).join(",") ?? "";
@@ -143,12 +145,20 @@ const FilmInfoScreen = ({ data }) => {
                     </Text>
                 </View>
                 <View style={globalStyles.xPadding}>
-                    <YellowButton icon="play" title="Watch Now" />
+                    <YellowButton
+                        icon="play"
+                        title="Watch Now"
+                        onPress={() => {
+                            router.push({
+                                pathname: `/Home/MainPlayer/${media_id}`,
+                            });
+                        }}
+                    />
                 </View>
                 <View style={[style.filmGenre, globalStyles.xPadding]}>
-                    {genresAndCategories?.map((item) => (
+                    {genresAndCategories?.map((item, index) => (
                         <Text
-                            key={item.id}
+                            key={`gac-${index}`}
                             style={[globalStyles.bodyText, style.filmGenreText]}
                         >
                             {item.name}
@@ -193,7 +203,7 @@ const FilmInfoScreen = ({ data }) => {
                     </Text>
                     {crews?.map((item) => (
                         <View
-                            key={item.id}
+                            key={`crew-${item.id}`}
                             style={[{ width: w33Percent - 10 }]}
                         >
                             <Image
@@ -221,7 +231,7 @@ const FilmInfoScreen = ({ data }) => {
                     {awardsData.map((item, index) => {
                         return (
                             <AwardsFestival
-                                key={index}
+                                key={`awards-${index}`}
                                 title={item.title}
                                 subtitle={item.subtitle}
                                 source={item.source}
@@ -261,7 +271,7 @@ const FilmInfoScreen = ({ data }) => {
                     {reviewData.map((item, index) => {
                         return (
                             <UserReview
-                                key={index}
+                                key={`review-${index}`}
                                 rating={item.rating}
                                 username={item.username}
                                 comment={item.comment}

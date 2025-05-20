@@ -15,12 +15,13 @@ import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { router } from "expo-router";
 import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
+import { FilmLoader } from "@components/CustomUI/";
 
 const film3Items = w33Percent;
 const TopFilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <SkeletonPosterLoader itemWidth={film3Items} />;
+            return <FilmLoader width={film3Items} />;
         }
         return (
             <FlatList
@@ -90,7 +91,7 @@ const TopFilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
 const styles = StyleSheet.create({
     topTitle: {
         position: "absolute",
-        bottom: 3,
+        bottom: 10,
         left: -15,
         zIndex: 1,
         transform: [{ scale: 1.2 }],

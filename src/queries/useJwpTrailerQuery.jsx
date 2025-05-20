@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import JWPlayerService from "@services/JWPlayerService";
 
 const useJwpTrailerQuery = (trailer_id) => {
-    const defaultPropertyID =
-        process.env.EXPO_PUBLIC_JWPLAYER_DEFAULT_PROPERTY_ID;
+    const defaultPropertyID = "NLLhGCSw";
     return useQuery({
         queryKey: ["jwplayerConfig", trailer_id],
         queryFn: async () => {

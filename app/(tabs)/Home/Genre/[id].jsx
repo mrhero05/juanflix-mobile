@@ -19,6 +19,7 @@ import {
 import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
 import { formatImageSource } from "@utils/FormatImageSource";
+import { gradientColors } from "@utils/Constants";
 
 const GenreScreen = () => {
     const genreParams = useLocalSearchParams();
@@ -32,23 +33,33 @@ const GenreScreen = () => {
                     source={formatImageSource(genreParams.banner, "thumbnail")}
                 >
                     <LinearGradient
-                        colors={["transparent", "rgba(0,0,0,1)"]}
-                        style={[globalStyles.zPadding, styles.linearBackground]}
+                        colors={gradientColors[genreParams.colorIndex]}
+                        className="h-full"
+                        start={{ x: 0.3, y: 0.3 }}
+                        end={{ x: 0.7, y: 0.7 }}
                     >
-                        <View className="mt-auto">
-                            <Text
-                                className="text-customYellow"
-                                style={globalStyles.headerText}
-                            >
-                                {genreParams.name.toUpperCase()}
-                            </Text>
-                            <Text
-                                className="text-customWhite font-light"
-                                style={globalStyles.description}
-                            >
-                                {description}
-                            </Text>
-                        </View>
+                        <LinearGradient
+                            colors={["transparent", "rgba(0,0,0,1)"]}
+                            style={[
+                                globalStyles.zPadding,
+                                styles.linearBackground,
+                            ]}
+                        >
+                            <View className="mt-auto">
+                                <Text
+                                    className="text-customYellow"
+                                    style={globalStyles.headerText}
+                                >
+                                    {genreParams.name.toUpperCase()}
+                                </Text>
+                                <Text
+                                    className="text-customWhite font-light"
+                                    style={globalStyles.description}
+                                >
+                                    {description}
+                                </Text>
+                            </View>
+                        </LinearGradient>
                     </LinearGradient>
                 </ImageBackground>
             </View>

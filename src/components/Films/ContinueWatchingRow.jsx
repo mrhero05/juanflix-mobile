@@ -31,7 +31,7 @@ const remainingTimeCalculation = (duration, current) => {
 const ContinueWatchingRow = ({ data, isPending }) => {
     const FilmFlatList = () => {
         if (isPending) {
-            return <SkeletonThumbnailLoader itemWidth={film2Items} />;
+            return <FilmLoader width={film2Items} />;
         }
         return (
             <FlatList

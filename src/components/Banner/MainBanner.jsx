@@ -9,12 +9,6 @@ import { useRouter } from "expo-router";
 
 const MainBanner = () => {
     const router = useRouter();
-    const _handlePressButtonAsync = async () => {
-        let result = await WebBrowser.openBrowserAsync(
-            process.env.EXPO_PUBLIC_REGISTRATION_LINK
-        );
-        console.log(result);
-    };
     return (
         <ImageBackground
             source={require("@images/BannerImage.png")}
@@ -52,7 +46,6 @@ const MainBanner = () => {
                             buttonColor={colors.customDarkGray}
                             textColor={colors.customWhite}
                             style={styles.watchListButton}
-                            onPress={_handlePressButtonAsync}
                         />
                     </View>
                 </View>

@@ -30,7 +30,8 @@ import {
 } from "@components/CustomUI";
 
 const SignedOutScreen = () => {
-    const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL;
+    // const juanflixLink = process.env.EXPO_PUBLIC_JUANFLIX_BASE_URL;
+    const juanflixLink = "https://staging.juanflix.com.ph/";
     const film3Items = w33Percent - 18.7;
     return (
         <SafeAreaProvider>

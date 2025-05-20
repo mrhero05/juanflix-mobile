@@ -67,6 +67,12 @@ const StackLayout = () => {
                 }}
             />
             <Stack.Screen
+                name="MainPlayer/[id]"
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
                 name="Notifications"
                 options={{
                     headerRight: () => (

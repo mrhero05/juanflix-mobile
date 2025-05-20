@@ -39,7 +39,9 @@ const Home = () => {
     const { data: filmSpotlightData, isPending: filmSpotlightDataIsPending } =
         useFilmByCategoryQuery(1);
     const { data: filmTrendingData, isPending: filmTrendingDataIsPending } =
-        useFilmByCategoryQuery(2);
+        useFilmByCategoryQuery(3);
+    const { data: filmNewData, isPending: filmNewDataIsPending } =
+        useFilmByCategoryQuery(4);
     const { data: filmContinue, isPending: filmContinueIsPending } =
         useFilmContinueWatchQuery();
     const { data: filmCategory, isPending: filmCategoryIsPending } =
@@ -115,7 +117,7 @@ const Home = () => {
                         isPending={filmTrendingDataIsPending}
                         linkTo={() => {
                             router.push({
-                                pathname: `Home/FeatureSection/${2}`,
+                                pathname: `Home/FeatureSection/${3}`,
                                 params: {
                                     name: "Trending Now",
                                     description:
@@ -128,10 +130,10 @@ const Home = () => {
                     <FilmRow
                         title="New Release"
                         subtitle="Explore our new release movies"
-                        films={filmRegionData}
+                        films={filmNewData}
                         linkTo={() => {
                             router.push({
-                                pathname: `Home/FeatureSection/${1}`,
+                                pathname: `Home/FeatureSection/${4}`,
                                 params: {
                                     name: "New Release",
                                     description:
@@ -140,7 +142,7 @@ const Home = () => {
                                 },
                             });
                         }}
-                        isPending={filmDataIsPending}
+                        isPending={filmNewDataIsPending}
                     />
                     <ContinueWatchingRow
                         data={filmContinue}
@@ -157,11 +159,13 @@ const Home = () => {
                         films={filmRegionData}
                         linkTo={() => {
                             router.push({
-                                pathname: `Home/FeatureSection/${2}`,
+                                pathname: `Home/FeatureSection/[id]`,
                                 params: {
+                                    id: "1,2,3,4,5,6,7,8,9",
                                     name: "Featured Films",
                                     description:
                                         "Step into the world of unforgettable Filipino stories — bold, moving, and full of heart. These featured films are must-sees, only on JuanFlix.",
+                                    banner: require("@images/FeatureFilm.png"),
                                 },
                             });
                         }}
@@ -172,7 +176,7 @@ const Home = () => {
                         subtitle="Explore our films by genre"
                         data={filmCategory}
                         linkTo={() => {
-                            console.log("Navigate to Genre page");
+                            router.push("Browse");
                         }}
                         isPending={filmCategoryIsPending}
                     />

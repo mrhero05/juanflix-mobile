@@ -5,26 +5,25 @@ import {
     FlatList,
     Image,
     StyleSheet,
+    TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
-import { SafeAreaLayout } from "@components/CustomUI";
+import { router, useLocalSearchParams } from "expo-router";
+import { SafeAreaLayout, Loader } from "@components/CustomUI";
 import stripHtmlTag from "@utils/StripHtmlTag";
-import {
-    globalStyles,
-    filmGlobalStyles,
-    w33Percent,
-    width,
-} from "@styles/global.style";
+import { globalStyles, width } from "@styles/global.style";
 import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
 import { formatImageSource } from "@utils/FormatImageSource";
 import { gradientColors } from "@utils/Constants";
+import useFilmByGenreQuery from "@queries/useFilmByGenreQuery";
 
 const GenreScreen = () => {
     const genreParams = useLocalSearchParams();
     const description = stripHtmlTag(genreParams.description);
-    const { data } = useFilmQuery();
+    const { data: filmGenreData, isFetching: filmGenreDataIsFetching } =
+        useFilmByGenreQuery(genreParams.id);
+
     const HeaderContent = () => {
         return (
             <View className="mb-[10]">
@@ -74,7 +73,7 @@ const GenreScreen = () => {
     return (
         <SafeAreaLayout>
             <FlatList
-                data={data}
+                data={filmGenreData}
                 ListHeaderComponent={<HeaderContent />}
                 horizontal={false}
                 numColumns={numColumns}
@@ -92,10 +91,30 @@ const GenreScreen = () => {
                                 },
                             ]}
                         >
-                            <Image
-                                className="w-full h-full rounded"
-                                source={formatImageSource(itemPoster)}
-                            />
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                className="w-full h-full"
+                                onPress={() => {
+                                    router.push(`Home/Filminfo/${item.id}`);
+                                }}
+                            >
+                                <Image
+                                    className="w-full h-full rounded"
+                                    source={formatImageSource(itemPoster)}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    );
+                }}
+                ListEmptyComponent={() => {
+                    if (filmGenreDataIsFetching) {
+                        return <Loader />;
+                    }
+                    return (
+                        <View style={globalStyles.xPadding}>
+                            <Text className="text-customGray mt-[30] ml-[5]">
+                                This genre doesn’t have any films yet.
+                            </Text>
                         </View>
                     );
                 }}

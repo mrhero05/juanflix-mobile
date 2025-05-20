@@ -5,7 +5,7 @@ const useMoreFilmQuery = ({ filmData, genresIds }) => {
     return useQuery({
         queryKey: ["moreFilmData", genresIds],
         queryFn: async () => {
-            return await FilmService.getMoreFilmData(genresIds);
+            return await FilmService.getFilmByGenres(genresIds);
         },
         enabled: !!filmData,
     });

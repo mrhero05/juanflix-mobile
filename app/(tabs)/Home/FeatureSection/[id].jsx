@@ -8,19 +8,21 @@ import {
 } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
-import { SafeAreaLayout } from "@components/CustomUI";
+import { SafeAreaLayout, Loader } from "@components/CustomUI";
 import stripHtmlTag from "@utils/StripHtmlTag";
 import { formatImageSource } from "@utils/FormatImageSource";
 import { globalStyles, width } from "@styles/global.style";
 import { websiteStorageUrl } from "@utils/Constants";
 import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
+import useFilmByCategoryQuery from "@queries/useFilmByCategoryQuery";
 
 const FeatureSection = () => {
     const featuredParams = useLocalSearchParams();
     const imgThumbnail = `${websiteStorageUrl}${featuredParams.banner}`;
     const description = stripHtmlTag(featuredParams.description);
-    const { data } = useFilmQuery();
+    const { data, isFetching: filmFeatureDataIsFetching } =
+        useFilmByCategoryQuery(featuredParams.id);
     const HeaderContent = () => {
         return (
             <View className="mb-[10]">
@@ -86,6 +88,18 @@ const FeatureSection = () => {
                                 className="w-full h-full rounded"
                                 source={formatImageSource(itemPoster)}
                             />
+                        </View>
+                    );
+                }}
+                ListEmptyComponent={() => {
+                    if (filmFeatureDataIsFetching) {
+                        return <Loader />;
+                    }
+                    return (
+                        <View style={globalStyles.xPadding}>
+                            <Text className="text-customGray mt-[30] ml-[5]">
+                                This section doesn’t have any films yet.
+                            </Text>
                         </View>
                     );
                 }}

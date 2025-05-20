@@ -64,6 +64,7 @@ const SignedOutScreen = () => {
                                     size={30}
                                     style={{
                                         marginLeft: -10,
+                                        opacity: 0,
                                     }}
                                     isLeading
                                 />

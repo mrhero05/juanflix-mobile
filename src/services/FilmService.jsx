@@ -39,7 +39,7 @@ const FilmService = {
                 throw error;
             });
     },
-    getMoreFilmData: (genreIds) => {
+    getFilmByGenres: (genreIds) => {
         return mainApiClient
             .get("films/genre-id", { params: { ids: genreIds } })
             .then((response) => response.data)

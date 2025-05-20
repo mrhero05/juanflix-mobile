@@ -1,11 +1,23 @@
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, ActivityIndicator } from "react-native";
 import React from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
-import { TitleDescription, UserProfile } from "@components/CustomUI/";
-import { profileData, images } from "@utils/Constants";
+import { TitleDescription, UserProfile, Loader } from "@components/CustomUI/";
+import { images } from "@utils/Constants";
+import { useAuth } from "@context/AuthContext";
+import useUserQuery from "@queries/useUserQuery";
+import { formatImageSource } from "@utils/FormatImageSource";
 
 const UserProfileScreen = () => {
+    const { authState, userLogout } = useAuth();
+    const {
+        data: profileData,
+        isPending: profileDataIsPending,
+        isFetching: profileDataisFetching,
+    } = useUserQuery.getProfile(authState.token);
+    if (profileData?.status === 401) {
+        userLogout();
+    }
     return (
         <SafeAreaProvider>
             <SafeAreaView className="flex-1 min-h-screen-safe">
@@ -26,21 +38,32 @@ const UserProfileScreen = () => {
                         title="Who's watching today?"
                         description="Pick your profile to get started."
                     />
+
                     <View className="mt-10 flex-1 flex-row flex-wrap gap-4 justify-center">
-                        {profileData.map((item) => {
-                            console.log(item.id);
-                            return (
-                                <UserProfile
-                                    key={item.id}
-                                    name={item.name}
-                                    source={item.source}
-                                    profileId={item.id}
-                                />
-                            );
-                        })}
-                        {profileData.length < 5 ? (
+                        {profileDataIsPending ||
+                        profileDataisFetching ||
+                        profileData === undefined ? (
+                            <View className="h-[100]">
+                                <Loader />
+                            </View>
+                        ) : (
+                            profileData.map((item) => {
+                                const profileSource = formatImageSource(
+                                    item.profile_icons.image
+                                );
+                                return (
+                                    <UserProfile
+                                        key={item.id}
+                                        name={item.name}
+                                        source={profileSource}
+                                        profileId={item.id}
+                                    />
+                                );
+                            })
+                        )}
+                        {/* {profileData.length < 5 ? (
                             <UserProfile isAddProfile={true} />
-                        ) : null}
+                        ) : null} */}
                     </View>
                 </View>
             </SafeAreaView>

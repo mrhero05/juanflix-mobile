@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import {
+    View,
+    Text,
+    StyleSheet,
+    FlatList,
+    Image,
+    TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles, width, filmGlobalStyles } from "@styles/global.style";
@@ -9,6 +16,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
 import useFilmQuery from "@queries/useFilmQuery";
 import { formatImageSource } from "@utils/FormatImageSource";
+import { router } from "expo-router";
 
 const SearchScreen = () => {
     const { data: filmRegionData, isPending: filmDataIsPending } =
@@ -48,7 +56,7 @@ const SearchScreen = () => {
                     }
                     horizontal={false}
                     numColumns={numColumns}
-                    contentContainerStyle={{ gap }}
+                    contentContainerStyle={{ gap, paddingBottom: itemSize }}
                     columnWrapperStyle={{ gap, paddingInline: 20 }}
                     renderItem={({ item }) => {
                         let itemPoster = item?.poster ? item.poster : "";
@@ -62,10 +70,18 @@ const SearchScreen = () => {
                                     },
                                 ]}
                             >
-                                <Image
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
                                     className="w-full h-full rounded"
-                                    source={formatImageSource(itemPoster)}
-                                />
+                                    onPress={() => {
+                                        router.push(`Home/Filminfo/${item.id}`);
+                                    }}
+                                >
+                                    <Image
+                                        className="w-full h-full rounded"
+                                        source={formatImageSource(itemPoster)}
+                                    />
+                                </TouchableOpacity>
                             </View>
                         );
                     }}

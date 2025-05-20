@@ -1,40 +1,30 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { mainApiClient } from "@utils/Api";
+import { mainApiClient, rawApiClient } from "@utils/Api";
 import LocalStorageService from "@services/LocalStorageService";
-import { router, useNavigation } from "expo-router";
-import { CommonActions } from "@react-navigation/native";
+import { router } from "expo-router";
+import UserService from "@services/UserService";
 
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigation();
     const [authState, setAuthState] = useState({
         token: null,
         authenticated: null,
         profile: null,
         profileNum: 0,
     });
-    const userLogin = (params) => {
+    const userLogin = async (params) => {
         setIsLoading(true);
-        return mainApiClient
-            .post("userlogin", params)
-            .then((response) => {
-                const { token, user } = response.data;
+        const userJWTAuth = await UserService.getUserJWTAuth(params);
+        const userData = await UserService.getUserInformation(userJWTAuth);
+        console.log(userData);
 
-                if (!token) {
-                    console.log("No Response data");
-                    setIsLoading(false);
-                    return false;
-                }
-                const authProfile = user.profile_photo_url;
-                const userProfile = authProfile.replace(
-                    /ui-avatars.com/g,
-                    "eu.ui-avatars.com"
-                );
+        try {
+            if (userData) {
                 setAuthState({
-                    token: token,
+                    token: userJWTAuth,
                     authenticated: true,
-                    profile: userProfile,
+                    profile: null,
                     profileNum: 0,
                 });
                 if (router.canGoBack) {
@@ -43,35 +33,17 @@ export const AuthProvider = ({ children }) => {
                 router.dismissTo("/screens/Dynamic/UserProfileScreen");
                 setIsLoading(false);
                 return Promise.all([
-                    LocalStorageService.saveData(
-                        "userToken",
-                        JSON.stringify(token)
-                    ),
-                    LocalStorageService.saveData(
-                        "userProfile",
-                        JSON.stringify(userProfile)
-                    ),
+                    LocalStorageService.saveData("userToken", userJWTAuth),
                     LocalStorageService.saveData(
                         "isAuthenticated",
                         JSON.stringify(true)
                     ),
                 ]);
-            })
-            .catch((error) => {
-                if (error.response) {
-                    // The server responded with a status code outside the 2xx range
-                    console.log("Error response:", error.response);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    console.log("Error request:", error.request);
-                } else {
-                    // Something happened in setting up the request that triggered an error
-                    console.log("Error message:", error.message);
-                }
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+            }
+        } catch (error) {
+            console.log(error);
+            setIsLoading(false);
+        }
     };
     const userLogout = () => {
         Promise.all([
@@ -89,19 +61,16 @@ export const AuthProvider = ({ children }) => {
     };
     const loadUserAuth = async () => {
         try {
-            const [userToken, isAuthenticated, userProfile] = await Promise.all(
-                [
-                    LocalStorageService.getData("userToken"),
-                    LocalStorageService.getData("isAuthenticated"),
-                    LocalStorageService.getData("userProfile"),
-                ]
-            );
+            const [userToken, isAuthenticated] = await Promise.all([
+                LocalStorageService.getData("userToken"),
+                LocalStorageService.getData("isAuthenticated"),
+            ]);
 
             if (userToken) {
                 setAuthState({
                     token: userToken,
                     authenticated: isAuthenticated === "true",
-                    profile: userProfile,
+                    profile: null,
                     profileNum: 0,
                 });
             }

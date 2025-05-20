@@ -88,11 +88,11 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo, showTitle }) => {
                     <Text style={[globalStyles.sectionTitleText]}>{title}</Text>
                 </View>
             )}
-            {subtitle ? (
+            {subtitle && (
                 <Text className="pl-[20]" style={filmGlobalStyles.subtitle}>
                     {subtitle}
                 </Text>
-            ) : null}
+            )}
             <FilmFlatList />
         </View>
     );

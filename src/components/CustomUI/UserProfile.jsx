@@ -3,17 +3,18 @@ import React from "react";
 import { router } from "expo-router";
 import { colors } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const UserProfile = ({ name, source, isAddProfile, profileId }) => {
     const addProfileImg = require("@images/AddProfile.png");
     const { authState, setAuthState } = useAuth();
+
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
                 let authToken = authState.token;
                 let authAuth = authState.authenticated;
-                let authProfile = authState.profile;
                 setAuthState({
                     token: authToken,
                     authenticated: authAuth,
@@ -42,7 +43,7 @@ const UserProfile = ({ name, source, isAddProfile, profileId }) => {
                         : colors.customGray,
                 }}
             >
-                {name ?? "Add Profile"}
+                {FormatterUtils.capitalizeFirstLetter(name) ?? "Add Profile"}
             </Text>
         </TouchableOpacity>
     );

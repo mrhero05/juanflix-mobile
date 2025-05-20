@@ -174,11 +174,11 @@ const FilmInfoScreen = ({ data }) => {
                     >
                         SYNOPSIS
                     </Text>
-                    <Text style={[globalStyles.bodyText]}>
+                    <Text className="mb-[20]" style={[globalStyles.bodyText]}>
                         {stripHtmlTag(description)}
                     </Text>
                 </View>
-                <View style={style.filmActions}>
+                {/* <View style={style.filmActions}>
                     <View style={style.filmAction}>
                         <Image
                             style={style.filmActionIcon}
@@ -193,34 +193,38 @@ const FilmInfoScreen = ({ data }) => {
                         />
                         <Text style={globalStyles.bodyText}>Download</Text>
                     </View>
-                </View>
-                <View style={[globalStyles.xPadding, style.castCrewSection]}>
-                    <Text
-                        className="mb-4"
-                        style={globalStyles.sectionTitleText}
+                </View> */}
+                {crews.length > 0 && (
+                    <View
+                        style={[globalStyles.xPadding, style.castCrewSection]}
                     >
-                        CAST & CREW
-                    </Text>
-                    {crews?.map((item) => (
-                        <View
-                            key={`crew-${item.id}`}
-                            style={[{ width: w33Percent - 10 }]}
+                        <Text
+                            className="mb-4"
+                            style={globalStyles.sectionTitleText}
                         >
-                            <Image
-                                className="w-full rounded mb-2"
-                                resizeMode="cover"
-                                style={{ height: 140 }}
-                                source={require("@images/default_avatar.png")}
-                            />
-                            <Text style={[globalStyles.sectionTitleText]}>
-                                {item.name}
-                            </Text>
-                            <Text style={[globalStyles.bodyText]}>
-                                {item.position}
-                            </Text>
-                        </View>
-                    ))}
-                </View>
+                            CAST & CREW
+                        </Text>
+                        {crews?.map((item) => (
+                            <View
+                                key={`crew-${item.id}`}
+                                style={[{ width: w33Percent - 10 }]}
+                            >
+                                <Image
+                                    className="w-full rounded mb-2"
+                                    resizeMode="cover"
+                                    style={{ height: 140 }}
+                                    source={require("@images/default_avatar.png")}
+                                />
+                                <Text style={[globalStyles.sectionTitleText]}>
+                                    {item.name}
+                                </Text>
+                                <Text style={[globalStyles.bodyText]}>
+                                    {item.position}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
+                )}
                 <View className="mb-[40]" style={globalStyles.xPadding}>
                     <Text
                         className="mb-3"
@@ -239,11 +243,13 @@ const FilmInfoScreen = ({ data }) => {
                         );
                     })}
                 </View>
-                <FilmRow
-                    title="MORE FILMS"
-                    isPending={moreFilmIsPending}
-                    films={moreFilm}
-                />
+                {!moreFilm?.message && (
+                    <FilmRow
+                        title="MORE FILMS"
+                        isPending={moreFilmIsPending}
+                        films={moreFilm}
+                    />
+                )}
                 <View style={[globalStyles.xPadding, { paddingBottom: 30 }]}>
                     <Divider />
                 </View>
@@ -261,7 +267,7 @@ const FilmInfoScreen = ({ data }) => {
                         tintColor={colors.customBlack}
                         ratingColor={colors.customYellow}
                         ratingBackgroundColor={colors.customMildGray}
-                        readonly={true}
+                        readonly={false}
                         style={{
                             alignItems: "flex-start",
                         }}

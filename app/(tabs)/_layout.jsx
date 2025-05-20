@@ -78,9 +78,6 @@ export default () => {
                     tabBarIcon: ({ color, size }) =>
                         authState.profile ? (
                             <Image
-                                // source={{
-                                //     uri: authState.profile,
-                                // }}
                                 source={authState.profile}
                                 style={{
                                     width: size,

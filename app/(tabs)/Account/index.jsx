@@ -5,6 +5,7 @@ import {
     ScrollView,
     Image,
     StyleSheet,
+    TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useAuth, authState } from "@context/AuthContext";
@@ -62,24 +63,29 @@ const Account = () => {
                             ]}
                         >
                             {item.menus.map((innerItem, innerIndex) => (
-                                <View
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    onPress={() => {
+                                        alert("Coming soon!");
+                                    }}
                                     key={innerIndex}
-                                    className="flex-row gap-2 items-center py-3"
                                 >
-                                    <Image
-                                        className="w-[25] h-[25]"
-                                        source={require("@images/UserDefault.png")}
-                                    />
-                                    <Text className="text-customWhite">
-                                        {innerItem}
-                                    </Text>
-                                    <Entypo
-                                        className="ml-auto"
-                                        name="chevron-right"
-                                        size={20}
-                                        color="white"
-                                    />
-                                </View>
+                                    <View className="flex-row gap-2 items-center py-3">
+                                        <Image
+                                            className="w-[25] h-[25]"
+                                            source={require("@images/UserDefault.png")}
+                                        />
+                                        <Text className="text-customWhite">
+                                            {innerItem}
+                                        </Text>
+                                        <Entypo
+                                            className="ml-auto"
+                                            name="chevron-right"
+                                            size={20}
+                                            color="white"
+                                        />
+                                    </View>
+                                </TouchableOpacity>
                             ))}
                         </View>
                     </View>

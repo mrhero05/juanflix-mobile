@@ -22,13 +22,13 @@ import { useAuth } from "@context/AuthContext";
 import { router } from "expo-router";
 
 const SignupScreen = () => {
-    const [emailValue, onChangeEmailValue] = useState("new@gmail.com");
-    const [passwordValue, onChangePasswordValue] = useState("test1234");
+    const [emailValue, onChangeEmailValue] = useState("");
+    const [passwordValue, onChangePasswordValue] = useState("");
     const [isPasswordSecure, setIsPasswordSecure] = useState(true);
     // const registrationLink = process.env.EXPO_PUBLIC_REGISTRATION_LINK;
     const registrationLink = "https://staging.juanflix.com.ph/register";
 
-    const { userLogin, userLogout, isLoading } = useAuth();
+    const { userLogin, userLogout, isError, isLoading } = useAuth();
 
     return (
         <SafeAreaProvider>
@@ -51,14 +51,19 @@ const SignupScreen = () => {
                         <View className="pt-[45px]">
                             <TextField
                                 title="Email Address:"
-                                placeholder="example@juanflix.com"
+                                placeholder="Enter your Email Address"
                                 value={emailValue}
+                                inputStyles={isError && { borderColor: "red" }}
+                                autoCapitalize="none"
                                 onChangeText={onChangeEmailValue}
                             />
                             <TextField
                                 title="Password:"
                                 secureTextEntry={isPasswordSecure}
+                                placeholder="Enter your Password"
                                 value={passwordValue}
+                                inputStyles={isError && { borderColor: "red" }}
+                                autoCapitalize="none"
                                 onChangeText={onChangePasswordValue}
                                 right={
                                     <TextInput.Icon
@@ -75,10 +80,15 @@ const SignupScreen = () => {
                                 className="mb-[15px]"
                                 title="SIGN IN NOW"
                                 onPress={() => {
-                                    userLogin({
-                                        email: emailValue,
-                                        password: passwordValue,
-                                    });
+                                    if (
+                                        emailValue !== "" &&
+                                        passwordValue !== ""
+                                    ) {
+                                        userLogin({
+                                            email: emailValue,
+                                            password: passwordValue,
+                                        });
+                                    }
                                 }}
                                 loading={isLoading}
                             />
@@ -105,7 +115,9 @@ const SignupScreen = () => {
                                 textColor={colors.customGray}
                                 buttonColor={colors.customBlack}
                                 title="Login with Facebook"
-                                onPress={() => {}}
+                                onPress={() => {
+                                    alert("Coming soon");
+                                }}
                             />
                             <CustomButton
                                 className="mb-[15px]"
@@ -121,7 +133,9 @@ const SignupScreen = () => {
                                 textColor={colors.customGray}
                                 buttonColor={colors.customBlack}
                                 title="Login with Google"
-                                onPress={() => {}}
+                                onPress={() => {
+                                    alert("Coming soon");
+                                }}
                             />
                             {Platform.OS === "ios" && (
                                 <CustomButton

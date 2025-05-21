@@ -4,7 +4,7 @@ import { TextInput } from "react-native-paper";
 import { colors } from "@utils/Constants";
 import { globalStyles } from "@styles/global.style";
 
-const TextField = ({ title, ...props }) => {
+const TextField = ({ title, inputStyles, ...props }) => {
     return (
         <View className="flex-1 mb-[15px]">
             <Text className="mb-[8px]" style={globalStyles.bodyText}>
@@ -12,7 +12,7 @@ const TextField = ({ title, ...props }) => {
             </Text>
             <TextInput
                 textColor={colors.customGray}
-                style={styles.input}
+                style={[styles.input, inputStyles]}
                 activeUnderlineColor={colors.customGray}
                 {...props}
                 placeholderTextColor={colors.customGray}

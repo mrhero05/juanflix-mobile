@@ -5,6 +5,7 @@ import {
     ScrollView,
     StyleSheet,
     Image,
+    TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import Player from "@components/Player";
@@ -178,22 +179,38 @@ const FilmInfoScreen = ({ data }) => {
                         {stripHtmlTag(description)}
                     </Text>
                 </View>
-                {/* <View style={style.filmActions}>
+                <View style={style.filmActions}>
                     <View style={style.filmAction}>
-                        <Image
-                            style={style.filmActionIcon}
-                            source={require("@images/PlusIcon.png")}
-                        />
-                        <Text style={globalStyles.bodyText}>Watchlist</Text>
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={() => {
+                                alert("Coming soon!");
+                            }}
+                            style={style.filmAction}
+                        >
+                            <Image
+                                style={style.filmActionIcon}
+                                source={require("@images/PlusIcon.png")}
+                            />
+                            <Text style={globalStyles.bodyText}>Watchlist</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={style.filmAction}>
-                        <Image
-                            style={style.filmActionIcon}
-                            source={require("@images/SymbolsIcon.png")}
-                        />
-                        <Text style={globalStyles.bodyText}>Download</Text>
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={() => {
+                                alert("Coming soon!");
+                            }}
+                            style={style.filmAction}
+                        >
+                            <Image
+                                style={style.filmActionIcon}
+                                source={require("@images/SymbolsIcon.png")}
+                            />
+                            <Text style={globalStyles.bodyText}>Download</Text>
+                        </TouchableOpacity>
                     </View>
-                </View> */}
+                </View>
                 {crews.length > 0 && (
                     <View
                         style={[globalStyles.xPadding, style.castCrewSection]}
@@ -254,12 +271,19 @@ const FilmInfoScreen = ({ data }) => {
                     <Divider />
                 </View>
                 <View style={globalStyles.xPadding}>
-                    <View className="mb-3 flex-row items-center">
+                    <TouchableOpacity
+                        className="mb-3 flex-row items-center"
+                        activeOpacity={0.8}
+                        onPress={() => {
+                            alert("Coming soon!");
+                        }}
+                    >
                         <Text style={globalStyles.sectionTitleText}>
                             RATE THIS FILM
                         </Text>
                         <Entypo name="chevron-right" size={20} color="white" />
-                    </View>
+                    </TouchableOpacity>
+
                     <Rating
                         type="custom"
                         showRating={false}

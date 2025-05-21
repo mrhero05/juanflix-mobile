@@ -5,6 +5,8 @@ import { images, colors } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
 import AppBarBadge from "@components/CustomUI/AppBarBadge";
 import { headerGlobalStyles } from "@styles/global.style";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
 
 export default () => {
     const { authState } = useAuth();

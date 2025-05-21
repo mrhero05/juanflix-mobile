@@ -1,10 +1,10 @@
 {
     "expo": {
-        "name": "JuanFlixApp",
+        "name": "JuanFlix",
         "slug": "JuanFlixApp",
         "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./src/assets/images/JuanflixIcon.png",
+        "icon": "./src/assets/images/JuanflixApp.png",
         "scheme": "myapp",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
@@ -20,21 +20,21 @@
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./src/assets/images/JuanflixIcon.png"
+                "foregroundImage": "./src/assets/images/JuanflixApp.png"
             },
             "package": "com.juanflix.app"
         },
         "web": {
             "bundler": "metro",
             "output": "static",
-            "favicon": "./src/assets/images/JuanflixIcon.png"
+            "favicon": "./src/assets/images/JuanflixApp.png"
         },
         "plugins": [
             "expo-router",
             [
                 "expo-splash-screen",
                 {
-                    "image": "./src/assets/images/JuanflixIcon.png",
+                    "image": "./src/assets/images/JuanFlixSplashscreen.png",
                     "resizeMode": "cover",
                     "backgroundColor": "#000000",
                     "imageWidth": 200

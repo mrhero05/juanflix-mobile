@@ -11,7 +11,7 @@ import { router } from "expo-router";
 
 const OtpVerification = () => {
     const { userLogout, authState, setAuthState } = useAuth();
-    const userEmail = "mikepialago@gmail.com";
+    const userEmail = authState.email;
     const emailSendTo = `Enter the code from the email we sent to ${userEmail}`;
     const [otpValue, setOtpValue] = useState(["", "", "", "", "", ""]);
     const [isError, setIsError] = useState(false);
@@ -19,6 +19,7 @@ const OtpVerification = () => {
 
     const onSubmit = () => {
         const jwtToken = authState.token;
+
         const otpJoined = otpValue.join("");
         if (authState.otp == otpJoined) {
             setIsError(false);
@@ -28,6 +29,7 @@ const OtpVerification = () => {
                 profile: null,
                 profileNum: 0,
                 otp: 0,
+                email: userEmail,
             });
             if (router.canGoBack) {
                 router.dismissAll();

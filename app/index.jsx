@@ -8,7 +8,7 @@ import { Redirect } from "expo-router";
 
 export default () => {
     const { authState } = useAuth();
-    if (authState.authenticated) {
+    if (authState.authenticated === true) {
         return <Redirect href="/screens/Dynamic/UserProfileScreen" />;
     }
     return <SignedOutScreen />;

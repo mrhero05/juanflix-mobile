@@ -90,6 +90,7 @@ const SignupScreen = () => {
                                         });
                                     }
                                 }}
+                                disabled={isLoading}
                                 loading={isLoading}
                             />
                             <View className="flex flex-row gap-[10] items-center justify-center pt-[10px] pb-[25px]">

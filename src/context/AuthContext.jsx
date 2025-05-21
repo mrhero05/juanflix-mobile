@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
         profile: null,
         profileNum: 0,
         otp: 0,
+        email: "",
     });
     const userLogin = async (params) => {
         setIsLoading(true);
@@ -34,6 +35,7 @@ export const AuthProvider = ({ children }) => {
                     profile: null,
                     profileNum: 0,
                     otp: userData.otp,
+                    email: userData.email,
                 });
                 // if (router.canGoBack) {
                 //     router.dismissAll();
@@ -64,6 +66,7 @@ export const AuthProvider = ({ children }) => {
                 profile: null,
                 profileNum: 0,
                 otp: 0,
+                email: "",
             });
             router.replace("/");
         });
@@ -82,6 +85,7 @@ export const AuthProvider = ({ children }) => {
                     profile: null,
                     profileNum: 0,
                     otp: 0,
+                    email: "",
                 });
             }
         } catch (error) {

@@ -39,6 +39,9 @@ const MainBanner = () => {
                             className="flex-1"
                             icon="play"
                             title="Watch Now"
+                            onPress={() => {
+                                alert("Coming soon!");
+                            }}
                         />
                         <CustomButton
                             title="+"
@@ -46,6 +49,9 @@ const MainBanner = () => {
                             buttonColor={colors.customDarkGray}
                             textColor={colors.customWhite}
                             style={styles.watchListButton}
+                            onPress={() => {
+                                alert("Coming soon!");
+                            }}
                         />
                     </View>
                 </View>

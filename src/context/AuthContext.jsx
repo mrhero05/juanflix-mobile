@@ -7,30 +7,40 @@ import UserService from "@services/UserService";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState("");
     const [authState, setAuthState] = useState({
         token: null,
         authenticated: null,
         profile: null,
         profileNum: 0,
+        otp: 0,
+        email: "",
     });
     const userLogin = async (params) => {
         setIsLoading(true);
         const userJWTAuth = await UserService.getUserJWTAuth(params);
+        if (userJWTAuth?.status) {
+            setIsError("Invalid Credentials!");
+            setIsLoading(false);
+            return false;
+        }
+        setIsError("");
         const userData = await UserService.getUserInformation(userJWTAuth);
-        console.log(userData);
 
         try {
             if (userData) {
                 setAuthState({
                     token: userJWTAuth,
-                    authenticated: true,
+                    authenticated: false,
                     profile: null,
                     profileNum: 0,
+                    otp: userData.otp,
+                    email: userData.email,
                 });
-                if (router.canGoBack) {
-                    router.dismissAll();
-                }
-                router.dismissTo("/screens/Dynamic/UserProfileScreen");
+                // if (router.canGoBack) {
+                //     router.dismissAll();
+                // }
+                router.push("/screens/Static/OtpVerification");
                 setIsLoading(false);
                 return Promise.all([
                     LocalStorageService.saveData("userToken", userJWTAuth),
@@ -55,6 +65,8 @@ export const AuthProvider = ({ children }) => {
                 authenticated: false,
                 profile: null,
                 profileNum: 0,
+                otp: 0,
+                email: "",
             });
             router.replace("/");
         });
@@ -72,6 +84,8 @@ export const AuthProvider = ({ children }) => {
                     authenticated: isAuthenticated === "true",
                     profile: null,
                     profileNum: 0,
+                    otp: 0,
+                    email: "",
                 });
             }
         } catch (error) {
@@ -89,6 +103,7 @@ export const AuthProvider = ({ children }) => {
         userLogin,
         userLogout,
         loadUserAuth,
+        isError,
         isLoading,
     };
     return (

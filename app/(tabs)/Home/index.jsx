@@ -27,13 +27,18 @@ import useFilmGenresQuery from "@queries/useFilmGenresQuery";
 import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
 import useFilmQuery from "@queries/useFilmQuery";
 import useFilmByCategoryQuery from "@queries/useFilmByCategoryQuery";
-import { router } from "expo-router";
+import { router, Redirect } from "expo-router";
 import { Loader } from "@components/CustomUI/";
+import { useAuth } from "@context/AuthContext";
 
 const data = [...new Array(1).keys()];
 const width = Dimensions.get("window").width;
 
 const Home = () => {
+    const { authState } = useAuth();
+    if (authState.authenticated !== true) {
+        return <Redirect href="/" />;
+    }
     const { data: filmRegionData, isPending: filmDataIsPending } =
         useFilmQuery();
     const { data: filmSpotlightData, isPending: filmSpotlightDataIsPending } =

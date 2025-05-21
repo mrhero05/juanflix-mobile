@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     yellowButtonStyle: {
         borderRadius: 3,
         fontWeight: "900",
+        backgroundColor: colors.customYellow,
     },
 });
 export default CustomButton;

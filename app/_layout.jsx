@@ -63,6 +63,13 @@ export default function RootLayout() {
                             ),
                         }}
                     />
+                    <Stack.Screen
+                        name="screens/Static/OtpVerification"
+                        options={{
+                            headerTitle: "OTP Verification",
+                            headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        }}
+                    />
                 </Stack>
             </AuthProvider>
         </QueryClientProvider>

@@ -48,9 +48,10 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 onPress={() => {
-                                    console.log(
-                                        `Index #${index + 1} Resume watching`
-                                    );
+                                    // console.log(
+                                    //     `Index #${index + 1} Resume watching`
+                                    // );
+                                    alert("Coming soon!");
                                 }}
                             >
                                 <ImageBackground
@@ -119,11 +120,12 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                                     color="white"
                                     style={{ marginRight: -7 }}
                                     onPress={() => {
-                                        console.log(
-                                            `Index # ${
-                                                index + 1
-                                            } dots-Vertical Clicked`
-                                        );
+                                        // console.log(
+                                        //     `Index # ${
+                                        //         index + 1
+                                        //     } dots-Vertical Clicked`
+                                        // );
+                                        alert("Coming soon!");
                                     }}
                                 />
                             </View>
@@ -142,6 +144,7 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                 style={filmGlobalStyles.headerTitle}
                 onPress={() => {
                     console.log("Navigate to Continue watching");
+                    alert("Coming soon!");
                 }}
             >
                 <Text style={globalStyles.sectionTitleText}>

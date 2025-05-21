@@ -59,10 +59,17 @@ export const SearchIcon = () => {
 
 export const HamburgerIcon = () => {
     return (
-        <Image
-            source={images.hamburgerIcon}
-            style={headerGlobalStyles.customHeaderIconSize}
-        />
+        <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+                alert("Coming soon!");
+            }}
+        >
+            <Image
+                source={images.hamburgerIcon}
+                style={headerGlobalStyles.customHeaderIconSize}
+            />
+        </TouchableOpacity>
     );
 };
 

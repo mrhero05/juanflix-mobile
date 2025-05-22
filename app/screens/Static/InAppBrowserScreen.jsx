@@ -1,26 +1,25 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaLayout } from "@components/CustomUI";
 import { WebView } from "react-native-webview";
 import { router, useLocalSearchParams } from "expo-router";
+import { Loader } from "@components/CustomUI/";
+import Constants from "expo-constants";
 
 const InAppBrowserScreen = () => {
+    const [userAgent, setUserAgent] = useState("");
     const { link } = useLocalSearchParams();
     let webview = null;
 
-    const runFirst = `
-    // Create element:
-    const para = document.createElement("p");
-    para.innerText = "This is a paragraph.";
+    useEffect(() => {
+        const fetchAllInfo = async () => {
+            setUserAgent(await Constants.getWebViewUserAgentAsync());
+        };
+        fetchAllInfo();
+    }, []);
 
-    // Append to body:
-    document.body.appendChild(para);
-      true; // note: this is required, or you'll sometimes get silent failures
-    `;
     const handleWebViewNavigationStateChange = (newNavState) => {
         const { url } = newNavState;
-
-        // webview.injectJavaScript(injectJavaScript);
         if (!url) return;
         if (url.includes("gobacktoapp")) {
             if (router.canGoBack()) {
@@ -35,8 +34,10 @@ const InAppBrowserScreen = () => {
                 uri: link,
             }}
             style={{ flex: 1 }}
-            injectedJavaScript={runFirst}
             onNavigationStateChange={handleWebViewNavigationStateChange}
+            startInLoadingState={true}
+            renderLoading={() => <Loader />}
+            userAgent={userAgent + " via Juanflix Mobile App"}
         />
     );
 };

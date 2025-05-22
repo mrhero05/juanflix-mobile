@@ -70,6 +70,13 @@ export default function RootLayout() {
                             headerStyle: headerGlobalStyles.headerDefaultStyle,
                         }}
                     />
+                    <Stack.Screen
+                        name="screens/Static/InAppBrowserScreen"
+                        options={{
+                            headerTitle: "Web Browser",
+                            headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        }}
+                    />
                 </Stack>
             </AuthProvider>
         </QueryClientProvider>

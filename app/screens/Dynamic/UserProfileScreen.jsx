@@ -42,7 +42,8 @@ const UserProfileScreen = () => {
                     <View className="mt-10 flex-1 flex-row flex-wrap gap-4 justify-center">
                         {profileDataIsPending ||
                         profileDataisFetching ||
-                        profileData === undefined ? (
+                        profileData === undefined ||
+                        profileData?.status ? (
                             <View className="h-[100]">
                                 <Loader />
                             </View>

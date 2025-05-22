@@ -4,13 +4,11 @@ import { images, colors } from "@utils/Constants";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
 import { YellowButton, CustomButton } from "@components/CustomUI";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import * as WebBrowser from "expo-web-browser";
+import { router, useLocalSearchParams } from "expo-router";
 
 const LeavingTheAppScreen = () => {
-    const navigation = useNavigation();
-    const route = useRoute();
-    const { continueLink } = route.params;
+    const { url } = useLocalSearchParams();
     return (
         <SafeAreaProvider>
             <SafeAreaView
@@ -38,16 +36,21 @@ const LeavingTheAppScreen = () => {
                     <View className="w-full flex mt-auto gap-[10px]">
                         <YellowButton
                             title="CONTINUE"
-                            onPress={async () => {
-                                navigation.goBack();
-                                await WebBrowser.openBrowserAsync(continueLink);
+                            onPress={() => {
+                                // navigation.goBack();
+                                // await WebBrowser.openBrowserAsync(continueLink);
+                                router.dismissTo({
+                                    pathname:
+                                        "screens/Static/InAppBrowserScreen",
+                                    params: { link: url },
+                                });
                             }}
                         />
                         <CustomButton
                             title="CANCEL"
                             textColor={colors.customBlack}
                             buttonColor={colors.customWhite}
-                            onPress={() => navigation.goBack()}
+                            onPress={() => router.back()}
                         />
                     </View>
                 </ImageBackground>

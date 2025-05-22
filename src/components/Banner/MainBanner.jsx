@@ -5,10 +5,9 @@ import { colors } from "@utils/Constants";
 import { LinearGradient } from "expo-linear-gradient";
 import { Entypo } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 
 const MainBanner = () => {
-    const router = useRouter();
     return (
         <ImageBackground
             source={require("@images/BannerImage.png")}
@@ -40,7 +39,13 @@ const MainBanner = () => {
                             icon="play"
                             title="Watch Now"
                             onPress={() => {
-                                alert("Coming soon!");
+                                router.push({
+                                    pathname:
+                                        "screens/Static/LeavingTheAppScreen",
+                                    params: {
+                                        url: "https://dev002.glimsol.com/juanflixapp/",
+                                    },
+                                });
                             }}
                         />
                         <CustomButton

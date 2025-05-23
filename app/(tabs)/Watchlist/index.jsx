@@ -1,12 +1,9 @@
-import * as React from "react";
 import { View, Text, FlatList, StyleSheet, Image } from "react-native";
-import { WebView } from "react-native-webview";
 import { globalStyles } from "@styles/global.style";
 import { SafeAreaLayout, CustomButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
 import useFilmQuery from "@queries/useFilmQuery";
-import FormatterUtils from "@utils/FormatterUtils";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FilmWithInfo } from "@components/Films/";
 
 const Watchlist = () => {
     const btnList = ["Movies", "Short Films", "Pay-Per-View"];
@@ -36,26 +33,11 @@ const Watchlist = () => {
                             ? item.thumbnail
                             : "";
                         return (
-                            <View className="flex-1 flex-row mb-3 items-center gap-5">
-                                <Image
-                                    className="rounded"
-                                    height={100}
-                                    style={{ aspectRatio: 480 / 320 }}
-                                    source={FormatterUtils.formatImageSource(
-                                        itemThumbnail,
-                                        "thumbnail"
-                                    )}
-                                />
-                                <Text className="text-customWhite flex-1">
-                                    {item.title}
-                                </Text>
-                                <MaterialCommunityIcons
-                                    className="ml-auto mr-[-10]"
-                                    name="dots-vertical"
-                                    size={25}
-                                    color={colors.customGray}
-                                />
-                            </View>
+                            <FilmWithInfo
+                                filmid={item.id}
+                                title={item.title}
+                                source={itemThumbnail}
+                            />
                         );
                     }}
                 />

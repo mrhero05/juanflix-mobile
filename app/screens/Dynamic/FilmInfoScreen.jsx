@@ -151,7 +151,8 @@ const FilmInfoScreen = ({ data }) => {
                         title="Watch Now"
                         onPress={() => {
                             router.push({
-                                pathname: `/Home/MainPlayer/${media_id}`,
+                                pathname: `screens/Dynamic/MainJwplayerScreen/`,
+                                params: { id: media_id },
                             });
                         }}
                     />

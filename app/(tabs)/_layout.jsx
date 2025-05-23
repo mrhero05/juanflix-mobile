@@ -20,6 +20,7 @@ export default () => {
                 sceneStyle: headerGlobalStyles.defaultBackground,
                 headerStyle: headerGlobalStyles.headerDefaultStyle,
                 tabBarStyle: headerGlobalStyles.defaultBackground,
+                popToTopOnBlur: true,
             }}
         >
             <Tabs.Screen

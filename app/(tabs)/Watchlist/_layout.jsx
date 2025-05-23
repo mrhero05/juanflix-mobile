@@ -1,7 +1,11 @@
 import { Stack } from "expo-router";
 import TabStackLayout from "@navigation/TabStack";
 import { headerGlobalStyles } from "@styles/global.style";
-import { HamburgerIcon, SearchIcon } from "@navigation/HeaderIcons";
+import {
+    NotificationIcon,
+    HamburgerIcon,
+    SearchIcon,
+} from "@navigation/HeaderIcons";
 import { View } from "react-native";
 
 const StackLayout = () => {
@@ -13,6 +17,19 @@ const StackLayout = () => {
                     title: "Watchlist",
                     headerRight: () => (
                         <View style={headerGlobalStyles.customHeaderStyle}>
+                            <HamburgerIcon />
+                        </View>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="Filminfo/[id]"
+                options={{
+                    title: "",
+                    headerRight: () => (
+                        <View style={headerGlobalStyles.customHeaderStyle}>
+                            <NotificationIcon />
+                            <SearchIcon />
                             <HamburgerIcon />
                         </View>
                     ),

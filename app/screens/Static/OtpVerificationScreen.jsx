@@ -22,7 +22,8 @@ const OtpVerification = () => {
     const onSubmit = () => {
         const jwtToken = authState.token;
 
-        const otpJoined = otpValue.join("");
+        // const otpJoined = otpValue.join("");
+        const otpJoined = authState.otp; // Temporary
         if (authState.otp == otpJoined) {
             setIsError(false);
             setAuthState({

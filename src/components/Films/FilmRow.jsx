@@ -14,10 +14,10 @@ import {
     w33Percent,
 } from "@styles/global.style";
 import { router } from "expo-router";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
 import { colors } from "@utils/Constants";
 import { FilmLoader } from "@components/CustomUI/";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const film3Items = w33Percent - 10;
 const FilmRow = ({ title, subtitle, isPending, films, linkTo, showTitle }) => {
@@ -52,7 +52,9 @@ const FilmRow = ({ title, subtitle, isPending, films, linkTo, showTitle }) => {
                                 <Image
                                     className="w-full h-full rounded"
                                     resizeMode="cover"
-                                    source={formatImageSource(itemThumbnail)}
+                                    source={FormatterUtils.formatImageSource(
+                                        itemThumbnail
+                                    )}
                                 />
                                 {showTitle && (
                                     <Text

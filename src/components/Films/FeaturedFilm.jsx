@@ -13,8 +13,8 @@ import { width } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { router } from "expo-router";
 import { FilmLoader } from "@components/CustomUI/";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const filmFullWidth = width - 60;
 const FeaturedFilm = ({ title, subtitle, isPending, films, linkTo }) => {
@@ -50,7 +50,9 @@ const FeaturedFilm = ({ title, subtitle, isPending, films, linkTo }) => {
                                 <Image
                                     className="w-full h-full rounded"
                                     resizeMode="cover"
-                                    source={formatImageSource(itemThumbnail)}
+                                    source={FormatterUtils.formatImageSource(
+                                        itemThumbnail
+                                    )}
                                 ></Image>
                             </TouchableOpacity>
                         </View>

@@ -13,9 +13,9 @@ import { Entypo } from "@expo/vector-icons";
 import { width, w33Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { router } from "expo-router";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonPosterLoader } from "@components/CustomUI/SkeletonLoader";
 import { FilmLoader } from "@components/CustomUI/";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const film3Items = w33Percent;
 const TopFilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
@@ -30,7 +30,7 @@ const TopFilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
                 horizontal
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => {
-                    const itemThumbnail = item.poster;
+                    const itemPoster = item.poster;
                     return (
                         <View
                             className="p-0"
@@ -52,7 +52,9 @@ const TopFilmRow = ({ title, subtitle, isPending, films, linkTo }) => {
                                 <Image
                                     className="w-full h-full rounded"
                                     resizeMode="cover"
-                                    source={formatImageSource(itemThumbnail)}
+                                    source={FormatterUtils.formatImageSource(
+                                        itemPoster
+                                    )}
                                 />
                             </TouchableOpacity>
                         </View>

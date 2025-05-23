@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
                 // if (router.canGoBack) {
                 //     router.dismissAll();
                 // }
-                router.push("/screens/Static/OtpVerification");
+                router.push("/screens/Static/OtpVerificationScreen");
                 setIsLoading(false);
                 return Promise.all([
                     LocalStorageService.saveData("userToken", userJWTAuth),

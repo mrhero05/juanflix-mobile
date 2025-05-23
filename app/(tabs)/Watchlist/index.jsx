@@ -1,19 +1,52 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import { WebView } from "react-native-webview";
+import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 import { globalStyles } from "@styles/global.style";
-import { SafeAreaLayout } from "@components/CustomUI";
+import { SafeAreaLayout, CustomButton } from "@components/CustomUI";
+import { colors } from "@utils/Constants";
+import useFilmQuery from "@queries/useFilmQuery";
+import { FilmWithInfo } from "@components/Films/";
 
 const Watchlist = () => {
+    const btnList = ["Movies", "Short Films", "Pay-Per-View"];
+    const { data, isPending } = useFilmQuery();
     return (
         <SafeAreaLayout>
             <View style={globalStyles.zPadding}>
-                <Text className="text-customYellow text-center text-2xl">
-                    Coming soon!
-                </Text>
+                <View className="flex-row gap-3 flex-wrap mb-5">
+                    {btnList.map((item) => (
+                        <CustomButton
+                            key={`key-${item.toLowerCase()}`}
+                            title={item}
+                            textColor={colors.customWhite}
+                            buttonColor={colors.customDarkGray}
+                            btnStyle={styles.buttonStyle}
+                        />
+                    ))}
+                </View>
+                <FlatList
+                    data={data}
+                    contentContainerStyle={{
+                        paddingTop: 20,
+                        paddingBottom: 100,
+                    }}
+                    renderItem={({ item }) => {
+                        const itemThumbnail = item?.thumbnail
+                            ? item.thumbnail
+                            : "";
+                        return (
+                            <FilmWithInfo
+                                filmid={item.id}
+                                title={item.title}
+                                source={itemThumbnail}
+                            />
+                        );
+                    }}
+                />
             </View>
         </SafeAreaLayout>
     );
 };
 
 export default Watchlist;
+const styles = StyleSheet.create({
+    buttonStyle: { borderWidth: 0, paddingInline: 8 },
+});

@@ -6,7 +6,7 @@ import { TitleDescription, UserProfile, Loader } from "@components/CustomUI/";
 import { images } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
 import useUserQuery from "@queries/useUserQuery";
-import { formatImageSource } from "@utils/FormatImageSource";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const UserProfileScreen = () => {
     const { authState, userLogout } = useAuth();
@@ -49,9 +49,10 @@ const UserProfileScreen = () => {
                             </View>
                         ) : (
                             profileData.map((item) => {
-                                const profileSource = formatImageSource(
-                                    item.profile_icons.image
-                                );
+                                const profileSource =
+                                    FormatterUtils.formatImageSource(
+                                        item.profile_icons.image
+                                    );
                                 return (
                                     <UserProfile
                                         key={item.id}

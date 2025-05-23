@@ -32,6 +32,12 @@ export default () => {
                     ),
                 }}
             />
+            <Stack.Screen
+                name="MainJwplayerScreen"
+                options={{
+                    headerShown: false,
+                }}
+            />
         </Stack>
     );
 };

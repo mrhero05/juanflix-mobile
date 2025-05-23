@@ -6,7 +6,7 @@ import Player from "@components/Player";
 import { Loader } from "@components/CustomUI/";
 import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
 
-const MainPlayer = () => {
+const MainJwplayerScreen = () => {
     const { id } = useLocalSearchParams();
     const playerRef = useRef(null);
     const [playerLoaded, setPlayerLoaded] = useState(false);
@@ -44,7 +44,7 @@ const MainPlayer = () => {
                 <>
                     <Player
                         ref={playerRef}
-                        style={{ flex: 1 }}
+                        style={{ flex: 1, opacity: 0 }}
                         config={{
                             autostart: true,
                             fullScreenOnLandscape: true,
@@ -73,4 +73,4 @@ const MainPlayer = () => {
     );
 };
 
-export default MainPlayer;
+export default MainJwplayerScreen;

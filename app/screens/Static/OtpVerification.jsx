@@ -8,6 +8,7 @@ import { colors } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
 import useValidateOptQuery from "@queries/useValidateOptQuery";
 import { router } from "expo-router";
+import LocalStorageService from "@services/LocalStorageService";
 
 const OtpVerification = () => {
     const { userLogout, authState, setAuthState } = useAuth();
@@ -16,6 +17,7 @@ const OtpVerification = () => {
     const [otpValue, setOtpValue] = useState(["", "", "", "", "", ""]);
     const [isError, setIsError] = useState(false);
     const otpInputs = useRef([]);
+    console.log(authState.otp);
 
     const onSubmit = () => {
         const jwtToken = authState.token;
@@ -34,6 +36,12 @@ const OtpVerification = () => {
             if (router.canGoBack) {
                 router.dismissAll();
             }
+            Promise.all([
+                LocalStorageService.saveData(
+                    "isAuthenticated",
+                    JSON.stringify(true)
+                ),
+            ]);
             router.dismissTo("/screens/Dynamic/UserProfileScreen");
         } else {
             setIsError(true);

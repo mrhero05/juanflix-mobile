@@ -166,7 +166,7 @@ const SignupScreen = () => {
                                             pathname:
                                                 "/screens/Static/LeavingTheAppScreen",
                                             params: {
-                                                continueLink: registrationLink,
+                                                url: registrationLink,
                                             },
                                         })
                                     }

@@ -138,8 +138,7 @@ const SignedOutScreen = () => {
                                                     pathname:
                                                         "screens/Static/LeavingTheAppScreen",
                                                     params: {
-                                                        continueLink:
-                                                            juanflixLink,
+                                                        url: juanflixLink,
                                                     },
                                                 })
                                             }

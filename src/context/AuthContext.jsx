@@ -44,10 +44,6 @@ export const AuthProvider = ({ children }) => {
                 setIsLoading(false);
                 return Promise.all([
                     LocalStorageService.saveData("userToken", userJWTAuth),
-                    LocalStorageService.saveData(
-                        "isAuthenticated",
-                        JSON.stringify(true)
-                    ),
                 ]);
             }
         } catch (error) {
@@ -77,8 +73,7 @@ export const AuthProvider = ({ children }) => {
                 LocalStorageService.getData("userToken"),
                 LocalStorageService.getData("isAuthenticated"),
             ]);
-
-            if (userToken) {
+            if (userToken && isAuthenticated === "true") {
                 setAuthState({
                     token: userToken,
                     authenticated: isAuthenticated === "true",

@@ -1,30 +1,30 @@
 import { View, Text, SafeAreaView, TextInput, StyleSheet } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
 import { TitleDescription } from "@components/CustomUI/";
 import { YellowButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
-import useValidateOptQuery from "@queries/useValidateOptQuery";
 import { router } from "expo-router";
 import LocalStorageService from "@services/LocalStorageService";
+import UserService from "@services/UserService";
 
 const OtpVerification = () => {
     const { userLogout, authState, setAuthState } = useAuth();
-    const userEmail = authState.email;
-    const emailSendTo = `Enter the code from the email we sent to ${userEmail}`;
     const [otpValue, setOtpValue] = useState(["", "", "", "", "", ""]);
     const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const userEmail = authState.email;
+    const emailSendTo = `Enter the code from the email we sent to ${userEmail}`;
     const otpInputs = useRef([]);
-    console.log(authState.otp);
+    const jwtToken = authState.token;
 
-    const onSubmit = () => {
-        const jwtToken = authState.token;
-
-        // const otpJoined = otpValue.join("");
-        const otpJoined = authState.otp; // Temporary
-        if (authState.otp == otpJoined) {
+    const onSubmit = async () => {
+        setIsLoading(true);
+        const data = await UserService.validateOtp(jwtToken, otpValue.join(""));
+        if (typeof data === "number" || data === 1) {
+            setIsLoading(false);
             setIsError(false);
             setAuthState({
                 token: jwtToken,
@@ -45,6 +45,7 @@ const OtpVerification = () => {
             ]);
             router.dismissTo("/screens/Dynamic/UserProfileScreen");
         } else {
+            setIsLoading(false);
             setIsError(true);
         }
     };
@@ -111,6 +112,8 @@ const OtpVerification = () => {
                     </Text>
                     <YellowButton
                         title="SUBMIT CODE"
+                        loading={isLoading}
+                        disabled={isLoading}
                         onPress={() => {
                             onSubmit();
                         }}

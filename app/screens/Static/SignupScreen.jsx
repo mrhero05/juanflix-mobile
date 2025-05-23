@@ -22,8 +22,8 @@ import { useAuth } from "@context/AuthContext";
 import { router } from "expo-router";
 
 const SignupScreen = () => {
-    const [emailValue, onChangeEmailValue] = useState("gpialago@glimsol.com");
-    const [passwordValue, onChangePasswordValue] = useState("test1234");
+    const [emailValue, onChangeEmailValue] = useState("");
+    const [passwordValue, onChangePasswordValue] = useState("");
     const [isPasswordSecure, setIsPasswordSecure] = useState(true);
     // const registrationLink = process.env.EXPO_PUBLIC_REGISTRATION_LINK;
     const registrationLink = "https://staging.juanflix.com.ph/register";

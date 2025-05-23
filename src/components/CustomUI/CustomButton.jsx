@@ -3,9 +3,9 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { colors } from "@utils/Constants";
 
-const CustomButton = ({ title, ...props }) => {
+const CustomButton = ({ title, btnStyle, ...props }) => {
     return (
-        <Button style={[styles.customButtonStyle]} {...props}>
+        <Button style={[styles.customButtonStyle, btnStyle]} {...props}>
             {title}
         </Button>
     );

@@ -10,17 +10,16 @@ import {
 import React from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaLayout, Loader } from "@components/CustomUI";
-import stripHtmlTag from "@utils/StripHtmlTag";
 import { globalStyles, width } from "@styles/global.style";
 import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { gradientColors } from "@utils/Constants";
 import useFilmByGenreQuery from "@queries/useFilmByGenreQuery";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const GenreScreen = () => {
     const genreParams = useLocalSearchParams();
-    const description = stripHtmlTag(genreParams.description);
+    const description = FormatterUtils.stripHtmlTag(genreParams.description);
     const { data: filmGenreData, isFetching: filmGenreDataIsFetching } =
         useFilmByGenreQuery(genreParams.id);
 
@@ -29,7 +28,10 @@ const GenreScreen = () => {
             <View className="mb-[10]">
                 <ImageBackground
                     className="aspect-[1.1]"
-                    source={formatImageSource(genreParams.banner, "thumbnail")}
+                    source={FormatterUtils.formatImageSource(
+                        genreParams.banner,
+                        "thumbnail"
+                    )}
                 >
                     <LinearGradient
                         colors={gradientColors[genreParams.colorIndex]}
@@ -100,7 +102,9 @@ const GenreScreen = () => {
                             >
                                 <Image
                                     className="w-full h-full rounded"
-                                    source={formatImageSource(itemPoster)}
+                                    source={FormatterUtils.formatImageSource(
+                                        itemPoster
+                                    )}
                                 />
                             </TouchableOpacity>
                         </View>

@@ -22,13 +22,13 @@ import { globalStyles, w33Percent } from "@styles/global.style";
 import { colors, awardsData, reviewData } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
-import stripHtmlTag from "@utils/StripHtmlTag";
 import useFilmInfoQuery from "@queries/useFilmInfoQuery";
 import useMoreFilmQuery from "@queries/useMoreFilmQuery";
 import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
 import { Rating } from "react-native-ratings";
 import { Divider } from "react-native-paper";
 import { router } from "expo-router";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const FilmInfoScreen = ({ data }) => {
     const playerRef = useRef(null);
@@ -176,7 +176,7 @@ const FilmInfoScreen = ({ data }) => {
                         SYNOPSIS
                     </Text>
                     <Text className="mb-[20]" style={[globalStyles.bodyText]}>
-                        {stripHtmlTag(description)}
+                        {FormatterUtils.stripHtmlTag(description)}
                     </Text>
                 </View>
                 <View style={style.filmActions}>

@@ -64,7 +64,7 @@ export default function RootLayout() {
                         }}
                     />
                     <Stack.Screen
-                        name="screens/Static/OtpVerification"
+                        name="screens/Static/OtpVerificationScreen"
                         options={{
                             headerTitle: "OTP Verification",
                             headerStyle: headerGlobalStyles.headerDefaultStyle,

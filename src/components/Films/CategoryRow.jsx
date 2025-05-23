@@ -14,9 +14,9 @@ import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { websiteStorageUrl, gradientColors } from "@utils/Constants";
 import { FilmLoader } from "@components/CustomUI/";
 import { router } from "expo-router";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { SkeletonThumbnailLoader } from "@components/CustomUI/SkeletonLoader";
 import { LinearGradient } from "expo-linear-gradient";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const film2Items = w50Percent;
 const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
@@ -57,7 +57,7 @@ const CategoryRow = ({ title, subtitle, isPending, data, linkTo }) => {
                                     { width: film2Items },
                                 ]}
                                 imageStyle={{ borderRadius: 4 }}
-                                source={formatImageSource(
+                                source={FormatterUtils.formatImageSource(
                                     imgThumbnail,
                                     "thumbnail"
                                 )}

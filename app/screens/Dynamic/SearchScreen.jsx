@@ -15,8 +15,8 @@ import { colors } from "@utils/Constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
 import useFilmQuery from "@queries/useFilmQuery";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { router } from "expo-router";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const SearchScreen = () => {
     const { data: filmRegionData, isPending: filmDataIsPending } =
@@ -25,7 +25,6 @@ const SearchScreen = () => {
     const screenWidth = width;
     const numColumns = 3;
     const gap = 10;
-
     const availableSpace = screenWidth - 40 - (numColumns - 1) * gap;
     const itemSize = availableSpace / numColumns;
     return (
@@ -79,7 +78,9 @@ const SearchScreen = () => {
                                 >
                                     <Image
                                         className="w-full h-full rounded"
-                                        source={formatImageSource(itemPoster)}
+                                        source={FormatterUtils.formatImageSource(
+                                            itemPoster
+                                        )}
                                     />
                                 </TouchableOpacity>
                             </View>

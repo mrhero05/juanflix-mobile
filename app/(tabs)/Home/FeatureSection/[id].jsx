@@ -9,18 +9,17 @@ import {
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import { SafeAreaLayout, Loader } from "@components/CustomUI";
-import stripHtmlTag from "@utils/StripHtmlTag";
-import { formatImageSource } from "@utils/FormatImageSource";
 import { globalStyles, width } from "@styles/global.style";
 import { websiteStorageUrl } from "@utils/Constants";
 import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
 import useFilmByCategoryQuery from "@queries/useFilmByCategoryQuery";
+import FormatterUtils from "@utils/FormatterUtils";
 
 const FeatureSection = () => {
     const featuredParams = useLocalSearchParams();
     const imgThumbnail = `${websiteStorageUrl}${featuredParams.banner}`;
-    const description = stripHtmlTag(featuredParams.description);
+    const description = FormatterUtils.stripHtmlTag(featuredParams.description);
     const { data, isFetching: filmFeatureDataIsFetching } =
         useFilmByCategoryQuery(featuredParams.id);
     const HeaderContent = () => {
@@ -86,7 +85,9 @@ const FeatureSection = () => {
                         >
                             <Image
                                 className="w-full h-full rounded"
-                                source={formatImageSource(itemPoster)}
+                                source={FormatterUtils.formatImageSource(
+                                    itemPoster
+                                )}
                             />
                         </View>
                     );

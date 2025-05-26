@@ -4,6 +4,7 @@ import { router } from "expo-router";
 import { AppBarBadge } from "@components/CustomUI/";
 import { images } from "@utils/Constants";
 import { headerGlobalStyles } from "@styles/global.style";
+import { useNavigation } from "@react-navigation/native";
 
 export const BrandLogo = () => {
     return (
@@ -58,11 +59,13 @@ export const SearchIcon = () => {
 };
 
 export const HamburgerIcon = () => {
+    const navigation = useNavigation();
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-                alert("Coming soon!");
+                // alert("Coming soon!");
+                navigation.toggleDrawer();
             }}
         >
             <Image

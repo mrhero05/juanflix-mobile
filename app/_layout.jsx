@@ -8,6 +8,7 @@ import "@styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { headerGlobalStyles } from "@styles/global.style";
 import AppBarBadge from "@components/CustomUI/AppBarBadge";
+import { HamburgerIcon } from "@navigation/HeaderIcons";
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
@@ -25,7 +26,7 @@ export default function RootLayout() {
                     }}
                 >
                     <Stack.Screen
-                        name="(tabs)"
+                        name="(drawer)"
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen

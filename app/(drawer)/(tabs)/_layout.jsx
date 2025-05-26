@@ -13,7 +13,7 @@ export default () => {
     return (
         <Tabs
             screenOptions={{
-                animation: "shift",
+                animation: "fade",
                 headerShown: false,
                 tabBarActiveTintColor: colors.customYellow,
                 headerTintColor: colors.customWhite,

@@ -11,17 +11,16 @@ import React from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaLayout, Loader } from "@components/CustomUI";
 import { globalStyles, width } from "@styles/global.style";
-import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
 import { gradientColors } from "@utils/Constants";
-import useFilmByGenreQuery from "@queries/useFilmByGenreQuery";
 import FormatterUtils from "@utils/FormatterUtils";
+import { getFilmsByGenreIds } from "@queries/useFilmQuery";
 
 const GenreScreen = () => {
     const genreParams = useLocalSearchParams();
     const description = FormatterUtils.stripHtmlTag(genreParams.description);
     const { data: filmGenreData, isFetching: filmGenreDataIsFetching } =
-        useFilmByGenreQuery(genreParams.id);
+        getFilmsByGenreIds(genreParams.id);
 
     const HeaderContent = () => {
         return (

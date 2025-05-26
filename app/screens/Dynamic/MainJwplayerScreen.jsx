@@ -4,7 +4,8 @@ import { router, useLocalSearchParams } from "expo-router";
 import PlayerContainer from "@components/PlayerContainer";
 import Player from "@components/Player";
 import { Loader } from "@components/CustomUI/";
-import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
+import { getJwplayerTrailerById } from "@queries/useJwplayerQuery";
+getJwplayerTrailerById;
 
 const MainJwplayerScreen = () => {
     const { id } = useLocalSearchParams();
@@ -16,7 +17,7 @@ const MainJwplayerScreen = () => {
         isPending: jwConfigIsPending,
         isError: jwConfigIsError,
         isFetching: jwConfigIsFetching,
-    } = useJwpTrailerQuery(id);
+    } = getJwplayerTrailerById(id);
 
     const onTime = (e) => {
         // var { position, duration } = e.nativeEvent;

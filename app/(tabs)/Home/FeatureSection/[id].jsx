@@ -11,17 +11,16 @@ import { useLocalSearchParams } from "expo-router";
 import { SafeAreaLayout, Loader } from "@components/CustomUI";
 import { globalStyles, width } from "@styles/global.style";
 import { websiteStorageUrl } from "@utils/Constants";
-import useFilmQuery from "@queries/useFilmQuery";
 import { LinearGradient } from "expo-linear-gradient";
-import useFilmByCategoryQuery from "@queries/useFilmByCategoryQuery";
 import FormatterUtils from "@utils/FormatterUtils";
+import { getFilmsByCategoryIds } from "@queries/useFilmQuery";
 
 const FeatureSection = () => {
     const featuredParams = useLocalSearchParams();
     const imgThumbnail = `${websiteStorageUrl}${featuredParams.banner}`;
     const description = FormatterUtils.stripHtmlTag(featuredParams.description);
     const { data, isFetching: filmFeatureDataIsFetching } =
-        useFilmByCategoryQuery(featuredParams.id);
+        getFilmsByCategoryIds(featuredParams.id);
     const HeaderContent = () => {
         return (
             <View className="mb-[10]">

@@ -125,3 +125,17 @@ export const headerGlobalStyles = StyleSheet.create({
         height: 25,
     },
 });
+
+export const drawerGlobalStyles = StyleSheet.create({
+    drawerDefaultStyle: {
+        backgroundColor: colors.customBlack,
+        borderColor: colors.customBlack,
+        borderRadius: 0,
+        width: 250,
+    },
+    drawerLabelStyle: { color: colors.customWhite },
+    drawerItemStyle: {
+        borderRadius: 3,
+        backgroundColor: colors.customGray,
+    },
+});

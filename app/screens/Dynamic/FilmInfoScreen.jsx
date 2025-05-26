@@ -22,13 +22,12 @@ import { globalStyles, w33Percent } from "@styles/global.style";
 import { colors, awardsData, reviewData } from "@utils/Constants";
 import { Entypo } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
-import useFilmInfoQuery from "@queries/useFilmInfoQuery";
-import useMoreFilmQuery from "@queries/useMoreFilmQuery";
-import useJwpTrailerQuery from "@queries/useJwpTrailerQuery";
+import { getJwplayerTrailerById } from "@queries/useJwplayerQuery";
 import { Rating } from "react-native-ratings";
 import { Divider } from "react-native-paper";
 import { router } from "expo-router";
 import FormatterUtils from "@utils/FormatterUtils";
+import { getFilmInfoById, getMoreFilmsByGenreId } from "@queries/useFilmQuery";
 
 const FilmInfoScreen = ({ data }) => {
     const playerRef = useRef(null);
@@ -38,7 +37,7 @@ const FilmInfoScreen = ({ data }) => {
         data: filmData,
         isPending: filmDataIsPending,
         isFetching: filmDataIsFetching,
-    } = useFilmInfoQuery(data.id);
+    } = getFilmInfoById(data.id);
 
     const film = filmData?.[0];
 
@@ -60,13 +59,13 @@ const FilmInfoScreen = ({ data }) => {
         data: moreFilm,
         isPending: moreFilmIsPending,
         isFetching: moreFilmIsFetching,
-    } = useMoreFilmQuery({ filmData, genresIds });
+    } = getMoreFilmsByGenreId({ filmData, genresIds });
 
     const {
         data: jwConfig,
         isPending: jwConfigIsPending,
         isFetching: jwConfigIsFetching,
-    } = useJwpTrailerQuery(trailer_id);
+    } = getJwplayerTrailerById(trailer_id);
 
     const genresAndCategories = [...(genres || []), ...(categories || [])];
 

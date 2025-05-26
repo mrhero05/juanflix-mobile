@@ -14,13 +14,13 @@ import { Searchbar } from "react-native-paper";
 import { colors } from "@utils/Constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FilmRow } from "@components/Films";
-import useFilmQuery from "@queries/useFilmQuery";
+import { getAllFilms } from "@queries/useFilmQuery";
 import { router } from "expo-router";
 import FormatterUtils from "@utils/FormatterUtils";
 
 const SearchScreen = () => {
     const { data: filmRegionData, isPending: filmDataIsPending } =
-        useFilmQuery();
+        getAllFilms();
 
     const screenWidth = width;
     const numColumns = 3;

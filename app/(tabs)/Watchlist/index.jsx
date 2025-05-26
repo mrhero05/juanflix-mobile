@@ -2,12 +2,12 @@ import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 import { globalStyles } from "@styles/global.style";
 import { SafeAreaLayout, CustomButton } from "@components/CustomUI";
 import { colors } from "@utils/Constants";
-import useFilmQuery from "@queries/useFilmQuery";
+import { getAllFilms } from "@queries/useFilmQuery";
 import { FilmWithInfo } from "@components/Films/";
 
 const Watchlist = () => {
     const btnList = ["Movies", "Short Films", "Pay-Per-View"];
-    const { data, isPending } = useFilmQuery();
+    const { data, isPending } = getAllFilms();
     return (
         <SafeAreaLayout>
             <View style={globalStyles.zPadding}>

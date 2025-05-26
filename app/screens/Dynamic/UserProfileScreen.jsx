@@ -5,7 +5,7 @@ import { globalStyles } from "@styles/global.style";
 import { TitleDescription, UserProfile, Loader } from "@components/CustomUI/";
 import { images } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
-import useUserQuery from "@queries/useUserQuery";
+import { getProfileByAuth } from "@queries/useUserQuery";
 import FormatterUtils from "@utils/FormatterUtils";
 
 const UserProfileScreen = () => {
@@ -14,7 +14,7 @@ const UserProfileScreen = () => {
         data: profileData,
         isPending: profileDataIsPending,
         isFetching: profileDataisFetching,
-    } = useUserQuery.getProfile(authState.token);
+    } = getProfileByAuth(authState.token);
     if (profileData?.status === 401) {
         userLogout();
     }

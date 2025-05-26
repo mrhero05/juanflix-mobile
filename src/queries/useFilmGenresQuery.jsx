@@ -1,7 +1,7 @@
 import FilmService from "@services/FilmService";
 import { useQuery } from "@tanstack/react-query";
 
-const useFilmGenresQuery = () => {
+export const getAllGenres = () => {
     return useQuery({
         queryKey: ["filmGenresData"],
         queryFn: async () => {
@@ -9,5 +9,3 @@ const useFilmGenresQuery = () => {
         },
     });
 };
-
-export default useFilmGenresQuery;

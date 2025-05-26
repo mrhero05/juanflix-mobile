@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import JWPlayerService from "@services/JWPlayerService";
 
-const useJwpTrailerQuery = (trailer_id) => {
+export const getJwplayerTrailerById = (trailer_id) => {
     const defaultPropertyID = "NLLhGCSw";
     return useQuery({
         queryKey: ["jwplayerConfig", trailer_id],
@@ -15,5 +15,3 @@ const useJwpTrailerQuery = (trailer_id) => {
         refetchOnMount: "always",
     });
 };
-
-export default useJwpTrailerQuery;

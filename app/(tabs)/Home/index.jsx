@@ -23,10 +23,12 @@ import Carousel, {
     Pagination,
 } from "react-native-reanimated-carousel";
 import MainBanner from "@components/Banner/MainBanner";
-import useFilmGenresQuery from "@queries/useFilmGenresQuery";
-import useFilmContinueWatchQuery from "@queries/useFilmContinueWatchQuery";
-import useFilmQuery from "@queries/useFilmQuery";
-import useFilmByCategoryQuery from "@queries/useFilmByCategoryQuery";
+import { getAllGenres } from "@queries/useFilmGenresQuery";
+import {
+    getAllFilms,
+    getFilmsByCategoryIds,
+    getContinueWatchingFilms,
+} from "@queries/useFilmQuery";
 import { router, Redirect } from "expo-router";
 import { Loader } from "@components/CustomUI/";
 import { useAuth } from "@context/AuthContext";
@@ -40,17 +42,17 @@ const Home = () => {
         return <Redirect href="/" />;
     }
     const { data: filmRegionData, isPending: filmDataIsPending } =
-        useFilmQuery();
+        getAllFilms();
     const { data: filmSpotlightData, isPending: filmSpotlightDataIsPending } =
-        useFilmByCategoryQuery(1);
+        getFilmsByCategoryIds(1);
     const { data: filmTrendingData, isPending: filmTrendingDataIsPending } =
-        useFilmByCategoryQuery(3);
+        getFilmsByCategoryIds(3);
     const { data: filmNewData, isPending: filmNewDataIsPending } =
-        useFilmByCategoryQuery(4);
+        getFilmsByCategoryIds(4);
     const { data: filmContinue, isPending: filmContinueIsPending } =
-        useFilmContinueWatchQuery();
+        getContinueWatchingFilms();
     const { data: filmCategory, isPending: filmCategoryIsPending } =
-        useFilmGenresQuery();
+        getAllGenres();
 
     const ref = React.useRef(null);
     const progress = useSharedValue(0);

@@ -104,6 +104,30 @@ const UserService = {
                 }
             });
     },
+    resendOtp: (jwtAuth) => {
+        rawApiClient.defaults.baseURL =
+            "https://staging.juanflix.com.ph/api/v1/";
+        rawApiClient.defaults.headers.common[
+            "Authorization"
+        ] = `Bearer ${jwtAuth}`;
+        return rawApiClient
+            .get("resend-otp-api")
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log("Error response:", error.response);
+                    return error.response;
+                } else if (error.request) {
+                    console.log("Error request:", error.request);
+                    return error.request;
+                } else {
+                    console.log("Error message:", error.message);
+                    return error.message;
+                }
+            });
+    },
 };
 
 export default UserService;

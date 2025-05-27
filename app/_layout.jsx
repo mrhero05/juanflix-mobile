@@ -78,6 +78,30 @@ export default function RootLayout() {
                             headerStyle: headerGlobalStyles.headerDefaultStyle,
                         }}
                     />
+                    <Stack.Screen
+                        name="screens/Static/AboutJuanflixScreen"
+                        options={{
+                            animation: "slide_from_left",
+                            headerTitle: "About",
+                            headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        }}
+                    />
+                    <Stack.Screen
+                        name="screens/Static/HelpCenterScreen"
+                        options={{
+                            animation: "slide_from_left",
+                            headerTitle: "Help Center",
+                            headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        }}
+                    />
+                    <Stack.Screen
+                        name="screens/Static/TermsOfUseScreen"
+                        options={{
+                            animation: "slide_from_left",
+                            headerTitle: "Terms of Use",
+                            headerStyle: headerGlobalStyles.headerDefaultStyle,
+                        }}
+                    />
                 </Stack>
             </AuthProvider>
         </QueryClientProvider>

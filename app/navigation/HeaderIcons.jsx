@@ -64,7 +64,6 @@ export const HamburgerIcon = () => {
         <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-                // alert("Coming soon!");
                 navigation.toggleDrawer();
             }}
         >

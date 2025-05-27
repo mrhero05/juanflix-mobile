@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
         authenticated: null,
         profile: null,
         profileNum: 0,
-        otp: 0,
+        otpExpired: "",
         email: "",
     });
     const userLogin = async (params) => {
@@ -29,12 +29,15 @@ export const AuthProvider = ({ children }) => {
 
         try {
             if (userData) {
+                const optExpires = new Date(userData.otp_expires);
+                const optExpiresMin = optExpires.getMinutes();
+                const optExpiresAt = optExpires.setMinutes(optExpiresMin + 1);
                 setAuthState({
                     token: userJWTAuth,
                     authenticated: false,
                     profile: null,
                     profileNum: 0,
-                    otp: userData.otp,
+                    otpExpired: optExpiresAt,
                     email: userData.email,
                 });
                 // if (router.canGoBack) {
@@ -61,7 +64,7 @@ export const AuthProvider = ({ children }) => {
                 authenticated: false,
                 profile: null,
                 profileNum: 0,
-                otp: 0,
+                otpExpired: "",
                 email: "",
             });
             router.replace("/");
@@ -79,7 +82,7 @@ export const AuthProvider = ({ children }) => {
                     authenticated: isAuthenticated === "true",
                     profile: null,
                     profileNum: 0,
-                    otp: 0,
+                    otpExpired: "",
                     email: "",
                 });
             }

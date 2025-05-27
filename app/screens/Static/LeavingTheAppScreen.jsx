@@ -6,6 +6,7 @@ import { globalStyles } from "@styles/global.style";
 import { YellowButton, CustomButton } from "@components/CustomUI";
 import * as WebBrowser from "expo-web-browser";
 import { router, useLocalSearchParams } from "expo-router";
+import { BrandLogo } from "@components/CustomUI/";
 
 const LeavingTheAppScreen = () => {
     const { url } = useLocalSearchParams();
@@ -20,15 +21,7 @@ const LeavingTheAppScreen = () => {
                     resizeMode="cover"
                     source={images.backgroundImg}
                 >
-                    <Image
-                        className="mt-[50px]"
-                        source={images.brandLogo}
-                        style={{
-                            width: 150,
-                            height: 50,
-                            resizeMode: "contain",
-                        }}
-                    />
+                    <BrandLogo style={{ marginTop: 50 }} />
                     <Text className="mt-[50px] text-2xl text-customYellow text-center">
                         YOU ARE ABOUT TO LEAVE THE APP AND GO TO AN EXTERNAL
                         WEBSITE.

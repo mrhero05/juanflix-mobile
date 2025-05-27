@@ -4,12 +4,13 @@ import {
     DrawerItem,
     DrawerItemList,
 } from "@react-navigation/drawer";
-import { Image, Text, View } from "react-native";
+import { Dimensions, Image, Text, View } from "react-native";
 import { drawerGlobalStyles, headerGlobalStyles } from "@styles/global.style";
 import { BrandLogo, HamburgerIcon } from "@navigation/HeaderIcons";
 import { images, colors } from "@utils/Constants";
 import { router } from "expo-router";
 import { Divider } from "react-native-paper";
+import { useAuth } from "@context/AuthContext";
 
 const drawerData = [
     {
@@ -25,12 +26,12 @@ const drawerData = [
     {
         label: "About JuanFlix",
         source: require("@images/DrawerAbout.png"),
-        route: "AboutJuanflixScreen",
+        route: "screens/Static/AboutJuanflixScreen",
     },
     {
         label: "Terms of Use",
         source: require("@images/DrawerTerm.png"),
-        route: "TermsOfUseScreen",
+        route: "screens/Static/TermsOfUseScreen",
     },
     {
         label: "Accounts",
@@ -40,50 +41,80 @@ const drawerData = [
     {
         label: "Help Center",
         source: require("@images/DrawerHelp.png"),
-        route: "HelpCenterScreen",
+        route: "screens/Static/HelpCenterScreen",
     },
 ];
 
+const CustomDrawerItem = ({ label, source, ...props }) => {
+    return (
+        <DrawerItem
+            label={label}
+            style={{
+                height: 40,
+                justifyContent: "center",
+                borderRadius: 5,
+            }}
+            icon={() => (
+                <Image
+                    source={source}
+                    style={[
+                        headerGlobalStyles.customHeaderIconSize,
+                        { marginInline: -5 },
+                    ]}
+                />
+            )}
+            labelStyle={{
+                color: colors.customWhite,
+                height: 30,
+            }}
+            activeTintColor={colors.customYellow}
+            {...props}
+        />
+    );
+};
+
 const CustomDrawerContent = (props) => {
+    const { userLogout } = useAuth();
     const { navigation } = props;
+    const screenHeight = Dimensions.get("window").height;
+    const desiredHeight = screenHeight - 20;
     return (
         <DrawerContentScrollView key="innerDrawer" {...props}>
-            <View style={{ padding: 10, marginBottom: 10 }}>
-                <BrandLogo />
+            <View
+                style={{
+                    minHeight: desiredHeight,
+                }}
+            >
+                <View className="p-[10] mb-[10]">
+                    <BrandLogo />
+                </View>
+                {drawerData.map((item, index) => {
+                    return (
+                        <View key={`drawerkey-${index}`}>
+                            <CustomDrawerItem
+                                label={item.label}
+                                source={item.source}
+                                onPress={() => {
+                                    navigation.closeDrawer();
+                                    router.push(item.route);
+                                }}
+                            />
+                            {index == 2 && <Divider className="my-5 mx-3" />}
+                        </View>
+                    );
+                })}
+                <View style={{ marginTop: "auto" }}>
+                    <CustomDrawerItem
+                        label="Logout"
+                        source={require("@images/DrawerTerm.png")}
+                        onPress={() => {
+                            console.log("Test 123");
+                            navigation.closeDrawer();
+                            userLogout();
+                        }}
+                    />
+                </View>
             </View>
-            {drawerData.map((item, index) => {
-                return (
-                    <View key={`drawerkey-${index}`}>
-                        <DrawerItem
-                            label={item.label}
-                            style={{
-                                height: 40,
-                                justifyContent: "center",
-                                borderRadius: 5,
-                            }}
-                            icon={() => (
-                                <Image
-                                    source={item.source}
-                                    style={[
-                                        headerGlobalStyles.customHeaderIconSize,
-                                        { marginInline: -5 },
-                                    ]}
-                                />
-                            )}
-                            labelStyle={{
-                                color: colors.customWhite,
-                                height: 30,
-                            }}
-                            activeTintColor={colors.customYellow}
-                            onPress={() => {
-                                navigation.closeDrawer();
-                                router.push(item.route);
-                            }}
-                        />
-                        {index == 2 && <Divider className="my-5 mx-3" />}
-                    </View>
-                );
-            })}
         </DrawerContentScrollView>
     );
 };
@@ -105,54 +136,6 @@ export default function Layout() {
             drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
             <Drawer.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Drawer.Screen
-                name="AboutJuanflixScreen"
-                options={{
-                    title: "About JuanFlix",
-                    headerRight: () => (
-                        <View
-                            style={[
-                                headerGlobalStyles.customHeaderStyle,
-                                { marginRight: 20 },
-                            ]}
-                        >
-                            <HamburgerIcon />
-                        </View>
-                    ),
-                }}
-            />
-            <Drawer.Screen
-                name="HelpCenterScreen"
-                options={{
-                    title: "Help Center",
-                    headerRight: () => (
-                        <View
-                            style={[
-                                headerGlobalStyles.customHeaderStyle,
-                                { marginRight: 20 },
-                            ]}
-                        >
-                            <HamburgerIcon />
-                        </View>
-                    ),
-                }}
-            />
-            <Drawer.Screen
-                name="TermsOfUseScreen"
-                options={{
-                    title: "Terms of Use",
-                    headerRight: () => (
-                        <View
-                            style={[
-                                headerGlobalStyles.customHeaderStyle,
-                                { marginRight: 20 },
-                            ]}
-                        >
-                            <HamburgerIcon />
-                        </View>
-                    ),
-                }}
-            />
         </Drawer>
     );
 }

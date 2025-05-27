@@ -1,9 +1,16 @@
-import { View, Text, SafeAreaView, TextInput, StyleSheet } from "react-native";
+import {
+    View,
+    Text,
+    SafeAreaView,
+    TextInput,
+    StyleSheet,
+    TouchableOpacity,
+    ToastAndroid,
+} from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { globalStyles } from "@styles/global.style";
-import { TitleDescription } from "@components/CustomUI/";
-import { YellowButton } from "@components/CustomUI";
+import { TitleDescription, YellowButton } from "@components/CustomUI/";
 import { colors } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
 import { router } from "expo-router";
@@ -12,14 +19,48 @@ import UserService from "@services/UserService";
 
 const OtpVerification = () => {
     const { userLogout, authState, setAuthState } = useAuth();
-    const [otpValue, setOtpValue] = useState(["", "", "", "", "", ""]);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isResendLoading, setResendIsLoading] = useState(false);
     const userEmail = authState.email;
     const emailSendTo = `Enter the code from the email we sent to ${userEmail}`;
+    // For OTP Input
+    const [otpValue, setOtpValue] = useState(["", "", "", "", "", ""]);
     const otpInputs = useRef([]);
     const jwtToken = authState.token;
+    // For OTP expires
+    const optExpired = authState.otpExpired;
+    const currentDateTime = Math.floor(new Date());
+    const remainingTimeOtp = optExpired - currentDateTime;
+    const remainingTimeInSec = Math.floor(remainingTimeOtp / 1000);
+    const [resendOtpIn, setResendOtpIn] = useState(remainingTimeInSec - 60);
 
+    useEffect(() => {
+        let isMounted = true;
+        const tickingResend = setInterval(() => {
+            if (isMounted) {
+                setResendOtpIn((currentSec) => {
+                    if (currentSec <= 0) {
+                        clearInterval(tickingResend);
+                        return 0;
+                    }
+                    return currentSec - 1;
+                });
+            }
+        }, 1000);
+        return () => {
+            isMounted = false;
+            clearInterval(tickingResend);
+        };
+    }, [resendOtpIn]);
+
+    const ToastMessage = (ToastMessageText) => {
+        ToastAndroid.showWithGravity(
+            ToastMessageText,
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER
+        );
+    };
     const onSubmit = async () => {
         setIsLoading(true);
         const data = await UserService.validateOtp(jwtToken, otpValue.join(""));
@@ -32,7 +73,7 @@ const OtpVerification = () => {
                 authenticated: true,
                 profile: null,
                 profileNum: 0,
-                otp: 0,
+                otpExpired: "",
                 email: userEmail,
             });
             if (router.canGoBack) {
@@ -105,16 +146,46 @@ const OtpVerification = () => {
                             );
                         })}
                     </View>
-                    <Text className="text-customWhite mt-4 mb-10">
-                        {/* Didn't get the code{" "}
-                        <Text className="text-customYellow">
-                            Resend (in 42 sec)
-                        </Text> */}
-                    </Text>
+                    <View className="flex-row mt-4 mb-10">
+                        <Text className="text-customWhite">
+                            Didn't get the code?{" "}
+                        </Text>
+                        {resendOtpIn > 0 ? (
+                            <Text className="text-customYellow">
+                                Resend (in {resendOtpIn} sec)
+                            </Text>
+                        ) : (
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                disabled={isResendLoading}
+                                onPress={async () => {
+                                    setResendIsLoading(true);
+                                    const resend = await UserService.resendOtp(
+                                        jwtToken
+                                    );
+                                    if (resend.status == 400) {
+                                        setResendIsLoading(false);
+                                        ToastMessage(
+                                            "Unable to resend OTP. Please wait 5 minutes before requesting a new one."
+                                        );
+                                    }
+                                    if (resend?.message) {
+                                        setResendIsLoading(false);
+                                        setResendOtpIn(60);
+                                        ToastMessage(resend?.message);
+                                    }
+                                }}
+                            >
+                                <Text className="text-customYellow">
+                                    Click here to resend OTP
+                                </Text>
+                            </TouchableOpacity>
+                        )}
+                    </View>
                     <YellowButton
                         title="SUBMIT CODE"
                         loading={isLoading}
-                        disabled={isLoading}
+                        disabled={isLoading || isResendLoading}
                         onPress={() => {
                             onSubmit();
                         }}

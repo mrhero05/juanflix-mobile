@@ -7,6 +7,7 @@ import { images } from "@utils/Constants";
 import { useAuth } from "@context/AuthContext";
 import { getProfileByAuth } from "@queries/useUserQuery";
 import FormatterUtils from "@utils/FormatterUtils";
+import { BrandLogo } from "@components/CustomUI";
 
 const UserProfileScreen = () => {
     const { authState, userLogout } = useAuth();
@@ -25,15 +26,7 @@ const UserProfileScreen = () => {
                     className="flex-1 items-center"
                     style={globalStyles.xPadding}
                 >
-                    <Image
-                        className="mt-[50px]"
-                        source={images.brandLogo}
-                        style={{
-                            width: 150,
-                            height: 50,
-                            resizeMode: "contain",
-                        }}
-                    />
+                    <BrandLogo style={{ marginTop: 50 }} />
                     <TitleDescription
                         title="Who's watching today?"
                         description="Pick your profile to get started."

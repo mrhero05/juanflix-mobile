@@ -12,3 +12,4 @@ export { default as UserProfile } from "./UserProfile";
 export { default as AppBarBadge } from "./AppBarBadge";
 export { default as SafeAreaLayout } from "./SafeAreaLayout";
 export { default as FilmLoader } from "./FilmLoader";
+export { default as BrandLogo } from "./BrandLogo";

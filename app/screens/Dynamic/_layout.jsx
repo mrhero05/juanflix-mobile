@@ -38,6 +38,12 @@ export default () => {
                     headerShown: false,
                 }}
             />
+            <Stack.Screen
+                name="ContinueWatchingScreen"
+                options={{
+                    title: "Continue Watching",
+                }}
+            />
         </Stack>
     );
 };

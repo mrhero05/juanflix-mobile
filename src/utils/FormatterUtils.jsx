@@ -26,6 +26,18 @@ const FormatterUtils = {
         }
         return { uri: imageSource };
     },
+    remainingTimeCalculation: (duration, current) => {
+        let remainingTime = duration - current;
+        let remainingTimeText = "";
+        if (remainingTime >= 60) {
+            remainingTimeText = `${Math.floor(remainingTime / 60)}h`;
+            remainingTime % 60 > 0 ? (remainingTimeText += " ") : null;
+        }
+        if (remainingTime % 60 > 0) {
+            remainingTimeText += `${remainingTime % 60}m`;
+        }
+        return remainingTimeText;
+    },
 };
 
 export default FormatterUtils;

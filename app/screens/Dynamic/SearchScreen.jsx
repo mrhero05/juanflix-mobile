@@ -17,6 +17,7 @@ import { FilmRow } from "@components/Films";
 import { getAllFilms } from "@queries/useFilmQuery";
 import { router } from "expo-router";
 import FormatterUtils from "@utils/FormatterUtils";
+import LayoutDrawer from "../../(drawer)/_layout";
 
 const SearchScreen = () => {
     const { data: filmRegionData, isPending: filmDataIsPending } =

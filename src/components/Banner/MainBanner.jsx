@@ -43,7 +43,7 @@ const MainBanner = () => {
                                     pathname:
                                         "screens/Static/LeavingTheAppScreen",
                                     params: {
-                                        url: "https://dev002.glimsol.com/juanflixapp/",
+                                        url: "https://staging.juanflix.com.ph/welcome-user",
                                     },
                                 });
                             }}

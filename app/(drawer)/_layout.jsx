@@ -21,7 +21,7 @@ const drawerData = [
     {
         label: "Continue Watching",
         source: require("@images/DrawerContinue.png"),
-        route: "/Home",
+        route: "/screens/Dynamic/ContinueWatchingScreen",
     },
     {
         label: "About JuanFlix",
@@ -34,7 +34,7 @@ const drawerData = [
         route: "screens/Static/TermsOfUseScreen",
     },
     {
-        label: "Accounts",
+        label: "Account",
         source: require("@images/DrawerAccount.png"),
         route: "/Account",
     },
@@ -59,7 +59,7 @@ const CustomDrawerItem = ({ label, source, ...props }) => {
                     source={source}
                     style={[
                         headerGlobalStyles.customHeaderIconSize,
-                        { marginInline: -5 },
+                        { marginInline: 0 },
                     ]}
                 />
             )}
@@ -106,11 +106,12 @@ const CustomDrawerContent = (props) => {
                 <View style={{ marginTop: "auto" }}>
                     <CustomDrawerItem
                         label="Logout"
-                        source={require("@images/DrawerTerm.png")}
+                        source={require("@images/DrawerLogout.png")}
                         onPress={() => {
-                            console.log("Test 123");
                             navigation.closeDrawer();
-                            userLogout();
+                            setTimeout(() => {
+                                userLogout();
+                            }, 500);
                         }}
                     />
                 </View>
@@ -119,7 +120,7 @@ const CustomDrawerContent = (props) => {
     );
 };
 
-export default function Layout() {
+export default function LayoutDrawer() {
     return (
         <Drawer
             screenOptions={{

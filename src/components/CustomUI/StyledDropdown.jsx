@@ -1,8 +1,29 @@
 import { StyleSheet } from "react-native";
-import { Dropdown } from "react-native-element-dropdown";
+import { Dropdown, MultiSelect } from "react-native-element-dropdown";
 import { colors } from "@utils/Constants";
 
-const StyledDropdown = ({ data, ...props }) => {
+const StyledDropdown = ({ data, dropDownType, ...props }) => {
+    if (dropDownType == "multiSelect") {
+        return (
+            <MultiSelect
+                style={[styles.dropdown]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                itemContainerStyle={styles.itemContainerStyle}
+                itemTextStyle={styles.itemTextStyle}
+                iconStyle={styles.iconStyle}
+                containerStyle={styles.containerStyle}
+                backgroundColor={styles.backgroundColor}
+                activeColor={colors.customGray}
+                data={data}
+                maxHeight={250}
+                autoScroll={false}
+                labelField="label"
+                valueField="value"
+                {...props}
+            />
+        );
+    }
     return (
         <Dropdown
             style={[styles.dropdown]}

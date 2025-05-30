@@ -31,11 +31,8 @@ const dropdownGenreList = () => {
 const Browse = () => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
-    const [value2, setValue2] = useState(null);
-    const [isFocus2, setIsFocus2] = useState(false);
 
     const [expanded, setExpanded] = useState(true);
-    const handlePress = () => setExpanded(!expanded);
 
     const { data: filmGenreData, isFetching: filmGenreDataIsFetching } =
         getAllFilms();

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Pressable } from "react-native";
 import React from "react";
 import { router } from "expo-router";
 import { AppBarBadge } from "@components/CustomUI/";
@@ -61,7 +61,7 @@ export const SearchIcon = () => {
 export const HamburgerIcon = () => {
     const navigation = useNavigation();
     return (
-        <TouchableOpacity
+        <Pressable
             activeOpacity={0.8}
             onPress={() => {
                 navigation.toggleDrawer();
@@ -71,7 +71,7 @@ export const HamburgerIcon = () => {
                 source={images.hamburgerIcon}
                 style={headerGlobalStyles.customHeaderIconSize}
             />
-        </TouchableOpacity>
+        </Pressable>
     );
 };
 

@@ -41,6 +41,7 @@ export const images = {
     bellIcon: require("@images/BellIcon.png"),
     searchIcon: require("@images/SearchIcon.png"),
     hamburgerIcon: require("@images/HamburgerIcon.png"),
+    hamburgerIconHover: require("@images/HamburgerIconHover.png"),
     auston: require("@images/game-icons--tiger-head.png"),
     waves: require("@images/cbi--duco-logo.png"),
     filled: require("@images/tdesign--logo-qq-filled.png"),

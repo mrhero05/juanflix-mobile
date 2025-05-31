@@ -24,7 +24,7 @@ const FilmWithInfo = ({ filmid, title, source }) => {
                         "thumbnail"
                     )}
                 />
-                <Text className="text-customWhite flex-1">{title}</Text>
+                <Text className="text-customWhite flex-1 ">{title}</Text>
             </TouchableOpacity>
             <MaterialCommunityIcons
                 className="ml-auto mr-[-10]"

@@ -10,7 +10,7 @@ const Watchlist = () => {
     const { data, isPending } = getAllFilms();
     return (
         <SafeAreaLayout>
-            <View style={globalStyles.zPadding}>
+            <View style={[globalStyles.xPadding]}>
                 <View className="flex-row gap-3 flex-wrap mb-5">
                     {btnList.map((item) => (
                         <CustomButton

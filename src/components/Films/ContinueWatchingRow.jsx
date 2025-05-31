@@ -11,23 +11,12 @@ import { w50Percent } from "@styles/global.style";
 import { globalStyles, filmGlobalStyles } from "@styles/global.style";
 import { ProgressBar } from "react-native-paper";
 import { colors } from "@utils/Constants";
-import { FilmLoader } from "@components/CustomUI/";
+import { FilmLoader, CustomProgressBar } from "@components/CustomUI/";
 import { SkeletonThumbnailLoader } from "@components/CustomUI/SkeletonLoader";
-
+import FormatterUtils from "@utils/FormatterUtils";
+import { router } from "expo-router";
 const film2Items = w50Percent;
 
-const remainingTimeCalculation = (duration, current) => {
-    let remainingTime = duration - current;
-    let remainingTimeText = "";
-    if (remainingTime >= 60) {
-        remainingTimeText = `${Math.floor(remainingTime / 60)}h`;
-        remainingTime % 60 > 0 ? (remainingTimeText += " ") : null;
-    }
-    if (remainingTime % 60 > 0) {
-        remainingTimeText += `${remainingTime % 60}m`;
-    }
-    return remainingTimeText;
-};
 const ContinueWatchingRow = ({ data, isPending }) => {
     const FilmFlatList = () => {
         if (isPending) {
@@ -70,18 +59,9 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                                     />
                                 </ImageBackground>
                             </TouchableOpacity>
-                            <ProgressBar
-                                progress={
-                                    (100 -
-                                        (remainingTime / itemDuration) * 100) /
-                                    100
-                                }
-                                color={colors.customYellow}
-                                style={{
-                                    marginTop: -3,
-                                    borderBottomEndRadius: 3,
-                                    borderBottomLeftRadius: 3,
-                                }}
+                            <CustomProgressBar
+                                current={remainingTime}
+                                max={itemDuration}
                             />
                             <View className="flex-row justify-between pt-[10]">
                                 <Text
@@ -107,7 +87,7 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                                             },
                                         ]}
                                     >
-                                        {remainingTimeCalculation(
+                                        {FormatterUtils.remainingTimeCalculation(
                                             item.duration,
                                             item.current
                                         )}{" "}
@@ -120,11 +100,6 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                                     color="white"
                                     style={{ marginRight: -7 }}
                                     onPress={() => {
-                                        // console.log(
-                                        //     `Index # ${
-                                        //         index + 1
-                                        //     } dots-Vertical Clicked`
-                                        // );
                                         alert("Coming soon!");
                                     }}
                                 />
@@ -143,8 +118,9 @@ const ContinueWatchingRow = ({ data, isPending }) => {
                 className="pl-[20]"
                 style={filmGlobalStyles.headerTitle}
                 onPress={() => {
-                    console.log("Navigate to Continue watching");
-                    alert("Coming soon!");
+                    router.push({
+                        pathname: `screens/Dynamic/ContinueWatchingScreen/`,
+                    });
                 }}
             >
                 <Text style={globalStyles.sectionTitleText}>
